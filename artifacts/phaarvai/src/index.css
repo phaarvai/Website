@@ -56,27 +56,25 @@
   --app-font-mono: Menlo, monospace;
   --radius: 0.5rem;
 
-  /* Light institutional theme: 80% light / 20% dark */
-  --background: 210 40% 98%;          /* #F8FAFC */
-  --foreground: 214 68% 14%;          /* #0B1F3A dark navy */
+  --background: 210 40% 98%;
+  --foreground: 214 68% 14%;
 
-  --card: 0 0% 100%;                  /* #FFFFFF white */
+  --card: 0 0% 100%;
   --card-foreground: 214 68% 14%;
-  --card-border: 214 20% 90%;         /* subtle light gray */
+  --card-border: 214 20% 90%;
 
   --popover: 0 0% 100%;
   --popover-foreground: 214 68% 14%;
   --popover-border: 214 20% 90%;
 
-  /* Blue accent */
-  --primary: 221 83% 53%;             /* #2563EB */
-  --primary-foreground: 0 0% 100%;    /* white */
+  --primary: 221 83% 53%;
+  --primary-foreground: 0 0% 100%;
 
-  --secondary: 214 52% 25%;           /* #1E3A5F */
+  --secondary: 214 52% 25%;
   --secondary-foreground: 0 0% 100%;
 
-  --muted: 210 20% 96%;               /* very light gray */
-  --muted-foreground: 215 16% 47%;    /* medium gray */
+  --muted: 210 20% 96%;
+  --muted-foreground: 215 16% 47%;
 
   --accent: 210 20% 94%;
   --accent-foreground: 214 68% 14%;
@@ -88,23 +86,11 @@
   --input: 214 20% 88%;
   --ring: 221 83% 53%;
 
-  --button-outline: rgba(0,0,0, .08);
-  --badge-outline: rgba(0,0,0, .05);
-  --opaque-button-border-intensity: -8;
-  --elevate-1: rgba(0,0,0, .03);
-  --elevate-2: rgba(0,0,0, .08);
-
   --primary-border: hsl(var(--primary));
   --secondary-border: hsl(var(--secondary));
   --muted-border: hsl(var(--muted));
   --accent-border: hsl(var(--accent));
   --destructive-border: hsl(var(--destructive));
-}
-
-/* Hero and footer sections use dark navy explicitly via utility classes */
-.section-dark {
-  --background: 214 68% 14%;
-  --foreground: 0 0% 100%;
 }
 
 @layer base {
@@ -113,7 +99,9 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/20 selection:text-primary;
+    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/15 selection:text-primary;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -122,19 +110,37 @@
 }
 
 @layer utilities {
-  .hover-elevate {
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  /* Card hover — soft shadow lift, no aggressive transform */
+  .card-hover {
+    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
   }
-  .hover-elevate:hover {
+  .card-hover:hover {
+    box-shadow: 0 8px 32px -8px rgba(11, 31, 58, 0.12);
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px -8px rgba(11, 31, 58, 0.15);
+    border-color: hsl(214 20% 80%);
   }
 
+  /* Button elevate — color shift only, no scaling */
+  .hover-elevate {
+    transition: box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+  }
+  .hover-elevate:hover {
+    box-shadow: 0 6px 20px -6px rgba(37, 99, 235, 0.35);
+    transform: translateY(-1px);
+  }
+
+  /* Dark gradient sections (hero, CTA, footer) */
   .hero-gradient {
     background: linear-gradient(135deg, #0B1F3A 0%, #1E3A5F 100%);
   }
 
+  /* Alternating section background */
   .section-alt {
     background-color: hsl(210 20% 96%);
+  }
+
+  /* Monospace label */
+  .label-mono {
+    @apply text-xs font-mono tracking-widest uppercase text-primary;
   }
 }

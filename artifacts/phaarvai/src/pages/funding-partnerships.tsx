@@ -1,138 +1,151 @@
 import { motion } from "framer-motion";
 import { SectionIntro } from "@/components/SectionIntro";
 import { CTASection } from "@/components/CTASection";
-import { ArrowRight } from "lucide-react";
+import { PageSEO } from "@/components/PageSEO";
+
+const fadeIn = {
+  initial: { opacity: 0, y: 14 },
+  whileInView: { opacity: 1, y: 0 },
+  viewport: { once: true, margin: "-40px" },
+  transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+};
 
 const partnerships = [
   {
     title: "Philanthropic & Foundation Programs",
-    description: "Foundations deploying capital to social or infrastructure programs require technical partners who can architect impact tracking from the beginning, not retrofit reporting systems after deployment."
+    description: "Foundations deploying capital to social or infrastructure programs need technical partners who architect impact tracking from day one — not retrospectively."
   },
   {
     title: "CSR & Corporate Initiatives",
-    description: "Large corporations executing CSR-mandated technology programs require implementation partners with the credibility to satisfy both internal governance and external audit requirements."
+    description: "Large corporations executing CSR-mandated technology programs require implementation partners who satisfy both internal governance and external audit requirements."
   },
   {
     title: "Donor-Backed Public Programs",
-    description: "International donor organizations and bilateral development agencies need technical execution partners who understand the compliance and outcome-measurement requirements of sovereign funding."
+    description: "International donor agencies need technical execution partners who understand the compliance and outcome-measurement requirements of sovereign funding."
   },
   {
     title: "Public Sector Consortiums",
-    description: "Multi-agency or cross-jurisdictional programs require interoperable architecture and shared reporting systems. We design platforms that serve multiple institutional stakeholders without compromising data security."
+    description: "Multi-agency programs require interoperable architecture and shared reporting systems that serve multiple stakeholders without compromising data security."
   }
 ];
 
 const priorityThemes = [
-  { title: "AI & Digital Transformation", description: "End-to-end technical implementation of AI and digitization programs for public and mission-driven institutions." },
-  { title: "Sustainability & ESG Systems", description: "Automated tracking, measurement, and reporting for sustainability commitments and environmental compliance mandates." },
-  { title: "Data Platforms & Infrastructure", description: "Foundational data architecture for institutions that need unified operational visibility across distributed programs." },
-  { title: "Public Impact Measurement", description: "Outcome tracking frameworks that demonstrate program effectiveness to funders, oversight bodies, and communities." }
+  { title: "AI & Digital Transformation", description: "End-to-end AI and digitization implementation for public and mission-driven institutions." },
+  { title: "Sustainability & ESG Systems", description: "Automated tracking and reporting for sustainability commitments and environmental compliance." },
+  { title: "Data Platforms & Infrastructure", description: "Foundational data architecture for unified operational visibility across distributed programs." },
+  { title: "Public Impact Measurement", description: "Outcome tracking frameworks that demonstrate program effectiveness to funders and oversight bodies." }
+];
+
+const howWeContribute = [
+  { step: "Concept", text: "Validate technical feasibility and define implementation architecture aligned to funding parameters." },
+  { step: "Build", text: "Construct the platforms, workflows, and data pipelines required for program execution at institutional scale." },
+  { step: "Report", text: "Automate the compliance, milestone, and impact reporting required by funding bodies." },
+  { step: "Scale", text: "Design systems that expand geographically or across programs without full rebuilds." }
 ];
 
 export default function FundingPartnerships() {
   return (
-    <div className="pt-32 pb-16 bg-background">
-      <div className="container mx-auto px-6 md:px-12">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="max-w-4xl mb-24"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-8">
-            Funding & Partnerships
-          </h1>
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            We structure the technical foundation for implementation-ready, fundable initiatives — ensuring they meet the stringent compliance, measurement, and accountability standards required by public funders, philanthropies, and CSR mandates.
-          </p>
-        </motion.div>
-
-        {/* Why Alignment Matters */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-10 mb-24">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="bg-white border border-border p-10 rounded-xl shadow-sm"
-          >
-            <div className="text-xs font-mono tracking-widest text-primary uppercase mb-4">Why It Matters</div>
-            <h2 className="text-2xl font-bold mb-5 text-foreground">Why Funding Alignment Matters</h2>
-            <p className="text-muted-foreground leading-relaxed">
-              Many consequential technology programs receive funding — then fail in execution. Not because the vision was wrong, but because the technical architecture was never designed to support the compliance, reporting, and scale that funding mandates require. Funding bodies are sophisticated: weak technical execution is a primary reason programs lose funding after the first cycle. We de-risk execution before capital is deployed.
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.15 }}
-            className="bg-white border border-border p-10 rounded-xl shadow-sm"
-          >
-            <div className="text-xs font-mono tracking-widest text-primary uppercase mb-4">Our Contribution</div>
-            <h2 className="text-2xl font-bold mb-5 text-foreground">How PHAARVAI Contributes</h2>
-            <div className="space-y-4">
-              {[
-                { step: "→", text: "Concept: We validate technical feasibility and define implementation architecture aligned to funding parameters." },
-                { step: "→", text: "System: We build the platforms, workflows, and data pipelines required for program execution at institutional scale." },
-                { step: "→", text: "Reporting: We automate the compliance, milestone, and impact reporting required by funding bodies." },
-                { step: "→", text: "Scale: We design systems that can expand geographically or across programs without complete rebuilds." }
-              ].map((item, idx) => (
-                <div key={idx} className="flex items-start gap-3">
-                  <span className="text-primary font-bold mt-0.5">{item.step}</span>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
-                </div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Types of Partnerships */}
-        <SectionIntro title="Types of Partnerships" subtitle="We work with different funding models, each with specific technical requirements." />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-24">
-          {partnerships.map((model, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-white border border-border p-8 rounded-xl shadow-sm"
-            >
-              <h3 className="text-lg font-bold mb-4 text-foreground">{model.title}</h3>
-              <p className="text-muted-foreground leading-relaxed text-sm">{model.description}</p>
-            </motion.div>
-          ))}
-        </div>
-
-        {/* Priority Themes */}
-        <SectionIntro title="Priority Program Themes" subtitle="The technology domains where PHAARVAI has deepest implementation experience within funded program contexts." />
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-24">
-          {priorityThemes.map((theme, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="border-l-2 border-primary pl-6 py-2"
-            >
-              <h3 className="text-base font-bold mb-2 text-foreground">{theme.title}</h3>
-              <p className="text-sm text-muted-foreground leading-relaxed">{theme.description}</p>
-            </motion.div>
-          ))}
-        </div>
-      </div>
-
-      <CTASection
-        title="Let's explore a scalable initiative together."
-        description="Engage PHAARVAI to establish the technical and data requirements for your next funded or public-impact deployment."
-        buttonLabel="Discuss Partnerships"
-        buttonHref="/contact"
+    <>
+      <PageSEO
+        title="Funding & Partnerships — Public Impact Technology Programs"
+        description="PHAARVAI structures implementation-ready, fundable technology initiatives for philanthropies, CSR programs, and public sector consortiums."
+        path="/funding-partnerships"
       />
-    </div>
+
+      <article className="pt-32 pb-16 bg-background">
+        <div className="container mx-auto px-6 md:px-12">
+
+          <motion.header
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            className="max-w-3xl mb-20"
+          >
+            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-5">
+              Funding & Partnerships
+            </h1>
+            <p className="text-lg text-muted-foreground leading-relaxed">
+              We structure the technical foundation for implementation-ready, fundable initiatives — ensuring they meet the compliance, measurement, and accountability standards required by public funders, philanthropies, and CSR mandates.
+            </p>
+          </motion.header>
+
+          {/* Why it matters + How we contribute */}
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-20" aria-label="Our approach to funding alignment">
+            <motion.div
+              {...fadeIn}
+              className="bg-white border border-border p-8 rounded-xl"
+            >
+              <span className="label-mono mb-4 block">Why It Matters</span>
+              <h2 className="text-xl font-bold mb-4 text-foreground">Why Funding Alignment Matters</h2>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4">
+                Many consequential technology programs receive funding — then fail in execution. Not because the vision was wrong, but because the technical architecture was never designed to support the compliance and scale that funding mandates require.
+              </p>
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                Funding bodies are increasingly sophisticated. Weak technical execution is a primary reason programs lose funding after the first cycle. We de-risk execution before capital is deployed.
+              </p>
+            </motion.div>
+
+            <motion.div
+              {...fadeIn}
+              transition={{ ...fadeIn.transition, delay: 0.1 }}
+              className="bg-white border border-border p-8 rounded-xl"
+            >
+              <span className="label-mono mb-4 block">Our Contribution</span>
+              <h2 className="text-xl font-bold mb-5 text-foreground">How PHAARVAI Contributes</h2>
+              <ul className="space-y-3">
+                {howWeContribute.map((item, idx) => (
+                  <li key={idx} className="flex items-start gap-3">
+                    <span className="text-xs font-bold text-primary mt-0.5 w-12 shrink-0">{item.step}</span>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.text}</p>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
+          </section>
+
+          {/* Partnership Models */}
+          <SectionIntro title="Types of Partnerships" subtitle="We work with different funding models, each with specific technical requirements." />
+
+          <section className="grid grid-cols-1 md:grid-cols-2 gap-5 mb-20" aria-label="Partnership types">
+            {partnerships.map((model, idx) => (
+              <motion.div
+                key={idx}
+                {...fadeIn}
+                transition={{ ...fadeIn.transition, delay: idx * 0.07 }}
+                className="bg-white border border-border p-7 rounded-xl"
+              >
+                <h3 className="text-base font-bold mb-3 text-foreground">{model.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{model.description}</p>
+              </motion.div>
+            ))}
+          </section>
+
+          {/* Priority Themes */}
+          <SectionIntro title="Priority Program Themes" subtitle="Technology domains where PHAARVAI has deepest implementation experience." />
+
+          <section className="grid grid-cols-1 sm:grid-cols-2 gap-5 mb-16" aria-label="Priority themes">
+            {priorityThemes.map((theme, idx) => (
+              <motion.div
+                key={idx}
+                {...fadeIn}
+                transition={{ ...fadeIn.transition, delay: idx * 0.07 }}
+                className="border-l-2 border-primary pl-5 py-1"
+              >
+                <h3 className="text-sm font-bold mb-1.5 text-foreground">{theme.title}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{theme.description}</p>
+              </motion.div>
+            ))}
+          </section>
+
+        </div>
+
+        <CTASection
+          title="Let's explore a scalable initiative together."
+          description="Engage PHAARVAI to establish the technical and data requirements for your next funded or public-impact deployment."
+          buttonLabel="Discuss Partnerships"
+          buttonHref="/contact"
+        />
+      </article>
+    </>
   );
 }
