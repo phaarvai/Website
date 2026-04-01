@@ -127,7 +127,7 @@ function DataFlowGraphic() {
 
 export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, positioning }: HeroSectionProps) {
   return (
-    <section className="relative min-h-[90vh] flex items-center pt-20 overflow-hidden hero-gradient">
+    <section className="relative min-h-[90vh] flex items-center pt-20 pb-24 overflow-hidden hero-gradient">
       {/* Ambient glow */}
       <div className="absolute inset-0 z-0 opacity-30 pointer-events-none">
         <div className="absolute top-1/4 -right-[20%] w-[70vw] h-[70vw] rounded-full bg-blue-500/10 blur-[120px]" />
