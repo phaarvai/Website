@@ -4,7 +4,7 @@ import { CTASection } from "@/components/CTASection";
 
 export default function About() {
   return (
-    <div className="pt-32 pb-16">
+    <div className="pt-32 pb-16 bg-background">
       <div className="container mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -16,54 +16,58 @@ export default function About() {
             Institutional strategy backed by rigorous execution.
           </h1>
           <p className="text-2xl text-muted-foreground leading-relaxed">
-            PHAARVAI was founded on a simple premise: large institutions do not need more whitepapers or unproven software pilots. They need scalable systems that solve actual operational friction.
+            PHAARVAI was founded on a simple premise: large institutions do not need more advisory reports or unproven pilots. They need the partner that bridges the gap between ideas and execution — building scalable digital systems and AI-enabled solutions that produce measurable operational change.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 mb-32">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-32">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
+            className="bg-white border border-border p-10 rounded-xl shadow-sm"
           >
-            <h2 className="text-3xl font-bold mb-6 text-foreground border-b border-border pb-4">Our Mission</h2>
+            <div className="text-xs font-mono tracking-widest text-primary uppercase mb-4">Mission</div>
+            <h2 className="text-2xl font-bold mb-5 text-foreground">Our Mission</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              To build the technical capability of critical institutions. We deploy pragmatic AI, unified data platforms, and secure digital workflows that enable governments, infrastructure operators, and foundations to allocate resources effectively and act decisively.
+              To build the technical capability of critical institutions. We deploy practical AI, unified data platforms, and secure digital workflows that enable governments, infrastructure operators, and foundations to build operational intelligence, allocate resources effectively, and act with measurable accountability.
             </p>
           </motion.div>
-          
+
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
+            transition={{ duration: 0.6, delay: 0.15 }}
+            className="bg-white border border-border p-10 rounded-xl shadow-sm"
           >
-            <h2 className="text-3xl font-bold mb-6 text-foreground border-b border-border pb-4">Our Vision</h2>
+            <div className="text-xs font-mono tracking-widest text-primary uppercase mb-4">Vision</div>
+            <h2 className="text-2xl font-bold mb-5 text-foreground">Our Vision</h2>
             <p className="text-lg text-muted-foreground leading-relaxed">
-              A public and critical sector where data silos and legacy workflows no longer impede impact. We envision a future where institutional leaders have absolute clarity over their operations, guided by precise data and secure, scalable automation.
+              A public and critical sector where data silos and legacy workflows no longer impede institutional capability. Where operational intelligence is a standard infrastructure — not a strategic aspiration — and where every institution has the technical foundation to make decisions with precision and deliver programs with accountability.
             </p>
           </motion.div>
         </div>
 
-        <SectionIntro title="How We Work" subtitle="A structured approach to complex deployments." />
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-32">
+        <SectionIntro title="How We Work" subtitle="A structured approach to complex institutional deployments." />
+
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-32">
           {[
             {
               step: "01",
-              title: "Strategic Discovery",
-              description: "We begin by mapping existing workflows and identifying data silos. Our goal is to locate the friction points that carry the highest operational cost, not just deploy technology for its own sake."
+              title: "Understand",
+              description: "We begin by mapping existing workflows, system architecture, and decision processes. Our goal is to locate the operational friction that carries the highest institutional cost — not to deploy technology for its own sake."
             },
             {
               step: "02",
-              title: "Systems Architecture",
-              description: "We design robust, interoperable solutions that respect your existing security and compliance constraints. The architecture is built for scale from day one, avoiding the trap of isolated pilot programs."
+              title: "Design",
+              description: "We architect robust, interoperable solutions that respect your existing security and compliance constraints. Every design is built for scale, avoiding the common trap of pilot systems that cannot survive production."
             },
             {
               step: "03",
-              title: "Deployment & Integration",
-              description: "We execute the technical build and manage the integration into active environments. We ensure clear handoffs, human-in-the-loop safeguards, and measurable operational outcomes."
+              title: "Build & Scale",
+              description: "We execute the technical build and manage integration into active environments — with clear handoffs, human-in-the-loop safeguards, measurable outcome tracking, and a defined path to institutional scale."
             }
           ].map((phase, idx) => (
             <motion.div
@@ -72,54 +76,58 @@ export default function About() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="bg-card border border-border p-8 rounded-xl"
+              className="bg-white border border-border p-8 rounded-xl shadow-sm"
             >
-              <div className="text-primary font-mono text-xl mb-4">{phase.step}</div>
-              <h3 className="text-2xl font-bold mb-4">{phase.title}</h3>
-              <p className="text-muted-foreground">{phase.description}</p>
+              <div className="text-primary font-mono text-2xl font-bold mb-4">{phase.step}</div>
+              <h3 className="text-xl font-bold mb-4 text-foreground">{phase.title}</h3>
+              <p className="text-muted-foreground leading-relaxed">{phase.description}</p>
             </motion.div>
           ))}
         </div>
 
         <SectionIntro title="Core Principles" className="mb-12" />
-        
-        <div className="space-y-8 mb-24">
+
+        <div className="space-y-0 mb-24 border border-border rounded-xl overflow-hidden bg-white shadow-sm">
           {[
             {
-              title: "Pragmatism Over Novelty",
-              description: "We leverage proven, robust technologies rather than untested frameworks. Institutional scale requires stability, predictability, and auditability."
+              title: "Usefulness Over Hype",
+              description: "We evaluate every technology decision by one criterion: does it produce a measurable operational outcome? AI is a tool, not a destination. We deploy it precisely where it removes real institutional friction."
             },
             {
               title: "Strategy Must Equal Execution",
-              description: "A strategic roadmap is worthless if it cannot be technically executed within the realities of the organization. We own both."
+              description: "A strategic roadmap without technical execution is a document. We own both the design and the delivery — ensuring that what is promised can actually be built within the realities of the institution."
             },
             {
-              title: "Data Utility",
-              description: "Data only has value when it influences a decision or automates a necessary task. We focus strictly on operational intelligence."
+              title: "Built for Scale, Not Pilots",
+              description: "Every system we deliver is designed to grow with the institution. We do not build proofs-of-concept that require complete rebuilds for production. Architecture decisions are made with scale in mind from the first day."
+            },
+            {
+              title: "Measurable Systems, Not Vague Impact",
+              description: "We build impact measurement into every deployment. Outcomes must be trackable, reportable, and verifiable — for leadership, for funders, and for the communities these institutions serve."
             }
           ].map((principle, idx) => (
             <motion.div
               key={idx}
-              initial={{ opacity: 0, x: -20 }}
+              initial={{ opacity: 0, x: -10 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.5, delay: idx * 0.1 }}
-              className="flex flex-col md:flex-row gap-6 border-t border-border pt-8"
+              transition={{ duration: 0.5, delay: idx * 0.08 }}
+              className="flex flex-col md:flex-row gap-6 border-b border-border last:border-0 p-8"
             >
               <div className="md:w-1/3">
-                <h3 className="text-xl font-bold text-foreground">{principle.title}</h3>
+                <h3 className="text-base font-bold text-foreground">{principle.title}</h3>
               </div>
               <div className="md:w-2/3">
-                <p className="text-lg text-muted-foreground leading-relaxed">{principle.description}</p>
+                <p className="text-muted-foreground leading-relaxed">{principle.description}</p>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
-      
-      <CTASection 
+
+      <CTASection
         title="Partner with PHAARVAI"
-        description="Learn more about our methodology and previous successful deployments."
+        description="Learn more about our methodology and discuss how we approach institutional technology deployments."
         buttonLabel="Contact Our Team"
         buttonHref="/contact"
       />

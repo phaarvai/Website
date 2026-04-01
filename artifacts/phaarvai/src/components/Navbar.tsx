@@ -20,24 +20,31 @@ export function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      setIsScrolled(window.scrollY > 40);
     };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  const isHome = location === "/";
+
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
-        isScrolled ? "bg-background/90 backdrop-blur-md border-b border-border shadow-sm py-4" : "bg-transparent py-6"
+        isScrolled
+          ? "bg-white/95 backdrop-blur-md border-b border-border shadow-sm py-3"
+          : isHome
+          ? "bg-transparent py-5"
+          : "bg-white border-b border-border py-3"
       }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <span className="text-xl font-bold tracking-widest text-primary">PHAARVAI</span>
+          <span className={`text-xl font-bold tracking-widest transition-colors ${
+            !isScrolled && isHome ? "text-white" : "text-primary"
+          }`}>PHAARVAI</span>
         </Link>
 
-        {/* Desktop Nav */}
         <div className="hidden lg:flex items-center gap-8">
           <div className="flex items-center gap-6">
             {links.map((link) => (
@@ -45,7 +52,11 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  location === link.href ? "text-primary" : "text-muted-foreground"
+                  location === link.href
+                    ? "text-primary"
+                    : !isScrolled && isHome
+                    ? "text-white/80"
+                    : "text-foreground/70"
                 }`}
               >
                 {link.label}
@@ -53,27 +64,32 @@ export function Navbar() {
             ))}
           </div>
           <Link href="/contact">
-            <Button variant="default" className="font-semibold px-6 hover-elevate">Talk to Us</Button>
+            <Button
+              variant="default"
+              className="font-semibold px-6 hover-elevate"
+            >
+              Talk to Us
+            </Button>
           </Link>
         </div>
 
-        {/* Mobile Toggle */}
         <button
-          className="lg:hidden text-foreground hover:text-primary transition-colors"
+          className={`lg:hidden transition-colors hover:text-primary ${
+            !isScrolled && isHome ? "text-white" : "text-foreground"
+          }`}
           onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
         >
           {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
       </div>
 
-      {/* Mobile Menu */}
       <AnimatePresence>
         {mobileMenuOpen && (
           <motion.div
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-background border-b border-border overflow-hidden"
+            className="lg:hidden bg-white border-b border-border overflow-hidden"
           >
             <div className="flex flex-col py-6 px-6 gap-4">
               {links.map((link) => (
@@ -82,7 +98,7 @@ export function Navbar() {
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`text-lg font-medium transition-colors ${
-                    location === link.href ? "text-primary" : "text-foreground"
+                    location === link.href ? "text-primary" : "text-foreground/80"
                   }`}
                 >
                   {link.label}

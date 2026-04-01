@@ -50,6 +50,19 @@ Every package extends `tsconfig.base.json` which sets `composite: true`. The roo
 
 ## Packages
 
+### `artifacts/phaarvai` (`@workspace/phaarvai`)
+
+Production-ready institutional website for **PHAARVAI** — an AI and digital systems company serving governments, infrastructure operators, energy companies, and public-impact foundations.
+
+- **Framework**: React + Vite + Wouter (routing) + Tailwind CSS v4 + Framer Motion
+- **Preview path**: `/` (root)
+- **Design**: Light theme (80% light, 20% dark) — `#F8FAFC` background, `#0B1F3A` navy foreground, `#2563EB` blue primary. Hero and footer use explicit dark navy gradient (`hero-gradient` utility class).
+- **Pages**: Home, About, Capabilities, Solutions, Sectors, Funding & Partnerships, Insights, Contact
+- **Content system**: All copy in `src/content/` files (site.ts, capabilities.ts, solutions.ts, sectors.ts, insights.ts). Rewrite content files to update copy — pages consume them directly.
+- **Contact form**: Posts to `/api/contact` on the api-server. Zod-validated. Fields: name, organization, email, country, orgType, areaOfInterest, message.
+- **Key components**: Navbar (transparent on dark hero, white bg on scroll/other pages), HeroSection (dark gradient, white text), CTASection (dark gradient), Footer (dark navy #0B1F3A), Card, SectionIntro
+- **Zod import**: Standard `import { z } from "zod"` (not `zod/v4`)
+
 ### `artifacts/api-server` (`@workspace/api-server`)
 
 Express 5 API server. Routes live in `src/routes/` and use `@workspace/api-zod` for request and response validation and `@workspace/db` for persistence.

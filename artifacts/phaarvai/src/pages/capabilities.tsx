@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 import { capabilities } from "@/content/capabilities";
 import { SectionIntro } from "@/components/SectionIntro";
 import { CTASection } from "@/components/CTASection";
-import { CheckCircle2 } from "lucide-react";
+import { CheckCircle2, Users, FileText } from "lucide-react";
 
 export default function Capabilities() {
   return (
-    <div className="pt-32 pb-16">
+    <div className="pt-32 pb-16 bg-background">
       <div className="container mx-auto px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -17,57 +17,71 @@ export default function Capabilities() {
           <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-8">
             Capabilities
           </h1>
-          <p className="text-2xl text-muted-foreground leading-relaxed">
-            We deliver technical capacity that institutional leaders require to manage complex, distributed operations effectively.
+          <p className="text-xl text-muted-foreground leading-relaxed">
+            Four integrated practice areas that address the operational gaps most limiting to institutional effectiveness. Each is backed by a full delivery capability — from architecture to production deployment.
           </p>
         </motion.div>
 
-        <div className="space-y-32 mb-32">
+        <div className="space-y-24 mb-32">
           {capabilities.map((cap, idx) => (
-            <motion.div 
+            <motion.div
               key={cap.id}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
+              viewport={{ once: true, margin: "-80px" }}
               transition={{ duration: 0.7 }}
-              className="grid grid-cols-1 lg:grid-cols-12 gap-12"
+              className="grid grid-cols-1 lg:grid-cols-12 gap-10"
             >
-              <div className="lg:col-span-5">
+              <div className="lg:col-span-4">
                 <div className="sticky top-32">
-                  <div className="text-primary font-mono text-sm mb-4 tracking-widest uppercase">Practice Area {String(idx + 1).padStart(2, '0')}</div>
-                  <h2 className="text-4xl font-bold mb-6 text-foreground leading-tight">{cap.title}</h2>
-                  <p className="text-xl text-muted-foreground leading-relaxed">
-                    {cap.intro}
-                  </p>
+                  <div className="text-primary font-mono text-xs mb-4 tracking-widest uppercase">Practice Area {String(idx + 1).padStart(2, '0')}</div>
+                  <h2 className="text-3xl font-bold mb-5 text-foreground leading-tight">{cap.title}</h2>
+                  <p className="text-muted-foreground leading-relaxed mb-8">{cap.intro}</p>
+
+                  <div className="bg-primary/5 border border-primary/20 p-5 rounded-xl">
+                    <div className="flex items-center gap-2 text-primary font-semibold text-sm mb-3">
+                      <Users size={16} /> Ideal Client
+                    </div>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{cap.idealClient}</p>
+                  </div>
                 </div>
               </div>
-              
-              <div className="lg:col-span-7 bg-card border border-border p-8 md:p-12 rounded-2xl">
-                <h3 className="text-sm font-semibold tracking-widest uppercase text-muted-foreground mb-8">Core Services</h3>
-                <ul className="space-y-6 mb-12">
-                  {cap.services.map((service, sIdx) => (
-                    <li key={sIdx} className="flex items-start gap-4">
-                      <CheckCircle2 className="w-6 h-6 text-primary shrink-0 mt-0.5" />
-                      <span className="text-lg text-foreground">{service}</span>
-                    </li>
-                  ))}
-                </ul>
-                
-                <div className="border-t border-border pt-8">
-                  <h3 className="text-sm font-semibold tracking-widest uppercase text-muted-foreground mb-4">Example Deliverable</h3>
-                  <p className="text-lg text-foreground italic border-l-4 border-primary pl-6 py-2">
-                    "{cap.deliverable}"
-                  </p>
+
+              <div className="lg:col-span-8 space-y-6">
+                <div className="bg-white border border-border p-8 rounded-xl shadow-sm">
+                  <h3 className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-6">Core Services</h3>
+                  <ul className="space-y-4">
+                    {cap.services.map((service, sIdx) => (
+                      <li key={sIdx} className="flex items-start gap-3">
+                        <CheckCircle2 className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                        <span className="text-foreground">{service}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="bg-white border border-border p-8 rounded-xl shadow-sm">
+                  <div className="flex items-center gap-2 text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-6">
+                    <FileText size={14} /> Deliverables
+                  </div>
+                  <ul className="space-y-3">
+                    {cap.deliverables.map((deliverable, dIdx) => (
+                      <li key={dIdx} className="flex items-start gap-3">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-2" />
+                        <span className="text-muted-foreground text-sm leading-relaxed">{deliverable}</span>
+                      </li>
+                    ))}
+                  </ul>
                 </div>
               </div>
             </motion.div>
           ))}
         </div>
       </div>
-      
-      <CTASection 
+
+      <CTASection
         title="Require specific technical capability?"
-        description="We architect solutions precisely aligned to your operational parameters."
+        description="We architect solutions precisely aligned to your operational parameters and institutional constraints."
         buttonLabel="Request a Capabilities Brief"
         buttonHref="/contact"
       />

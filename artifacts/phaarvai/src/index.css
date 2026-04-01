@@ -54,48 +54,46 @@
   --app-font-sans: 'Inter', sans-serif;
   --app-font-serif: Georgia, serif;
   --app-font-mono: Menlo, monospace;
-  --radius: 0rem; 
+  --radius: 0.5rem;
 
-  /* Dark Navy Theme by default for the entire app */
-  --background: 222 51% 6%;
-  --foreground: 210 40% 98%;
+  /* Light institutional theme: 80% light / 20% dark */
+  --background: 210 40% 98%;          /* #F8FAFC */
+  --foreground: 214 68% 14%;          /* #0B1F3A dark navy */
 
-  --card: 222 47% 9%;
-  --card-foreground: 210 40% 98%;
-  --card-border: 217 33% 17%;
+  --card: 0 0% 100%;                  /* #FFFFFF white */
+  --card-foreground: 214 68% 14%;
+  --card-border: 214 20% 90%;         /* subtle light gray */
 
-  --popover: 222 47% 9%;
-  --popover-foreground: 210 40% 98%;
-  --popover-border: 217 33% 17%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 214 68% 14%;
+  --popover-border: 214 20% 90%;
 
-  /* Warm Amber Accent */
-  --primary: 38 92% 50%;
-  --primary-foreground: 222 47% 11%;
+  /* Blue accent */
+  --primary: 221 83% 53%;             /* #2563EB */
+  --primary-foreground: 0 0% 100%;    /* white */
 
-  --secondary: 217 33% 17%;
-  --secondary-foreground: 210 40% 98%;
+  --secondary: 214 52% 25%;           /* #1E3A5F */
+  --secondary-foreground: 0 0% 100%;
 
-  --muted: 217 33% 17%;
-  --muted-foreground: 215 20.2% 65.1%;
+  --muted: 210 20% 96%;               /* very light gray */
+  --muted-foreground: 215 16% 47%;    /* medium gray */
 
-  --accent: 217 33% 17%;
-  --accent-foreground: 210 40% 98%;
+  --accent: 210 20% 94%;
+  --accent-foreground: 214 68% 14%;
 
-  --destructive: 0 62.8% 30.6%;
-  --destructive-foreground: 210 40% 98%;
+  --destructive: 0 72% 51%;
+  --destructive-foreground: 0 0% 100%;
 
-  --border: 217 33% 17%;
-  --input: 217 33% 17%;
-  --ring: 38 92% 50%;
+  --border: 214 20% 88%;
+  --input: 214 20% 88%;
+  --ring: 221 83% 53%;
 
-  --button-outline: rgba(255,255,255, .10);
-  --badge-outline: rgba(255,255,255, .05);
+  --button-outline: rgba(0,0,0, .08);
+  --badge-outline: rgba(0,0,0, .05);
+  --opaque-button-border-intensity: -8;
+  --elevate-1: rgba(0,0,0, .03);
+  --elevate-2: rgba(0,0,0, .08);
 
-  --opaque-button-border-intensity: 9;
-  --elevate-1: rgba(255,255,255, .04);
-  --elevate-2: rgba(255,255,255, .09);
-
-  /* Fallbacks */
   --primary-border: hsl(var(--primary));
   --secondary-border: hsl(var(--secondary));
   --muted-border: hsl(var(--muted));
@@ -103,8 +101,10 @@
   --destructive-border: hsl(var(--destructive));
 }
 
-.dark {
-  /* Same as root since we are enforcing a dark institutional theme */
+/* Hero and footer sections use dark navy explicitly via utility classes */
+.section-dark {
+  --background: 214 68% 14%;
+  --foreground: 0 0% 100%;
 }
 
 @layer base {
@@ -113,7 +113,7 @@
   }
 
   body {
-    @apply font-sans antialiased bg-background text-foreground selection:bg-primary selection:text-primary-foreground;
+    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/20 selection:text-primary;
   }
 
   h1, h2, h3, h4, h5, h6 {
@@ -123,11 +123,18 @@
 
 @layer utilities {
   .hover-elevate {
-    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
+    transition: transform 0.2s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.2s cubic-bezier(0.16, 1, 0.3, 1);
   }
   .hover-elevate:hover {
     transform: translateY(-2px);
-    box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
-    background-color: hsl(var(--card));
+    box-shadow: 0 8px 30px -8px rgba(11, 31, 58, 0.15);
+  }
+
+  .hero-gradient {
+    background: linear-gradient(135deg, #0B1F3A 0%, #1E3A5F 100%);
+  }
+
+  .section-alt {
+    background-color: hsl(210 20% 96%);
   }
 }
