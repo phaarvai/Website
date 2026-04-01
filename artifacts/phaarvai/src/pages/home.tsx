@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, ChevronRight, BarChart3, Database, Cpu, Target } from "lucide-react";
+import { ArrowRight, ChevronRight, BarChart3, Database, Cpu, Target, CheckCircle2 } from "lucide-react";
 import { siteContent } from "@/content/site";
 import { insights } from "@/content/insights";
 import { HeroSection } from "@/components/HeroSection";
@@ -25,6 +25,13 @@ const categoryColors: Record<string, string> = {
   "Compliance": "bg-amber-50 text-amber-700 border-amber-100",
   "Public Impact": "bg-teal-50 text-teal-700 border-teal-100",
 };
+
+const differentiators = [
+  { label: "Architecture to Production", detail: "Full-cycle delivery — no handoffs" },
+  { label: "Output-Defined Engagements", detail: "Defined deliverables, not time-and-materials" },
+  { label: "Fundable Program Design", detail: "Structured for grants and CSR capital" },
+  { label: "Institutional-Grade Security", detail: "Audit trails, access controls, compliance" },
+];
 
 const fadeIn = {
   initial: { opacity: 0, y: 14 },
@@ -51,6 +58,23 @@ export default function Home() {
         ctaSecondary={{ label: hero.ctaSecondary, href: "/contact" }}
         positioning={hero.positioning}
       />
+
+      {/* Differentiator Strip */}
+      <div className="bg-foreground py-5 border-b border-white/5">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-px bg-white/10">
+            {differentiators.map((item, idx) => (
+              <div key={idx} className="bg-foreground px-6 py-4">
+                <div className="flex items-center gap-2.5 mb-1">
+                  <CheckCircle2 size={13} className="text-primary shrink-0" />
+                  <span className="text-white text-sm font-semibold">{item.label}</span>
+                </div>
+                <p className="text-white/40 text-xs leading-relaxed pl-[21px]">{item.detail}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
 
       {/* What We Do */}
       <section className="pt-28 pb-20 bg-background" aria-label="Services overview">
@@ -111,6 +135,29 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* Visual break — dashboard image */}
+      <div className="relative h-64 md:h-80 overflow-hidden bg-foreground">
+        <img
+          src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1600&q=75"
+          alt="Data analytics platform overview"
+          className="w-full h-full object-cover opacity-30"
+          loading="lazy"
+        />
+        <div className="absolute inset-0 flex items-center">
+          <div className="container mx-auto px-6 md:px-12">
+            <motion.div
+              {...fadeIn}
+              className="max-w-2xl"
+            >
+              <p className="text-[11px] font-mono tracking-[0.14em] text-blue-300/70 uppercase mb-4">Our Approach</p>
+              <blockquote className="text-xl md:text-2xl font-semibold text-white leading-snug">
+                "We design the system and build it. Strategy and execution — in one partner, from architecture through production."
+              </blockquote>
+            </motion.div>
+          </div>
+        </div>
+      </div>
 
       {/* Problems We Solve */}
       <section className="py-20 bg-background" aria-label="Problems we solve">

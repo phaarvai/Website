@@ -10,121 +10,6 @@ interface HeroSectionProps {
   positioning?: string[];
 }
 
-function DataFlowGraphic() {
-  return (
-    <svg
-      viewBox="0 0 480 360"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      aria-hidden="true"
-      className="w-full h-full"
-    >
-      <defs>
-        <radialGradient id="nodeglow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="#3B82F6" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="#3B82F6" stopOpacity="0" />
-        </radialGradient>
-      </defs>
-
-      {/* Grid lines */}
-      {Array.from({ length: 9 }).map((_, i) => (
-        <line
-          key={`h${i}`}
-          x1="0" y1={i * 45} x2="480" y2={i * 45}
-          stroke="white" strokeOpacity="0.05" strokeWidth="1"
-        />
-      ))}
-      {Array.from({ length: 11 }).map((_, i) => (
-        <line
-          key={`v${i}`}
-          x1={i * 48} y1="0" x2={i * 48} y2="360"
-          stroke="white" strokeOpacity="0.05" strokeWidth="1"
-        />
-      ))}
-
-      {/* Connection edges */}
-      <motion.path
-        d="M96 90 L192 180" stroke="#3B82F6" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="4 4"
-        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 0.5, repeat: Infinity, repeatType: "loop", repeatDelay: 3 }}
-      />
-      <motion.path
-        d="M192 180 L336 180" stroke="#3B82F6" strokeOpacity="0.35" strokeWidth="1.5" strokeDasharray="4 4"
-        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 1.2, repeat: Infinity, repeatType: "loop", repeatDelay: 3 }}
-      />
-      <motion.path
-        d="M192 180 L192 270" stroke="#3B82F6" strokeOpacity="0.25" strokeWidth="1.5" strokeDasharray="4 4"
-        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 1.8, repeat: Infinity, repeatType: "loop", repeatDelay: 3 }}
-      />
-      <motion.path
-        d="M336 180 L384 270" stroke="#3B82F6" strokeOpacity="0.25" strokeWidth="1.5" strokeDasharray="4 4"
-        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.2, delay: 2.2, repeat: Infinity, repeatType: "loop", repeatDelay: 3 }}
-      />
-      <motion.path
-        d="M96 90 L192 90" stroke="#60A5FA" strokeOpacity="0.2" strokeWidth="1" strokeDasharray="3 5"
-        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.8, delay: 0.3, repeat: Infinity, repeatType: "loop", repeatDelay: 4 }}
-      />
-      <motion.path
-        d="M192 90 L336 90" stroke="#60A5FA" strokeOpacity="0.2" strokeWidth="1" strokeDasharray="3 5"
-        initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 2, delay: 1, repeat: Infinity, repeatType: "loop", repeatDelay: 4 }}
-      />
-
-      {/* Nodes */}
-      {[
-        { cx: 96, cy: 90, r: 6, delay: 0 },
-        { cx: 192, cy: 90, r: 4, delay: 0.3 },
-        { cx: 336, cy: 90, r: 5, delay: 0.6 },
-        { cx: 192, cy: 180, r: 10, delay: 0.9, primary: true },
-        { cx: 336, cy: 180, r: 7, delay: 1.2 },
-        { cx: 192, cy: 270, r: 5, delay: 1.5 },
-        { cx: 384, cy: 270, r: 4, delay: 1.8 },
-        { cx: 96, cy: 270, r: 3, delay: 2.1 },
-        { cx: 432, cy: 135, r: 4, delay: 2.4 },
-        { cx: 48, cy: 180, r: 3, delay: 2.7 },
-      ].map((node, idx) => (
-        <motion.g key={idx} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: node.delay, duration: 0.6 }}>
-          {node.primary && <circle cx={node.cx} cy={node.cy} r={22} fill="url(#nodeglow)" />}
-          <circle
-            cx={node.cx} cy={node.cy} r={node.r}
-            fill={node.primary ? "#3B82F6" : "none"}
-            stroke="#60A5FA"
-            strokeOpacity={node.primary ? 1 : 0.5}
-            strokeWidth={node.primary ? 2 : 1.5}
-          />
-          {node.primary && (
-            <motion.circle
-              cx={node.cx} cy={node.cy} r={node.r + 6}
-              stroke="#3B82F6" strokeOpacity={0.3} strokeWidth={1} fill="none"
-              style={{ originX: `${node.cx}px`, originY: `${node.cy}px` }}
-              animate={{ scale: [1, 2.2], opacity: [0.4, 0] }}
-              transition={{ duration: 2, repeat: Infinity, ease: "easeOut" }}
-            />
-          )}
-        </motion.g>
-      ))}
-
-      {/* Data labels */}
-      {[
-        { x: 104, y: 84, label: "Input" },
-        { x: 344, y: 84, label: "Analysis" },
-        { x: 200, y: 285, label: "Output" },
-        { x: 344, y: 174, label: "AI Model" },
-      ].map((label, idx) => (
-        <motion.text
-          key={idx}
-          x={label.x} y={label.y}
-          fill="white" fillOpacity="0.25"
-          fontSize="8"
-          fontFamily="monospace"
-          letterSpacing="0.08em"
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2 + idx * 0.2, duration: 0.8 }}
-        >
-          {label.label}
-        </motion.text>
-      ))}
-    </svg>
-  );
-}
-
 export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, positioning }: HeroSectionProps) {
   return (
     <section className="relative min-h-[90vh] flex items-center pt-20 pb-24 overflow-hidden hero-gradient">
@@ -203,15 +88,27 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
             </motion.div>
           </div>
 
-          {/* Right: abstract data-flow graphic */}
+          {/* Right: dashboard image */}
           <motion.div
-            className="hidden lg:flex items-center justify-center"
-            initial={{ opacity: 0, scale: 0.96 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 1.2, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
+            className="hidden lg:block"
+            initial={{ opacity: 0, scale: 0.97, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            transition={{ duration: 1.2, delay: 0.35, ease: [0.16, 1, 0.3, 1] }}
           >
-            <div className="w-full max-w-md opacity-80">
-              <DataFlowGraphic />
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl shadow-black/50 border border-white/10 ring-1 ring-white/5">
+              <img
+                src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
+                alt="Enterprise analytics command center"
+                className="w-full object-cover opacity-90"
+                loading="eager"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-blue-950/70 via-blue-950/10 to-transparent" />
+              <div className="absolute bottom-0 left-0 right-0 px-5 py-4">
+                <div className="bg-white/10 backdrop-blur-md border border-white/15 rounded-xl px-4 py-3">
+                  <p className="text-[10px] font-mono text-blue-300/80 tracking-[0.12em] uppercase mb-1">Live Command View</p>
+                  <p className="text-sm text-white font-semibold">Operational Intelligence Platform</p>
+                </div>
+              </div>
             </div>
           </motion.div>
 

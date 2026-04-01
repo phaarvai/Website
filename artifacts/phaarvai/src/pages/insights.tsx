@@ -11,7 +11,7 @@ const fadeIn = {
   transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
 };
 
-const categories = ["All", "AI for Public Impact", "Digitization Gaps", "Infrastructure Intelligence", "Sustainability & Impact"];
+const categories = ["All", "AI for Public Impact", "Digitization Gaps", "Infrastructure Intelligence", "Sustainability & Impact", "Sustainability Systems"];
 
 export default function Insights() {
   return (

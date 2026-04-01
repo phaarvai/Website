@@ -32,7 +32,7 @@ export default function Solutions() {
               Solutions
             </h1>
             <p className="text-base text-muted-foreground leading-relaxed">
-              Concrete implementations designed to remove operational friction, automate critical workflows, and build institutional intelligence.
+              Concrete implementations designed to remove operational friction, automate critical workflows, and build institutional intelligence — from architecture through production deployment.
             </p>
           </motion.header>
 
@@ -54,11 +54,13 @@ export default function Solutions() {
                   {[
                     { label: "Challenge", text: solution.challenge },
                     { label: "Typical Client", text: solution.typicalClient },
-                    { label: "How We Help", text: solution.howWeHelp },
+                    { label: "What We Build", text: solution.whatWeBuild },
                     { label: "Impact", text: solution.impact },
                   ].map((col, cIdx) => (
                     <div key={cIdx} className="p-6 md:p-7">
-                      <h3 className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-3">{col.label}</h3>
+                      <h3 className={`text-xs font-semibold tracking-widest uppercase mb-3 ${col.label === "What We Build" ? "text-primary/80" : "text-muted-foreground"}`}>
+                        {col.label}
+                      </h3>
                       <p className="text-sm text-foreground leading-relaxed">{col.text}</p>
                     </div>
                   ))}

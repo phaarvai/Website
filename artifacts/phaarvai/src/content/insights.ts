@@ -61,5 +61,32 @@ export const insights = [
     readTime: "7 min read",
     excerpt: "Sustainability commitments are only as credible as the data systems behind them. Most ESG reporting infrastructure cannot withstand external audit.",
     content: "Regulatory bodies and institutional investors are intensifying scrutiny of sustainability claims. Organizations that cannot demonstrate a clear data lineage from sensor or operational input to reported metric face growing reputational and legal risk. Building an audit-ready sustainability data system requires starting from the regulatory reporting requirement and working backward — designing data pipelines, calculation methodologies, and access controls that produce evidence, not assertions. The technical architecture of ESG systems is now a strategic capability, not a compliance checkbox."
+  },
+  {
+    id: "iot-critical-infrastructure-deployment",
+    title: "Deploying IoT in Critical Infrastructure: What the Spec Sheets Don't Tell You",
+    category: "Infrastructure Intelligence",
+    date: "August 20, 2023",
+    readTime: "8 min read",
+    excerpt: "Sensor deployment at institutional scale — across power grids, transit systems, and water networks — fails for reasons that have nothing to do with the technology. Here is what actually determines success.",
+    content: "IoT deployments in critical infrastructure fail not because the sensors malfunction, but because the surrounding architecture — data ingestion pipelines, edge computing strategy, alert logic, and maintenance workflow integration — is not designed for the operational realities of the environment. Success requires designing from the endpoint first: what data must be captured, at what frequency, with what latency tolerance, and what should happen when it arrives. The technology follows that design — not the other way around."
+  },
+  {
+    id: "command-center-architecture",
+    title: "Building Institutional Command Centers That Actually Get Used",
+    category: "Digitization Gaps",
+    date: "July 9, 2023",
+    readTime: "6 min read",
+    excerpt: "Operational command centers are built to improve institutional visibility — yet most are abandoned within six months. The design principles that determine whether a command center changes how an institution operates.",
+    content: "The command centers that become embedded in institutional operations share a common characteristic: they were designed around the decisions their users make, not around the data that was available. This means starting with a structured analysis of what each role must decide, how often, and what information would reduce the cost of error in that decision. The technology stack is secondary. Data pipeline automation is essential. And the interface must be built to match the cognitive workflow of each user, not the preferences of the designers."
+  },
+  {
+    id: "ai-procurement-risk",
+    title: "The Hidden Risk in Government AI Procurement",
+    category: "AI for Public Impact",
+    date: "June 3, 2023",
+    readTime: "7 min read",
+    excerpt: "Government agencies procuring AI systems face a structural risk that is rarely addressed in RFPs: the vendor delivers what was specified, not what was needed. How to close this gap before signing.",
+    content: "The most expensive AI failures in the public sector are not technical failures — they are specification failures. The agency specifies a system based on what they can articulate, the vendor builds exactly that, and the delivered system does not change how decisions are made because the problem was not correctly framed at the start. Rigorous AI procurement requires a discovery process that surfaces the actual decision being supported, the data that currently informs it, and the failure mode that the AI must address. Only then can a specification be written with confidence."
   }
 ];

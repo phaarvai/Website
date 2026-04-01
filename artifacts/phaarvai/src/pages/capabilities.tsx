@@ -4,6 +4,13 @@ import { CTASection } from "@/components/CTASection";
 import { PageSEO } from "@/components/PageSEO";
 import { CheckCircle2, Users, FileText, MessageSquare } from "lucide-react";
 
+const capabilityImages: Record<string, string> = {
+  "ai-decision-intelligence": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=900&q=75",
+  "digitization-data-platforms": "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=900&q=75",
+  "iot-smart-infrastructure": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=75",
+  "public-impact-programs": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=900&q=75",
+};
+
 const fadeIn = {
   initial: { opacity: 0, y: 14 },
   whileInView: { opacity: 1, y: 0 },
@@ -53,12 +60,29 @@ export default function Capabilities() {
                   </div>
                 </div>
 
+                {/* Visual image strip */}
+                {capabilityImages[cap.id] && (
+                  <div className="relative h-44 md:h-52 rounded-xl overflow-hidden mb-8 bg-foreground">
+                    <img
+                      src={capabilityImages[cap.id]}
+                      alt={`${cap.title} visual`}
+                      className="w-full h-full object-cover opacity-40"
+                      loading="lazy"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 to-transparent" />
+                    <div className="absolute inset-0 flex items-center px-8">
+                      <p className="text-white text-lg md:text-xl font-semibold max-w-lg leading-snug">
+                        {cap.intro}
+                      </p>
+                    </div>
+                  </div>
+                )}
+
                 {/* Two-column layout */}
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                   {/* Left */}
                   <div className="lg:col-span-4 space-y-5">
                     <div>
-                      <p className="text-muted-foreground leading-relaxed text-sm mb-6">{cap.intro}</p>
                       <ul className="space-y-2.5">
                         {cap.bullets.map((bullet, bIdx) => (
                           <li key={bIdx} className="flex items-start gap-2.5">
@@ -83,7 +107,7 @@ export default function Capabilities() {
                     {/* Services */}
                     <div className="bg-white border border-border p-7 rounded-xl">
                       <h3 className="text-xs font-semibold tracking-widest uppercase text-muted-foreground mb-5 flex items-center gap-2">
-                        <FileText size={13} /> Core Services
+                        <FileText size={13} /> What We Build
                       </h3>
                       <ul className="space-y-3">
                         {cap.services.map((service, sIdx) => (
