@@ -83,8 +83,8 @@ export default function Home() {
         <div className="container mx-auto px-6 md:px-12">
           <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 gap-5">
             <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">{whatWeBuild.title}</h2>
-              <p className="text-muted-foreground text-lg max-w-xl">{whatWeBuild.subtitle}</p>
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">{whatWeBuild.title}</h2>
+              <p className="text-base text-muted-foreground max-w-xl">{whatWeBuild.subtitle}</p>
             </div>
             <Link href="/solutions" className="flex items-center text-primary font-semibold text-sm hover:underline group shrink-0">
               All solutions <ArrowRight className="ml-1.5 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
@@ -167,14 +167,26 @@ export default function Home() {
             </Link>
           </div>
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
-            {["Government", "Critical Infrastructure", "Energy", "Foundations & Philanthropy", "Innovation Ecosystems", "Defense & Strategic Systems"].map((sector, idx) => (
+            {[
+              { label: "Government", slug: "government" },
+              { label: "Critical Infrastructure", slug: "infrastructure" },
+              { label: "Energy", slug: "energy" },
+              { label: "Foundations & Philanthropy", slug: "foundations" },
+              { label: "Innovation Ecosystems", slug: "innovation-ecosystems" },
+              { label: "Defense & Strategic Systems", slug: "defense" },
+            ].map((sector, idx) => (
               <motion.div
                 key={idx}
                 {...fadeIn}
                 transition={{ ...fadeIn.transition, delay: idx * 0.05 }}
-                className="bg-white border border-border px-5 py-4 rounded-xl text-sm font-semibold text-foreground card-hover"
               >
-                {sector}
+                <Link
+                  href={`/sectors#${sector.slug}`}
+                  className="flex items-center justify-between bg-white border border-border px-5 py-4 rounded-xl text-sm font-semibold text-foreground card-hover group w-full"
+                >
+                  <span>{sector.label}</span>
+                  <ChevronRight size={14} className="text-muted-foreground group-hover:text-primary group-hover:translate-x-0.5 transition-all shrink-0" />
+                </Link>
               </motion.div>
             ))}
           </div>
@@ -187,8 +199,8 @@ export default function Home() {
           <div className="max-w-2xl">
             <motion.div {...fadeIn}>
               <span className="label-mono mb-5 block">Funding Alignment</span>
-              <h2 className="text-3xl font-bold text-foreground mb-4">{fundingTeaser.title}</h2>
-              <p className="text-muted-foreground leading-relaxed mb-6 text-lg">
+              <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">{fundingTeaser.title}</h2>
+              <p className="text-muted-foreground leading-relaxed mb-6 text-base">
                 {fundingTeaser.description}
               </p>
               <Link href={fundingTeaser.ctaHref} className="inline-flex items-center text-primary font-semibold hover:underline group text-sm">

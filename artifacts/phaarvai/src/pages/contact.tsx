@@ -102,10 +102,10 @@ export default function Contact() {
               transition={{ duration: 0.5 }}
               className="lg:col-span-2"
             >
-              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-5">
+              <h1 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
                 Engage with PHAARVAI
               </h1>
-              <p className="text-muted-foreground leading-relaxed mb-10">
+              <p className="text-base text-muted-foreground leading-relaxed mb-10">
                 Tell us what you are trying to build, modernize, or scale. Our team will evaluate your requirements and respond with directness.
               </p>
 

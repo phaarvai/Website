@@ -29,10 +29,10 @@ export default function Capabilities() {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mb-20"
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-5">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Capabilities
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-base text-muted-foreground leading-relaxed">
               Four practice areas — each backed by full delivery capability, from architecture to production deployment. We own both the design and the build.
             </p>
           </motion.header>
@@ -49,7 +49,7 @@ export default function Capabilities() {
                 <div className="border-b border-border pb-6 mb-10 flex items-end justify-between gap-5">
                   <div>
                     <span className="label-mono mb-2 block">Practice Area {String(idx + 1).padStart(2, '0')}</span>
-                    <h2 className="text-3xl font-bold text-foreground">{cap.title}</h2>
+                    <h2 className="text-2xl font-bold text-foreground">{cap.title}</h2>
                   </div>
                 </div>
 

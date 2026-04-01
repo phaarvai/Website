@@ -28,10 +28,10 @@ export default function Solutions() {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mb-20"
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-5">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Solutions
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-base text-muted-foreground leading-relaxed">
               Concrete implementations designed to remove operational friction, automate critical workflows, and build institutional intelligence.
             </p>
           </motion.header>

@@ -82,8 +82,8 @@
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 214 20% 88%;
-  --input: 214 20% 88%;
+  --border: 214 20% 90%;
+  --input: 214 20% 90%;
   --ring: 221 83% 53%;
 
   --primary-border: hsl(var(--primary));
@@ -98,49 +98,72 @@
     @apply border-border;
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
   body {
-    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/15 selection:text-primary;
+    @apply font-sans antialiased bg-background text-foreground selection:bg-primary/12 selection:text-primary;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
   }
 
   h1, h2, h3, h4, h5, h6 {
     @apply tracking-tight;
+    font-feature-settings: "ss01", "cv01";
+  }
+
+  /* Scroll padding for anchor links */
+  :target {
+    scroll-margin-top: 80px;
   }
 }
 
 @layer utilities {
-  /* Card hover — soft shadow lift, no aggressive transform */
+  /* Card hover — refined shadow lift */
   .card-hover {
-    transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s ease;
+    transition: box-shadow 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
   }
   .card-hover:hover {
-    box-shadow: 0 8px 32px -8px rgba(11, 31, 58, 0.12);
-    transform: translateY(-2px);
-    border-color: hsl(214 20% 80%);
+    box-shadow: 0 6px 24px -6px rgba(11, 31, 58, 0.10);
+    transform: translateY(-1px);
+    border-color: hsl(214 20% 82%);
   }
 
-  /* Button elevate — color shift only, no scaling */
+  /* Button elevate */
   .hover-elevate {
-    transition: box-shadow 0.2s ease, transform 0.2s ease, opacity 0.2s ease;
+    transition: box-shadow 0.18s ease, transform 0.18s ease;
   }
   .hover-elevate:hover {
-    box-shadow: 0 6px 20px -6px rgba(37, 99, 235, 0.35);
+    box-shadow: 0 4px 16px -4px rgba(37, 99, 235, 0.30);
     transform: translateY(-1px);
   }
 
-  /* Dark gradient sections (hero, CTA, footer) */
+  /* Dark gradient sections */
   .hero-gradient {
-    background: linear-gradient(135deg, #0B1F3A 0%, #1E3A5F 100%);
+    background: linear-gradient(140deg, #0B1F3A 0%, #152E52 60%, #1a3660 100%);
   }
 
   /* Alternating section background */
   .section-alt {
-    background-color: hsl(210 20% 96%);
+    background-color: hsl(210 25% 97%);
   }
 
   /* Monospace label */
   .label-mono {
-    @apply text-xs font-mono tracking-widest uppercase text-primary;
+    @apply text-[10px] font-mono tracking-[0.12em] uppercase text-primary;
+  }
+
+  /* Divider accent */
+  .rule-accent {
+    @apply border-t border-border;
+  }
+
+  /* Subtle inset card (for nested cards) */
+  .card-inset {
+    background-color: hsl(210 25% 97%);
+    border: 1px solid hsl(214 20% 90%);
   }
 }

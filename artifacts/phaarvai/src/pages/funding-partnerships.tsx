@@ -61,10 +61,10 @@ export default function FundingPartnerships() {
             transition={{ duration: 0.5 }}
             className="max-w-3xl mb-20"
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-5">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
               Funding & Partnerships
             </h1>
-            <p className="text-lg text-muted-foreground leading-relaxed">
+            <p className="text-base text-muted-foreground leading-relaxed">
               We structure the technical foundation for implementation-ready, fundable initiatives — ensuring they meet the compliance, measurement, and accountability standards required by public funders, philanthropies, and CSR mandates.
             </p>
           </motion.header>

@@ -66,10 +66,10 @@ export default function About() {
             transition={{ duration: 0.5 }}
             className="max-w-4xl mb-20"
           >
-            <h1 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-5">
               Institutional strategy backed by rigorous execution.
             </h1>
-            <p className="text-xl text-muted-foreground leading-relaxed">
+            <p className="text-base text-muted-foreground leading-relaxed">
               PHAARVAI was founded on a simple premise: large institutions do not need more advisory reports or unproven pilots. They need the partner who bridges the gap between ideas and execution.
             </p>
           </motion.header>
@@ -81,7 +81,7 @@ export default function About() {
               className="bg-white border border-border p-8 md:p-10 rounded-xl"
             >
               <span className="label-mono mb-4 block">Mission</span>
-              <h2 className="text-2xl font-bold mb-4 text-foreground">Our Mission</h2>
+              <h2 className="text-xl font-bold mb-3 text-foreground">Our Mission</h2>
               <p className="text-muted-foreground leading-relaxed mb-0">
                 To build the technical capability of critical institutions. We deploy practical AI, unified data platforms, and secure digital workflows that enable better resource allocation, operational visibility, and accountable program execution.
               </p>
@@ -93,7 +93,7 @@ export default function About() {
               className="bg-white border border-border p-8 md:p-10 rounded-xl"
             >
               <span className="label-mono mb-4 block">Vision</span>
-              <h2 className="text-2xl font-bold mb-4 text-foreground">Our Vision</h2>
+              <h2 className="text-xl font-bold mb-3 text-foreground">Our Vision</h2>
               <p className="text-muted-foreground leading-relaxed">
                 A public and critical sector where data silos and legacy workflows no longer limit institutional capability. Where operational intelligence is standard infrastructure — and every institution can act with precision and accountability.
               </p>

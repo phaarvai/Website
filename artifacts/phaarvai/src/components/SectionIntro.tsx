@@ -15,11 +15,11 @@ export function SectionIntro({ title, subtitle, className, centered = false }: S
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-80px" }}
       transition={{ duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className={cn("mb-14", centered && "text-center mx-auto max-w-3xl", className)}
+      className={cn("mb-12", centered && "text-center mx-auto max-w-3xl", className)}
     >
-      <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-4">{title}</h2>
+      <h2 className="text-2xl md:text-3xl font-bold text-foreground mb-3">{title}</h2>
       {subtitle && (
-        <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
+        <p className="text-base text-muted-foreground leading-relaxed max-w-2xl">
           {subtitle}
         </p>
       )}

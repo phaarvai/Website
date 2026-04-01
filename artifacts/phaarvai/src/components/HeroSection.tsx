@@ -159,7 +159,7 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
             )}
 
             <motion.h1
-              className="text-5xl md:text-6xl lg:text-7xl font-bold leading-tight md:leading-[1.08] mb-8 text-white"
+              className="text-4xl md:text-5xl lg:text-[3.5rem] font-bold leading-tight md:leading-[1.1] mb-7 text-white"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -168,7 +168,7 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
             </motion.h1>
 
             <motion.p
-              className="text-lg md:text-xl text-blue-100/70 leading-relaxed mb-12 max-w-xl"
+              className="text-base md:text-lg text-blue-100/70 leading-relaxed mb-10 max-w-xl"
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
