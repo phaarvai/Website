@@ -1,0 +1,239 @@
+Refine and upgrade the existing PHAARVAI website using the current codebase. DO NOT rebuild from scratch.
+
+This update must fully align with a detailed strategy document and reflect a high-credibility, globally relevant institutional technology company.
+
+---
+
+## CRITICAL POSITIONING (ENFORCE EVERYWHERE)
+
+PHAARVAI must consistently appear as:
+
+* an applied innovation and digital systems company
+* an AI implementation and systems integration partner
+* a builder of scalable institutional technology
+* an execution partner for public-impact and funded programs
+
+STRICTLY AVOID making it look like:
+
+* a generic IT services firm
+* a startup agency
+* a freelancer portfolio
+* a grant-seeking organization
+
+---
+
+## GLOBAL + INDIA CONTEXT (IMPORTANT)
+
+* Use globally relevant language in headlines
+* Use India context only as supporting examples
+* Do NOT over-focus on India-specific branding
+* Maintain international credibility
+
+---
+
+## CONTENT DEPTH RULES
+
+Every section must clearly answer:
+
+1. What is the problem?
+2. What do we build?
+3. What is the output?
+4. What is the impact?
+
+Avoid generic descriptions. Use real operational language.
+
+---
+
+## SERVICE ARCHITECTURE (STRICT)
+
+Organize everything into:
+
+1. AI & Decision Intelligence
+2. Digitization & Data Platforms
+3. IoT & Smart Infrastructure
+4. Public Impact & Strategic Programs
+
+Each MUST include:
+
+* purpose
+* offerings (specific)
+* ideal client scenarios (very important)
+* deliverables (clear outputs)
+
+---
+
+## ADD REAL-WORLD DEPTH
+
+Capabilities must include:
+
+* AI workflow integration
+* dashboards and reporting layers
+* data pipelines and architecture
+* IoT monitoring systems
+* program design for funded initiatives
+
+Make services feel implementable, not conceptual.
+
+---
+
+## HOMEPAGE (ENHANCED)
+
+Add a strong "WHAT WE BUILD" section:
+
+List outputs like:
+
+* AI decision systems
+* operational dashboards
+* workflow automation platforms
+* infrastructure monitoring systems
+* impact tracking platforms
+
+Each with 1-line explanation.
+
+---
+
+## SOLUTIONS PAGE (CRITICAL UPGRADE)
+
+Each use case must include:
+
+* Challenge (real-world)
+* Typical client
+* What we implement (technical clarity)
+* Outputs delivered (dashboards, systems, tools)
+* Expected impact (efficiency, visibility, decision quality)
+
+---
+
+## SECTORS (EXPANDED)
+
+Include:
+
+* Government
+* Infrastructure
+* Energy
+* Foundations
+* Innovation ecosystems
+* Defense (light positioning)
+
+Each must include:
+
+* real problems
+* systems we build
+
+---
+
+## FUNDING & PARTNERSHIPS (HIGH PRIORITY)
+
+Position PHAARVAI as:
+
+* technical architect
+* implementation partner
+* execution layer for funded programs
+
+Add:
+
+* why initiatives fail (weak execution pathways)
+* how PHAARVAI solves this
+* partnership types:
+
+  * philanthropy
+  * CSR
+  * donor-backed
+  * public-sector modernization
+
+---
+
+## INSIGHTS PAGE
+
+Add categories:
+
+* AI for public systems
+* digitization gaps
+* infrastructure intelligence
+* sustainability systems
+
+Ensure articles reflect real-world implementation thinking.
+
+---
+
+## DESIGN SYSTEM (STRICT)
+
+* Use light UI (80%)
+* Avoid dark-heavy layout
+* No stock photos
+* Use abstract system visuals only:
+
+  * grids
+  * data flows
+  * dashboards
+
+---
+
+## ANIMATION
+
+* subtle fade-in
+* hover elevation
+* smooth transitions
+
+No heavy motion or flashy effects.
+
+---
+
+## CONTENT ARCHITECTURE (IMPORTANT)
+
+Move all content into structured /content files.
+
+Use schema like:
+
+{
+slug: string,
+title: string,
+summary: string,
+bullets: string[],
+deliverables: string[],
+scenarios: string[]
+}
+
+DO NOT hardcode content in JSX.
+
+---
+
+## SEO + PERFORMANCE
+
+* Add metadata per page
+
+* Use semantic headings (H1, H2, H3)
+
+* Optimize for:
+
+  * AI solutions company
+  * digital transformation consulting
+  * IoT systems integration
+  * operational intelligence platforms
+
+* Optimize images (SVG preferred)
+
+* Ensure fast loading
+
+---
+
+## FINAL GOAL
+
+The website must feel like:
+
+* a global institutional technology firm
+* a serious implementation partner
+* a builder of real systems (not ideas)
+
+It must be:
+
+* clear
+* structured
+* credible
+* scalable
+
+NOT:
+
+* a startup landing page
+* a generic IT services site
+* a text-heavy document

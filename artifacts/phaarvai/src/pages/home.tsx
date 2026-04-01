@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Link } from "wouter";
-import { ArrowRight, ChevronRight, BarChart3, Database, Cpu, Target, CheckCircle2 } from "lucide-react";
+import { ArrowRight, ChevronRight, BarChart3, Database, Cpu, Target } from "lucide-react";
 import { siteContent } from "@/content/site";
 import { insights } from "@/content/insights";
 import { HeroSection } from "@/components/HeroSection";
@@ -16,16 +16,15 @@ const iconMap: Record<string, React.ElementType> = {
   "public-impact-programs": Target,
 };
 
-const whatWeBuild = [
-  { output: "AI decision-support dashboards", category: "AI" },
-  { output: "Predictive maintenance systems", category: "IoT" },
-  { output: "Unified operational data platforms", category: "Data" },
-  { output: "Automated compliance reporting tools", category: "Compliance" },
-  { output: "Digital workflow automation", category: "Operations" },
-  { output: "ESG & sustainability tracking systems", category: "Impact" },
-  { output: "Public program impact dashboards", category: "Public Sector" },
-  { output: "Real-time infrastructure monitoring", category: "IoT" },
-];
+const categoryColors: Record<string, string> = {
+  "AI": "bg-blue-50 text-blue-700 border-blue-100",
+  "Data": "bg-indigo-50 text-indigo-700 border-indigo-100",
+  "IoT": "bg-cyan-50 text-cyan-700 border-cyan-100",
+  "Reporting": "bg-violet-50 text-violet-700 border-violet-100",
+  "Operations": "bg-emerald-50 text-emerald-700 border-emerald-100",
+  "Compliance": "bg-amber-50 text-amber-700 border-amber-100",
+  "Public Impact": "bg-teal-50 text-teal-700 border-teal-100",
+};
 
 const fadeIn = {
   initial: { opacity: 0, y: 14 },
@@ -35,7 +34,7 @@ const fadeIn = {
 };
 
 export default function Home() {
-  const { hero, whatWeDo, whyPhaarvai, problemsSolve, sectorsPreview, fundingTeaser } = siteContent;
+  const { hero, whatWeDo, whyPhaarvai, problemsSolve, whatWeBuild, sectorsPreview, fundingTeaser } = siteContent;
 
   return (
     <>
@@ -50,6 +49,7 @@ export default function Home() {
         subheadline={hero.subheadline}
         ctaPrimary={{ label: hero.ctaPrimary, href: "/capabilities" }}
         ctaSecondary={{ label: hero.ctaSecondary, href: "/contact" }}
+        positioning={hero.positioning}
       />
 
       {/* What We Do */}
@@ -78,8 +78,42 @@ export default function Home() {
         </div>
       </section>
 
+      {/* What We Build */}
+      <section className="py-20 section-alt border-y border-border" aria-label="What we build">
+        <div className="container mx-auto px-6 md:px-12">
+          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 gap-5">
+            <div>
+              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">{whatWeBuild.title}</h2>
+              <p className="text-muted-foreground text-lg max-w-xl">{whatWeBuild.subtitle}</p>
+            </div>
+            <Link href="/solutions" className="flex items-center text-primary font-semibold text-sm hover:underline group shrink-0">
+              All solutions <ArrowRight className="ml-1.5 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
+            </Link>
+          </div>
+
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+            {whatWeBuild.items.map((item, idx) => (
+              <motion.div
+                key={idx}
+                {...fadeIn}
+                transition={{ ...fadeIn.transition, delay: idx * 0.05 }}
+                className="bg-white border border-border p-6 rounded-xl flex flex-col gap-3 card-hover"
+              >
+                <div className="flex items-center justify-between">
+                  <span className={`text-xs font-medium px-2.5 py-1 rounded-full border ${categoryColors[item.category] || "bg-gray-50 text-gray-600 border-gray-100"}`}>
+                    {item.category}
+                  </span>
+                </div>
+                <h3 className="text-sm font-bold text-foreground leading-snug">{item.output}</h3>
+                <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* Problems We Solve */}
-      <section className="py-20 section-alt border-y border-border" aria-label="Problems we solve">
+      <section className="py-20 bg-background" aria-label="Problems we solve">
         <div className="container mx-auto px-6 md:px-12">
           <SectionIntro title={problemsSolve.title} subtitle={problemsSolve.subtitle} />
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -99,10 +133,10 @@ export default function Home() {
       </section>
 
       {/* Why PHAARVAI */}
-      <section className="py-20 bg-background" aria-label="Why PHAARVAI">
+      <section className="py-20 section-alt border-y border-border" aria-label="Why PHAARVAI">
         <div className="container mx-auto px-6 md:px-12">
           <SectionIntro title={whyPhaarvai.title} subtitle={whyPhaarvai.subtitle} />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
             {whyPhaarvai.points.map((point, idx) => (
               <motion.div
                 key={idx}
@@ -116,38 +150,6 @@ export default function Home() {
                 <div>
                   <h3 className="text-sm font-bold mb-1.5 text-foreground">{point.title}</h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">{point.description}</p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* What We Build */}
-      <section className="py-20 section-alt border-y border-border" aria-label="What we build">
-        <div className="container mx-auto px-6 md:px-12">
-          <div className="flex flex-col md:flex-row justify-between items-start md:items-end mb-14 gap-5">
-            <div>
-              <h2 className="text-3xl md:text-4xl font-bold text-foreground mb-3">What We Build</h2>
-              <p className="text-muted-foreground text-lg">Concrete digital systems and AI-enabled tools — production-grade from day one.</p>
-            </div>
-            <Link href="/solutions" className="flex items-center text-primary font-semibold text-sm hover:underline group shrink-0">
-              See all solutions <ArrowRight className="ml-1.5 w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
-            </Link>
-          </div>
-
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            {whatWeBuild.map((item, idx) => (
-              <motion.div
-                key={idx}
-                {...fadeIn}
-                transition={{ ...fadeIn.transition, delay: idx * 0.05 }}
-                className="bg-white border border-border p-5 rounded-xl flex items-start gap-3 card-hover"
-              >
-                <CheckCircle2 className="w-4 h-4 text-primary shrink-0 mt-0.5" />
-                <div>
-                  <p className="text-sm font-medium text-foreground leading-snug">{item.output}</p>
-                  <span className="text-xs text-muted-foreground mt-1 block">{item.category}</span>
                 </div>
               </motion.div>
             ))}

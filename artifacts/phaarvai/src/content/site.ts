@@ -1,9 +1,15 @@
 export const siteContent = {
   hero: {
-    headline: "Institutional Technology for Consequential Decisions",
-    subheadline: "We deploy practical AI, scalable digitization, and operational data platforms for governments, infrastructure operators, energy companies, and public-impact institutions. Strategy and execution — in one partner.",
+    headline: "Applied Innovation for Institutions That Cannot Afford to Fail",
+    subheadline: "We build AI systems, data platforms, and digital infrastructure for governments, infrastructure operators, energy companies, and public-impact institutions — from architecture through production deployment.",
     ctaPrimary: "Explore Capabilities",
-    ctaSecondary: "Talk to Us"
+    ctaSecondary: "Talk to Us",
+    positioning: [
+      "AI Implementation Partner",
+      "Systems Integration",
+      "Digital Transformation",
+      "Public Impact Programs"
+    ]
   },
   whatWeDo: {
     title: "What We Do",
@@ -82,8 +88,54 @@ export const siteContent = {
         description: "Analysts spending hours on manual aggregation rather than interpretation. No systematic framework for scenario modeling or risk assessment."
       },
       {
-        title: "Difficulty Scaling Proven Ideas",
+        title: "Stalled Scale",
         description: "Successful pilots that stall at institutional scale due to integration failures, procurement barriers, or insufficient technical architecture."
+      }
+    ]
+  },
+  whatWeBuild: {
+    title: "What We Build",
+    subtitle: "Production systems — not prototypes. Every output is designed for institutional scale from day one.",
+    items: [
+      {
+        output: "AI Decision-Support Systems",
+        description: "ML models integrated into operational workflows with confidence scoring and full auditability for institutional oversight.",
+        category: "AI"
+      },
+      {
+        output: "Operational Data Platforms",
+        description: "Unified data infrastructure aggregating siloed institutional data into one reliable, queryable source of truth.",
+        category: "Data"
+      },
+      {
+        output: "Real-Time Infrastructure Monitoring",
+        description: "IoT sensor networks and telemetry pipelines delivering live asset health across distributed physical portfolios.",
+        category: "IoT"
+      },
+      {
+        output: "Executive Dashboards",
+        description: "Role-based real-time dashboards giving leadership a live, unified view of institutional performance — no analyst assembly required.",
+        category: "Reporting"
+      },
+      {
+        output: "Digital Workflow Platforms",
+        description: "Secure, automated replacements for paper-based approvals, manual routing, and email-dependent processes.",
+        category: "Operations"
+      },
+      {
+        output: "ESG & Sustainability Systems",
+        description: "Automated emissions and sustainability data pipelines producing audit-ready regulatory reports.",
+        category: "Compliance"
+      },
+      {
+        output: "Impact Tracking Platforms",
+        description: "Outcome measurement infrastructure for funded programs, generating automated stakeholder and funder reporting.",
+        category: "Public Impact"
+      },
+      {
+        output: "Predictive Maintenance Systems",
+        description: "Condition-based models that identify asset degradation before failure — converting reactive maintenance into planned intervention.",
+        category: "IoT"
       }
     ]
   },
@@ -110,7 +162,7 @@ export const siteContent = {
     ctaHref: "/funding-partnerships"
   },
   footer: {
-    tagline: "Practical AI and digital systems for complex institutions. Strategy and execution — in one partner.",
+    tagline: "Applied AI and digital systems for complex institutions. Strategy and execution — in one partner.",
     links: {
       company: [
         { label: "About Us", href: "/about" },

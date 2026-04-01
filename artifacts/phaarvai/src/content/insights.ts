@@ -9,13 +9,13 @@ export const insights = [
     content: "Deploying AI in an institutional context is fundamentally different from consumer software. It requires rigorous auditability, clear confidence scoring, and integration into existing human-in-the-loop workflows. The organizations that succeed are those that begin with operational use cases — not technology ambitions. They identify the decisions being made manually today that carry the highest cost of error, and they build precise, narrow systems to support those decisions first. Scale comes second."
   },
   {
-    id: "digitization-gaps-india",
-    title: "The Digitization Gap in Emerging Market Public Institutions",
+    id: "digitization-gap-public-institutions",
+    title: "Closing the Digitization Gap in Public Institutions",
     category: "Digitization Gaps",
     date: "February 5, 2024",
     readTime: "7 min read",
     excerpt: "Why so many digitization initiatives in public institutions stall before they reach operational scale — and the structural changes required to close the gap between strategy and systems.",
-    content: "Across emerging markets, billions have been committed to public sector digitization with limited returns. The failure pattern is consistent: technology is procured without workflow transformation, data is collected without integration architecture, and dashboards are built without the operational data to power them. Closing the digitization gap requires starting from process, not platform — mapping the operational friction first, then designing technology to remove it with precision."
+    content: "Across governments and development institutions globally, billions have been committed to digitization with limited operational returns. The failure pattern is consistent: technology is procured without workflow transformation, data is collected without integration architecture, and dashboards are built without the operational data pipelines to sustain them. Closing the digitization gap requires starting from process, not platform — mapping the operational friction first, then designing technology to remove it with precision and institutional alignment."
   },
   {
     id: "data-silos-infrastructure",
@@ -52,5 +52,14 @@ export const insights = [
     readTime: "5 min read",
     excerpt: "Funding bodies — whether government, philanthropic, or CSR — are increasingly sophisticated in evaluating the technical credibility of program proposals. What distinguishes the initiatives that get funded and delivered.",
     content: "The programs that attract and sustain funding share a common architecture: they define measurable outcomes before they define technology; they embed impact tracking into the system design rather than retrofitting it; and they structure reporting to match the rhythm of the funding cycle, not the operational rhythm of the implementing organization. Technical credibility — demonstrating that you can build what you propose, at the scale you claim, with the accountability funders require — is now a primary selection criterion."
+  },
+  {
+    id: "sustainability-systems-design",
+    title: "Designing Sustainability Systems That Regulators Actually Accept",
+    category: "Sustainability Systems",
+    date: "September 12, 2023",
+    readTime: "7 min read",
+    excerpt: "Sustainability commitments are only as credible as the data systems behind them. Most ESG reporting infrastructure cannot withstand external audit.",
+    content: "Regulatory bodies and institutional investors are intensifying scrutiny of sustainability claims. Organizations that cannot demonstrate a clear data lineage from sensor or operational input to reported metric face growing reputational and legal risk. Building an audit-ready sustainability data system requires starting from the regulatory reporting requirement and working backward — designing data pipelines, calculation methodologies, and access controls that produce evidence, not assertions. The technical architecture of ESG systems is now a strategic capability, not a compliance checkbox."
   }
 ];
