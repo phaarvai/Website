@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { motion } from "framer-motion";
 import { sectors } from "@/content/sectors";
 import { CTASection } from "@/components/CTASection";
@@ -8,7 +9,7 @@ const iconMap: Record<string, React.ElementType> = {
   Building2, Train, Zap, Globe, Network, Shield
 };
 
-const sectorSlugs: Record<string, string> = {
+export const sectorSlugs: Record<string, string> = {
   "Government": "government",
   "Infrastructure": "infrastructure",
   "Energy": "energy",
@@ -24,9 +25,22 @@ const fadeIn = {
   transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
 };
 
-export { sectorSlugs };
-
 export default function Sectors() {
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const id = hash.replace("#", "");
+    const tryScroll = (attempts = 0) => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else if (attempts < 10) {
+        setTimeout(() => tryScroll(attempts + 1), 80);
+      }
+    };
+    tryScroll();
+  }, []);
+
   return (
     <>
       <PageSEO
@@ -62,7 +76,7 @@ export default function Sectors() {
                   id={slug}
                   {...fadeIn}
                   transition={{ ...fadeIn.transition, delay: idx * 0.06 }}
-                  className="bg-white border border-border rounded-xl overflow-hidden"
+                  className="bg-white border border-border rounded-xl overflow-hidden scroll-mt-24"
                   aria-label={sector.name}
                 >
                   <header className="px-8 py-6 border-b border-border flex items-center gap-4">

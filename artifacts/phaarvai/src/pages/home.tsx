@@ -53,7 +53,7 @@ export default function Home() {
       />
 
       {/* What We Do */}
-      <section className="py-20 bg-background" aria-label="Services overview">
+      <section className="pt-28 pb-20 bg-background" aria-label="Services overview">
         <div className="container mx-auto px-6 md:px-12">
           <SectionIntro title={whatWeDo.title} subtitle={whatWeDo.subtitle} />
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
@@ -104,8 +104,8 @@ export default function Home() {
                     {item.category}
                   </span>
                 </div>
-                <h3 className="text-sm font-bold text-foreground leading-snug">{item.output}</h3>
-                <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+                <h3 className="text-base font-semibold text-foreground leading-snug">{item.output}</h3>
+                <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
               </motion.div>
             ))}
           </div>
