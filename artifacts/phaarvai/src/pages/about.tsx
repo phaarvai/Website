@@ -14,17 +14,20 @@ const phases = [
   {
     step: "01",
     title: "Understand",
-    description: "We map existing workflows, system architecture, and decision processes — locating the friction that carries the highest operational cost."
+    description: "We map existing workflows, system architecture, and decision processes — locating the friction that carries the highest operational cost.",
+    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?auto=format&fit=crop&w=600&q=75"
   },
   {
     step: "02",
     title: "Design",
-    description: "We architect robust, interoperable systems that respect your security and compliance constraints — and are built to scale from day one."
+    description: "We architect robust, interoperable systems that respect your security and compliance constraints — and are built to scale from day one.",
+    image: "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=600&q=75"
   },
   {
     step: "03",
     title: "Build & Scale",
-    description: "We execute the full technical build, manage integration, and embed measurable outcome tracking into every system we deploy."
+    description: "We execute the full technical build, manage integration, and embed measurable outcome tracking into every system we deploy.",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=600&q=75"
   }
 ];
 
@@ -59,44 +62,83 @@ export default function About() {
       <article className="pt-32 pb-16 bg-background">
         <div className="container mx-auto px-6 md:px-12">
 
-          <motion.header
-            {...fadeIn}
-            animate={{ opacity: 1, y: 0 }}
-            initial={{ opacity: 0, y: 20 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-4xl mb-20"
-          >
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-5">
-              Institutional strategy backed by rigorous execution.
-            </h1>
-            <p className="text-base text-muted-foreground leading-relaxed">
-              PHAARVAI was founded on a simple premise: large institutions do not need more advisory reports or unproven pilots. They need the partner who bridges the gap between ideas and execution.
-            </p>
-          </motion.header>
+          {/* Hero header + image split */}
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-center mb-24">
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.5 }}
+              className="lg:col-span-3"
+            >
+              <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-5">
+                Institutional strategy backed by rigorous execution.
+              </h1>
+              <p className="text-base text-muted-foreground leading-relaxed">
+                PHAARVAI was founded on a simple premise: large institutions do not need more advisory reports or unproven pilots. They need the partner who bridges the gap between ideas and execution.
+              </p>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, scale: 0.97 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.7, delay: 0.2 }}
+              className="lg:col-span-2 hidden lg:block"
+            >
+              <div className="relative rounded-2xl overflow-hidden aspect-[4/3] shadow-lg border border-border">
+                <img
+                  src="https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80"
+                  alt="Institutional technology workspace"
+                  className="w-full h-full object-cover"
+                  loading="eager"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent" />
+              </div>
+            </motion.div>
+          </div>
 
           {/* Mission & Vision */}
           <section className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-24" aria-label="Mission and Vision">
             <motion.div
               {...fadeIn}
-              className="bg-white border border-border p-8 md:p-10 rounded-xl"
+              className="bg-white border border-border rounded-xl overflow-hidden"
             >
-              <span className="label-mono mb-4 block">Mission</span>
-              <h2 className="text-xl font-bold mb-3 text-foreground">Our Mission</h2>
-              <p className="text-muted-foreground leading-relaxed mb-0">
-                To build the technical capability of critical institutions. We deploy practical AI, unified data platforms, and secure digital workflows that enable better resource allocation, operational visibility, and accountable program execution.
-              </p>
+              <div className="h-36 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=75"
+                  alt="Data analytics mission"
+                  className="w-full h-full object-cover opacity-80"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-8 md:p-10">
+                <span className="label-mono mb-4 block">Mission</span>
+                <h2 className="text-xl font-bold mb-3 text-foreground">Our Mission</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  To build the technical capability of critical institutions. We deploy practical AI, unified data platforms, and secure digital workflows that enable better resource allocation, operational visibility, and accountable program execution.
+                </p>
+              </div>
             </motion.div>
 
             <motion.div
               {...fadeIn}
               transition={{ ...fadeIn.transition, delay: 0.1 }}
-              className="bg-white border border-border p-8 md:p-10 rounded-xl"
+              className="bg-white border border-border rounded-xl overflow-hidden"
             >
-              <span className="label-mono mb-4 block">Vision</span>
-              <h2 className="text-xl font-bold mb-3 text-foreground">Our Vision</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                A public and critical sector where data silos and legacy workflows no longer limit institutional capability. Where operational intelligence is standard infrastructure — and every institution can act with precision and accountability.
-              </p>
+              <div className="h-36 overflow-hidden">
+                <img
+                  src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=800&q=75"
+                  alt="Institutional vision for cities and infrastructure"
+                  className="w-full h-full object-cover opacity-80"
+                  loading="lazy"
+                />
+              </div>
+              <div className="p-8 md:p-10">
+                <span className="label-mono mb-4 block">Vision</span>
+                <h2 className="text-xl font-bold mb-3 text-foreground">Our Vision</h2>
+                <p className="text-muted-foreground leading-relaxed">
+                  A public and critical sector where data silos and legacy workflows no longer limit institutional capability. Where operational intelligence is standard infrastructure — and every institution can act with precision and accountability.
+                </p>
+              </div>
             </motion.div>
           </section>
 
@@ -109,11 +151,21 @@ export default function About() {
                 key={idx}
                 {...fadeIn}
                 transition={{ ...fadeIn.transition, delay: idx * 0.08 }}
-                className="bg-white border border-border p-8 rounded-xl"
+                className="bg-white border border-border rounded-xl overflow-hidden"
               >
-                <div className="text-primary font-mono text-xl font-bold mb-4">{phase.step}</div>
-                <h3 className="text-lg font-bold mb-3 text-foreground">{phase.title}</h3>
-                <p className="text-sm text-muted-foreground leading-relaxed">{phase.description}</p>
+                <div className="h-40 overflow-hidden">
+                  <img
+                    src={phase.image}
+                    alt={`${phase.title} phase`}
+                    className="w-full h-full object-cover opacity-75"
+                    loading="lazy"
+                  />
+                </div>
+                <div className="p-8">
+                  <div className="text-primary font-mono text-xl font-bold mb-4">{phase.step}</div>
+                  <h3 className="text-lg font-bold mb-3 text-foreground">{phase.title}</h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">{phase.description}</p>
+                </div>
               </motion.div>
             ))}
           </section>

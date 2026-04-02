@@ -36,6 +36,30 @@ export default function Solutions() {
             </p>
           </motion.header>
 
+          {/* Header image strip */}
+          <motion.div
+            initial={{ opacity: 0, y: 14 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            className="relative h-52 rounded-2xl overflow-hidden mb-16 bg-foreground"
+          >
+            <img
+              src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=75"
+              alt="Enterprise systems and analytics"
+              className="w-full h-full object-cover opacity-35"
+              loading="eager"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 to-foreground/30" />
+            <div className="absolute inset-0 flex items-center px-10">
+              <div>
+                <p className="text-[10px] font-mono text-blue-300/70 tracking-[0.14em] uppercase mb-3">Production-Grade Implementations</p>
+                <p className="text-white text-xl md:text-2xl font-semibold max-w-2xl leading-snug">
+                  Six solution areas — each designed around a real institutional problem, with defined outputs and measurable impact.
+                </p>
+              </div>
+            </div>
+          </motion.div>
+
           <div className="space-y-8 mb-24">
             {solutions.map((solution, idx) => (
               <motion.section

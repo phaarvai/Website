@@ -16,6 +16,13 @@ const iconMap: Record<string, React.ElementType> = {
   "public-impact-programs": Target,
 };
 
+const areaImages: Record<string, string> = {
+  "ai-decision-intelligence": "https://images.unsplash.com/photo-1677442135703-1787eea5ce01?auto=format&fit=crop&w=700&q=75",
+  "digitization-data-platforms": "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=700&q=75",
+  "iot-smart-infrastructure": "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=700&q=75",
+  "public-impact-programs": "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=700&q=75",
+};
+
 const categoryColors: Record<string, string> = {
   "AI": "bg-blue-50 text-blue-700 border-blue-100",
   "Data": "bg-indigo-50 text-indigo-700 border-indigo-100",
@@ -83,19 +90,37 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
             {whatWeDo.areas.map((area, idx) => {
               const Icon = iconMap[area.id] || Database;
+              const imgUrl = areaImages[area.id];
               return (
-                <Card key={idx} delay={idx * 0.08} className="group cursor-pointer">
+                <motion.div
+                  key={idx}
+                  {...fadeIn}
+                  transition={{ ...fadeIn.transition, delay: idx * 0.08 }}
+                  className="group bg-card border border-border rounded-xl overflow-hidden card-hover flex flex-col h-full cursor-pointer"
+                >
                   <Link href={area.href} className="flex flex-col h-full">
-                    <div className="mb-5 w-10 h-10 rounded-lg bg-primary/8 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-200">
-                      <Icon size={20} />
-                    </div>
-                    <h3 className="text-lg font-bold mb-2 text-foreground">{area.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed flex-grow">{area.description}</p>
-                    <div className="flex items-center text-sm font-semibold text-primary mt-5 group-hover:underline">
-                      Learn more <ChevronRight size={15} className="ml-1 group-hover:translate-x-0.5 transition-transform duration-200" />
+                    {imgUrl && (
+                      <div className="h-44 overflow-hidden shrink-0">
+                        <img
+                          src={imgUrl}
+                          alt={area.title}
+                          className="w-full h-full object-cover opacity-80 group-hover:scale-105 transition-transform duration-500"
+                          loading="lazy"
+                        />
+                      </div>
+                    )}
+                    <div className="flex flex-col flex-grow p-7">
+                      <div className="mb-4 w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-colors duration-200">
+                        <Icon size={18} />
+                      </div>
+                      <h3 className="text-lg font-bold mb-2 text-foreground">{area.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed flex-grow">{area.description}</p>
+                      <div className="flex items-center text-sm font-semibold text-primary mt-5 group-hover:underline">
+                        Learn more <ChevronRight size={15} className="ml-1 group-hover:translate-x-0.5 transition-transform duration-200" />
+                      </div>
                     </div>
                   </Link>
-                </Card>
+                </motion.div>
               );
             })}
           </div>
@@ -182,24 +207,49 @@ export default function Home() {
       {/* Why PHAARVAI */}
       <section className="py-20 section-alt border-y border-border" aria-label="Why PHAARVAI">
         <div className="container mx-auto px-6 md:px-12">
-          <SectionIntro title={whyPhaarvai.title} subtitle={whyPhaarvai.subtitle} />
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-x-12 gap-y-8">
-            {whyPhaarvai.points.map((point, idx) => (
-              <motion.div
-                key={idx}
-                {...fadeIn}
-                transition={{ ...fadeIn.transition, delay: idx * 0.07 }}
-                className="flex gap-4"
-              >
-                <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-12 items-start">
+            {/* Image side */}
+            <motion.div
+              {...fadeIn}
+              className="lg:col-span-2 hidden lg:block"
+            >
+              <div className="relative rounded-2xl overflow-hidden aspect-[3/4] shadow-md border border-border">
+                <img
+                  src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=700&q=75"
+                  alt="Systems architecture and integration"
+                  className="w-full h-full object-cover"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/50 to-transparent" />
+                <div className="absolute bottom-5 left-5 right-5">
+                  <p className="text-[10px] font-mono text-blue-300/80 tracking-[0.12em] uppercase mb-1">Why Us</p>
+                  <p className="text-white text-sm font-semibold leading-snug">Strategy and execution — in one partner</p>
                 </div>
-                <div>
-                  <h3 className="text-sm font-bold mb-1.5 text-foreground">{point.title}</h3>
-                  <p className="text-sm text-muted-foreground leading-relaxed">{point.description}</p>
-                </div>
-              </motion.div>
-            ))}
+              </div>
+            </motion.div>
+
+            {/* Content side */}
+            <div className="lg:col-span-3">
+              <SectionIntro title={whyPhaarvai.title} subtitle={whyPhaarvai.subtitle} />
+              <div className="grid grid-cols-1 gap-y-7">
+                {whyPhaarvai.points.map((point, idx) => (
+                  <motion.div
+                    key={idx}
+                    {...fadeIn}
+                    transition={{ ...fadeIn.transition, delay: idx * 0.07 }}
+                    className="flex gap-4"
+                  >
+                    <div className="w-5 h-5 rounded-full bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    </div>
+                    <div>
+                      <h3 className="text-sm font-bold mb-1.5 text-foreground">{point.title}</h3>
+                      <p className="text-sm text-muted-foreground leading-relaxed">{point.description}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
           </div>
         </div>
       </section>
