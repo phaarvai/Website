@@ -108,7 +108,7 @@ export default function About() {
                 <img
                   src="https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?auto=format&fit=crop&w=800&q=75"
                   alt="Data analytics mission"
-                  className="w-full h-full object-cover opacity-80"
+                  className="w-full h-full object-cover opacity-95"
                   loading="lazy"
                 />
               </div>
@@ -130,7 +130,7 @@ export default function About() {
                 <img
                   src="https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=800&q=75"
                   alt="Institutional vision for cities and infrastructure"
-                  className="w-full h-full object-cover opacity-80"
+                  className="w-full h-full object-cover opacity-95"
                   loading="lazy"
                 />
               </div>
@@ -159,7 +159,7 @@ export default function About() {
                   <img
                     src={phase.image}
                     alt={`${phase.title} phase`}
-                    className="w-full h-full object-cover opacity-75"
+                    className="w-full h-full object-cover opacity-92"
                     loading="lazy"
                   />
                 </div>

@@ -62,7 +62,7 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
                 {positioning.map((tag, idx) => (
                   <span
                     key={idx}
-                    className="text-[10px] font-mono tracking-[0.14em] uppercase text-blue-300/60 bg-white/[0.05] border border-white/[0.09] px-3 py-1.5 rounded-full"
+                    className="text-[10px] font-mono tracking-[0.14em] uppercase text-blue-200/80 bg-white/[0.07] border border-white/[0.14] px-3 py-1.5 rounded-full"
                   >
                     {tag}
                   </span>
@@ -91,7 +91,7 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
             </motion.h1>
 
             <motion.p
-              className="text-base md:text-[1.05rem] text-blue-100/65 leading-[1.75] mb-10 max-w-[520px]"
+              className="text-base md:text-[1.05rem] text-blue-100/85 leading-[1.75] mb-10 max-w-[520px]"
               initial={{ opacity: 0, y: 24 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.75, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
@@ -142,7 +142,7 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
                   transition={{ duration: 0.5, delay: 0.5 + idx * 0.07 }}
                 >
                   <div className="text-2xl font-bold text-white stat-number mb-1">{stat.value}</div>
-                  <div className="text-[10px] text-blue-200/50 uppercase tracking-[0.1em] leading-tight">{stat.label}</div>
+                  <div className="text-[10px] text-blue-200/75 uppercase tracking-[0.1em] leading-tight">{stat.label}</div>
                 </motion.div>
               ))}
             </motion.div>
@@ -169,11 +169,11 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
                 {/* Bottom card */}
                 <div className="absolute bottom-0 left-0 right-0 p-5">
                   <div className="glass-card rounded-xl px-4 py-3">
-                    <p className="text-[9px] font-mono text-blue-300/70 tracking-[0.14em] uppercase mb-1.5">Live Command View</p>
+                    <p className="text-[9px] font-mono text-blue-200/90 tracking-[0.14em] uppercase mb-1.5">Live Command View</p>
                     <p className="text-sm text-white font-semibold">Operational Intelligence Platform</p>
                     <div className="flex items-center gap-2 mt-2.5">
                       <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="text-[10px] text-emerald-300/80">All systems operational</span>
+                      <span className="text-[10px] text-emerald-300">All systems operational</span>
                     </div>
                   </div>
                 </div>
@@ -185,9 +185,9 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
                 animate={{ y: [0, -5, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               >
-                <p className="text-[9px] font-mono text-blue-300/70 tracking-[0.12em] uppercase mb-1">Decision Accuracy</p>
+                <p className="text-[9px] font-mono text-blue-200/90 tracking-[0.12em] uppercase mb-1">Decision Accuracy</p>
                 <p className="text-xl font-bold text-white stat-number">94.7%</p>
-                <p className="text-[10px] text-emerald-400/90 mt-0.5">↑ +12% vs baseline</p>
+                <p className="text-[10px] text-emerald-400 mt-0.5">↑ +12% vs baseline</p>
               </motion.div>
 
               {/* Floating data card */}
@@ -196,9 +196,9 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
                 animate={{ y: [0, 5, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
               >
-                <p className="text-[9px] font-mono text-blue-300/70 tracking-[0.12em] uppercase mb-1">Data Points Processed</p>
+                <p className="text-[9px] font-mono text-blue-200/90 tracking-[0.12em] uppercase mb-1">Data Points Processed</p>
                 <p className="text-xl font-bold text-white stat-number">2.4M</p>
-                <p className="text-[10px] text-blue-300/60 mt-0.5">per day, real-time</p>
+                <p className="text-[10px] text-blue-200/80 mt-0.5">per day, real-time</p>
               </motion.div>
             </div>
           </motion.div>

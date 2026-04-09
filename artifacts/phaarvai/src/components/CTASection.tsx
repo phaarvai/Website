@@ -45,7 +45,7 @@ export function CTASection({ title, description, buttonLabel, buttonHref }: CTAS
             Let's Work Together
           </motion.p>
           <h2 className="text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-white leading-[1.15] mb-5">{title}</h2>
-          <p className="text-base text-blue-100/60 mb-10 leading-relaxed max-w-xl mx-auto">
+          <p className="text-base text-blue-100/80 mb-10 leading-relaxed max-w-xl mx-auto">
             {description}
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

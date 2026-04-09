@@ -48,7 +48,7 @@ export default function Solutions() {
             <img
               src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1600&q=75"
               alt="Enterprise systems and analytics"
-              className="w-full h-full object-cover opacity-35"
+              className="w-full h-full object-cover opacity-60"
               loading="eager"
             />
             <div className="absolute inset-0 bg-gradient-to-r from-foreground/80 to-foreground/30" />

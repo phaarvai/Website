@@ -185,7 +185,7 @@ export default function Home() {
                         <img
                           src={imgUrl}
                           alt={area.title}
-                          className="w-full h-full object-cover opacity-75 group-hover:opacity-90 group-hover:scale-105 transition-all duration-700"
+                          className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
                           loading="lazy"
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent" />
@@ -289,7 +289,7 @@ export default function Home() {
           className="w-full h-full object-cover"
           loading="lazy"
         />
-        <div className="absolute inset-0 bg-foreground/75" />
+        <div className="absolute inset-0 bg-foreground/60" />
         <div
           className="absolute inset-0 opacity-[0.03]"
           style={{
@@ -306,7 +306,7 @@ export default function Home() {
               transition={{ duration: 0.6 }}
               className="max-w-3xl"
             >
-              <p className="text-[10px] font-mono tracking-[0.16em] text-blue-300/60 uppercase mb-5">Our Approach</p>
+              <p className="text-[10px] font-mono tracking-[0.16em] text-blue-300/85 uppercase mb-5">Our Approach</p>
               <blockquote className="text-2xl md:text-3xl font-bold text-white leading-[1.3]">
                 "We design the system and build it. Strategy and execution — in one partner, from architecture through production."
               </blockquote>
@@ -494,9 +494,9 @@ export default function Home() {
             <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-500/8 rounded-full blur-[100px]" />
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-10 p-10 md:p-14 items-center">
               <div>
-                <span className="text-[10px] font-mono tracking-[0.14em] uppercase text-blue-300/60 mb-4 block">Funding Alignment</span>
+                <span className="text-[10px] font-mono tracking-[0.14em] uppercase text-blue-300/85 mb-4 block">Funding Alignment</span>
                 <h2 className="text-2xl md:text-3xl font-bold text-white mb-4 leading-snug">{fundingTeaser.title}</h2>
-                <p className="text-blue-100/60 leading-relaxed text-sm mb-7">
+                <p className="text-blue-100/80 leading-relaxed text-sm mb-7">
                   {fundingTeaser.description}
                 </p>
                 <Link href={fundingTeaser.ctaHref} className="inline-flex items-center gap-2 text-sm font-semibold text-primary bg-primary/10 hover:bg-primary/20 border border-primary/20 px-5 py-2.5 rounded-full transition-all">
@@ -515,7 +515,7 @@ export default function Home() {
                     </div>
                     <div>
                       <p className="text-sm font-semibold text-white mb-0.5">{item.label}</p>
-                      <p className="text-xs text-blue-200/50">{item.desc}</p>
+                      <p className="text-xs text-blue-200/75">{item.desc}</p>
                     </div>
                   </div>
                 ))}
