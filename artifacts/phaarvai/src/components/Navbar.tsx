@@ -1,4 +1,7 @@
-import { Link, useLocation } from "wouter";
+"use client";
+
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
@@ -14,7 +17,7 @@ const links = [
 ];
 
 export function Navbar() {
-  const [location] = useLocation();
+  const pathname = usePathname();
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -26,7 +29,7 @@ export function Navbar() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const isHome = location === "/";
+  const isHome = pathname === "/";
 
   return (
     <nav
@@ -52,7 +55,7 @@ export function Navbar() {
                 key={link.href}
                 href={link.href}
                 className={`text-sm font-medium transition-colors hover:text-primary ${
-                  location === link.href
+                  pathname === link.href
                     ? "text-primary"
                     : !isScrolled && isHome
                     ? "text-white/80"
@@ -98,7 +101,7 @@ export function Navbar() {
                   href={link.href}
                   onClick={() => setMobileMenuOpen(false)}
                   className={`text-lg font-medium transition-colors ${
-                    location === link.href ? "text-primary" : "text-foreground/80"
+                    pathname === link.href ? "text-primary" : "text-foreground/80"
                   }`}
                 >
                   {link.label}

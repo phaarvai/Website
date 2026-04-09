@@ -1,4 +1,6 @@
-import { Link } from "wouter";
+"use client";
+
+import Link from "next/link";
 import { siteContent } from "@/content/site";
 import { ArrowUpRight } from "lucide-react";
 
