@@ -1,80 +1,97 @@
-# Workspace
+# PHAARVAI
 
 ## Overview
 
-pnpm workspace monorepo using TypeScript. Each package manages its own dependencies.
+Standalone Next.js 15 application — no monorepo, no workspace configuration. Deployable directly on Vercel with `npm install` + `npm run build`.
 
 ## Stack
 
-- **Monorepo tool**: pnpm workspaces
+- **Framework**: Next.js 15 App Router + React 19
+- **Styling**: TailwindCSS v4 (`@tailwindcss/postcss`) + tw-animate-css
+- **Animation**: Framer Motion 12
+- **UI primitives**: Radix UI + shadcn/ui (New York style)
+- **Data fetching**: TanStack Query
+- **Forms**: React Hook Form + Zod validation
 - **Node.js version**: 24
-- **Package manager**: pnpm
+- **Package manager**: npm (standalone, no pnpm workspace)
 - **TypeScript version**: 5.9
-- **Database**: PostgreSQL + Drizzle ORM (schema in `lib/db`)
-- **Validation**: Zod
 
-## Structure
+## Project Structure
 
 ```text
-artifacts-monorepo/
-├── artifacts/              # Deployable applications
-│   ├── phaarvai/           # Next.js 15 App Router website
-│   └── mockup-sandbox/     # Vite component preview server (canvas)
-├── lib/                    # Shared libraries
-│   ├── db/                 # Drizzle ORM schema + DB connection
-│   ├── api-spec/           # OpenAPI spec (legacy, unused by phaarvai)
-│   ├── api-client-react/   # Generated React Query hooks (legacy)
-│   └── api-zod/            # Generated Zod schemas (legacy)
-├── scripts/                # Utility scripts
-├── pnpm-workspace.yaml     # pnpm workspace (artifacts/*, lib/*, scripts)
-├── tsconfig.base.json      # Shared TS options (composite, bundler resolution, es2022)
-├── tsconfig.json           # Root TS project references
-└── package.json            # Root package with hoisted devDeps
+/
+├── app/                    # Next.js App Router
+│   ├── layout.tsx          # Root layout (Navbar + Footer + Providers)
+│   ├── page.tsx            # Home page (imports from src/views/home.tsx)
+│   ├── about/page.tsx      # About page
+│   ├── capabilities/page.tsx
+│   ├── solutions/page.tsx
+│   ├── sectors/page.tsx
+│   ├── funding-partnerships/page.tsx
+│   ├── insights/page.tsx
+│   ├── contact/page.tsx
+│   ├── globals.css         # Global styles + Tailwind imports + utilities
+│   └── api/
+│       ├── contact/route.ts  # POST contact form (Zod-validated)
+│       └── healthz/route.ts  # GET health check
+├── src/
+│   ├── views/              # Full page components (one per route)
+│   ├── components/         # Shared UI components
+│   │   ├── Navbar.tsx      # Transparent on hero, white bg on scroll/light pages
+│   │   ├── HeroSection.tsx # Dark gradient hero with animated cards
+│   │   ├── CTASection.tsx  # Dark gradient call-to-action
+│   │   ├── Footer.tsx      # Dark navy footer
+│   │   ├── Card.tsx        # Animated fade-in card
+│   │   ├── SectionIntro.tsx
+│   │   ├── Providers.tsx   # TanStack Query + Theme providers
+│   │   └── ui/             # shadcn/ui primitives
+│   ├── content/            # All site copy (edit to update text)
+│   │   ├── site.ts         # Homepage, CTA, company info
+│   │   ├── capabilities.ts
+│   │   ├── solutions.ts
+│   │   ├── sectors.ts
+│   │   └── insights.ts
+│   ├── hooks/              # Custom React hooks
+│   └── lib/
+│       └── utils.ts        # cn() utility (clsx + tailwind-merge)
+├── public/                 # Static assets (favicon, og image)
+├── package.json            # npm scripts: dev, build, start, typecheck
+├── next.config.ts          # Next.js config (image domains, dev origins)
+├── tsconfig.json           # TypeScript config (@/* → src/*)
+└── postcss.config.mjs      # PostCSS with @tailwindcss/postcss
 ```
 
-## TypeScript & Composite Projects
+## Design System
 
-Every package extends `tsconfig.base.json` which sets `composite: true`. The root `tsconfig.json` lists all packages as project references. This means:
+- **Light body**: `#F8FAFC` background, `#0B1F3A` foreground
+- **Primary**: `#2563EB` blue (`221 83% 53%`)
+- **Hero/CTA/Footer**: `.hero-gradient` utility — dark navy gradient `#08162B → #0D2144 → #112B58`
+- **Glass cards**: `.glass-card` utility in globals.css
+- **Animations**: Framer Motion `whileInView` + CSS marquee + float/pulse-glow keyframes
 
-- **Always typecheck from the root** — run `pnpm run typecheck` (which runs `tsc --build --emitDeclarationOnly`). This builds the full dependency graph so that cross-package imports resolve correctly.
-- **`emitDeclarationOnly`** — we only emit `.d.ts` files during typecheck; actual JS bundling is handled by Next.js / Vite, not `tsc`.
-- **Project references** — when package A depends on package B, A's `tsconfig.json` must list B in its `references` array.
+## Pages
 
-## Root Scripts
+Home, About, Capabilities, Solutions, Sectors, Funding & Partnerships, Insights, Contact (8 pages)
 
-- `pnpm run build` — runs `typecheck` first, then recursively runs `build` in all packages
-- `pnpm run typecheck` — runs `tsc --build --emitDeclarationOnly` using project references
+## Key Conventions
 
-## Packages
+- **Routing**: `app/*/page.tsx` are thin server-component wrappers that export `Metadata` and render from `src/views/*`
+- **Client components**: All views and components using hooks/animation marked with `'use client'`
+- **Content**: Edit files in `src/content/` to update all copy — pages consume them directly
+- **Easing**: Cubic bezier arrays must be cast as `[number, number, number, number]` tuples for React 19 + Framer Motion type compatibility
+- **Images**: Unsplash images use `?auto=format&fit=crop&w=XXX&q=75`
+- **tsconfig exclude**: `artifacts/` and `.next/` excluded to prevent picking up old Express code
 
-### `artifacts/phaarvai` (`@workspace/phaarvai`)
+## Scripts
 
-Production-ready institutional website for **PHAARVAI** — an AI and digital systems company serving governments, infrastructure operators, energy companies, and public-impact foundations.
+```bash
+npm install       # Install all dependencies
+npm run dev       # Start dev server (binds 0.0.0.0 for Replit)
+npm run build     # Production build (Vercel-compatible)
+npm run start     # Start production server
+npm run typecheck # TypeScript type checking only
+```
 
-- **Framework**: Next.js 15 App Router + React 19 + TailwindCSS v4 + Framer Motion
-- **Preview path**: `/` (root)
-- **Design**: Light theme (80% light, 20% dark) — `#F8FAFC` background (`210 40% 98%`), `#0B1F3A` navy foreground (`214 68% 14%`), `#2563EB` blue primary (`221 83% 53%`). Hero and footer use `.hero-gradient` utility class.
-- **Pages**: Home, About, Capabilities, Solutions, Sectors, Funding & Partnerships, Insights, Contact
-- **Routing**: `app/*/page.tsx` are thin server-component wrappers exporting Next.js `Metadata`; actual page components live in `src/views/`
-- **Components**: All components in `src/components/` use `'use client'` if they use hooks, framer-motion, or event handlers
-- **Content system**: All copy in `src/content/` files (site.ts, capabilities.ts, solutions.ts, sectors.ts, insights.ts). Rewrite content files to update copy — pages consume them directly.
-- **API routes**: `/api/contact` (POST, Zod-validated contact form) and `/api/healthz` (GET) — Next.js Route Handlers in `app/api/`
-- **Contact form fields**: name, organization, email, country, orgType, areaOfInterest, message
-- **Key components**: Navbar (transparent on dark hero, white bg on scroll/other pages), HeroSection (dark gradient, white text), CTASection (dark gradient), Footer (dark navy), Card, SectionIntro
-- **CSS**: `app/globals.css` — uses `@import "tailwindcss"` with `@tailwindcss/postcss` PostCSS plugin
-- **Zod import**: Standard `import { z } from "zod"` (not `zod/v4`)
-- **Dev command**: `pnpm --filter @workspace/phaarvai run dev`
+## Vercel Deployment
 
-### `lib/db` (`@workspace/db`)
-
-Database layer using Drizzle ORM with PostgreSQL. Exports a Drizzle client instance and schema models.
-
-- `src/index.ts` — creates a `Pool` + Drizzle instance, exports schema
-- `src/schema/index.ts` — barrel re-export of all models
-- `drizzle.config.ts` — Drizzle Kit config (requires `DATABASE_URL`, automatically provided by Replit)
-
-Production migrations are handled by Replit when publishing. In development, use `pnpm --filter @workspace/db run push`.
-
-### `scripts` (`@workspace/scripts`)
-
-Utility scripts package. Each script is a `.ts` file in `src/` with a corresponding npm script in `package.json`. Run scripts via `pnpm --filter @workspace/scripts run <script>`.
+No configuration needed. Vercel auto-detects Next.js from root `package.json`. Set no environment variables unless adding a backend service.
