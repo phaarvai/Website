@@ -6,7 +6,7 @@ import { CTASection } from "@/components/CTASection";
 import { PageSEO } from "@/components/PageSEO";
 import { teamContent } from "@/content/team";
 
-const fadeIn = {
+const fadeUp = {
   initial: { opacity: 0, y: 10 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-30px" },
@@ -19,9 +19,9 @@ function MemberCard({ member, index }: { member: typeof members[0]; index: numbe
   const isAboveFold = index < 3;
   return (
     <motion.article
-      {...fadeIn}
-      transition={{ ...fadeIn.transition, delay: index * 0.05 }}
-      className="group bg-white border border-border rounded-2xl overflow-hidden flex flex-col shadow-sm hover:shadow-md hover:-translate-y-0.5 transition-all duration-300"
+      {...fadeUp}
+      transition={{ ...fadeUp.transition, delay: index * 0.05 }}
+      className="group relative bg-white border border-border rounded-2xl overflow-hidden flex flex-col shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
     >
       {/* Photo */}
       <div className="relative h-48 overflow-hidden bg-muted shrink-0">
@@ -44,6 +44,21 @@ function MemberCard({ member, index }: { member: typeof members[0]; index: numbe
         >
           <span className="text-4xl font-bold text-primary/40 tracking-wider">{member.initials}</span>
         </div>
+
+        {/* LinkedIn hover-reveal on photo */}
+        <a
+          href={member.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={`View LinkedIn profile of ${member.name}`}
+          title="View Profile"
+          className="absolute top-3 right-3 flex items-center justify-center w-9 h-9 rounded-xl bg-white/90 backdrop-blur-sm shadow-md opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 ease-out hover:bg-[#0A66C2] hover:scale-110"
+          style={{ transitionProperty: "opacity, transform, background-color, scale" }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <Linkedin size={16} className="text-slate-600 group-hover/li:text-white transition-colors" style={{ color: "inherit" }} />
+        </a>
+
         <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent" />
       </div>
 
@@ -51,7 +66,7 @@ function MemberCard({ member, index }: { member: typeof members[0]; index: numbe
       <div className="flex flex-col flex-1 p-6">
         <div className="mb-3">
           <h2 className="text-base font-bold text-foreground leading-snug mb-0.5">{member.name}</h2>
-          <p className="text-xs font-semibold text-primary uppercase tracking-wide">{member.role}</p>
+          <p className="text-[11px] font-semibold text-primary uppercase tracking-widest">{member.role}</p>
         </div>
 
         <p className="text-sm text-muted-foreground leading-relaxed mb-4 flex-1">{member.bio}</p>
@@ -67,18 +82,20 @@ function MemberCard({ member, index }: { member: typeof members[0]; index: numbe
           ))}
         </div>
 
-        <div className="pt-3 border-t border-border">
+        {/* Bottom LinkedIn bar */}
+        <div className="pt-3 border-t border-border flex items-center justify-between">
           <a
             href={member.linkedin}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-primary transition-colors group/link"
-            aria-label={`${member.name} on LinkedIn`}
+            aria-label={`View LinkedIn profile of ${member.name}`}
+            title="View Profile"
+            className="inline-flex items-center gap-1.5 text-xs font-medium text-muted-foreground hover:text-[#0A66C2] transition-colors duration-200 group/li"
           >
-            <span className="flex items-center justify-center w-6 h-6 rounded-md bg-muted group-hover/link:bg-primary/10 transition-colors">
-              <Linkedin size={12} className="group-hover/link:text-primary transition-colors" />
+            <span className="flex items-center justify-center w-6 h-6 rounded-md bg-muted group-hover/li:bg-[#0A66C2]/10 transition-colors duration-200">
+              <Linkedin size={12} className="group-hover/li:text-[#0A66C2] transition-colors duration-200" />
             </span>
-            LinkedIn
+            Connect on LinkedIn
           </a>
         </div>
       </div>
@@ -94,31 +111,31 @@ export default function Team() {
         description="Meet the practitioners behind PHAARVAI — experienced leaders in AI, IoT, cloud security, distributed systems, and institutional strategy."
       />
 
-      <article className="pt-20">
-        {/* Hero — compact */}
-        <div className="container mx-auto px-6 md:px-12 max-w-5xl pt-8 pb-8">
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-          >
-            <p className="label-mono mb-3">{hero.label}</p>
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-foreground leading-[1.1] tracking-tight mb-3">
-              {hero.title}
-            </h1>
-            <p className="text-base md:text-lg text-muted-foreground max-w-lg leading-relaxed">
-              {hero.subtitle}
-            </p>
-          </motion.div>
+      <article>
+        {/* Hero — dark navy gradient, no white expanse */}
+        <div className="hero-gradient pt-24">
+          <div className="container mx-auto px-6 md:px-12 max-w-5xl pt-10 pb-12">
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+            >
+              <p className="text-[10px] font-mono tracking-[0.14em] uppercase text-blue-300/80 mb-3">
+                {hero.label}
+              </p>
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight mb-3">
+                {hero.title}
+              </h1>
+              <p className="text-base md:text-lg text-blue-100/70 max-w-lg leading-relaxed">
+                {hero.subtitle}
+              </p>
+            </motion.div>
+          </div>
         </div>
 
-        <div className="container mx-auto px-6 md:px-12 max-w-5xl">
-          <div className="border-t border-border" />
-        </div>
-
+        {/* Cards section — tight to hero */}
         <div className="container mx-auto px-6 md:px-12 max-w-6xl pt-10 pb-16">
 
-          {/* Team Grid */}
           <section aria-label="Team members">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
               {members.map((member, idx) => (
@@ -129,8 +146,8 @@ export default function Team() {
 
           {/* Why We Build */}
           <motion.section
-            {...fadeIn}
-            transition={{ ...fadeIn.transition, delay: 0.1 }}
+            {...fadeUp}
+            transition={{ ...fadeUp.transition, delay: 0.1 }}
             className="mt-12 bg-white border border-border rounded-2xl p-8 md:p-12"
             aria-label="Team mission"
           >
