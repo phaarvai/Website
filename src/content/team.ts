@@ -12,7 +12,7 @@ export const teamContent = {
       bio: "Experienced leader with 10+ years in IoT, AI, and large-scale software systems. Specialises in delivering high-impact programs, digital twins, and smart infrastructure solutions across government and enterprise sectors.",
       expertise: ["IoT", "AI/ML", "Cloud Architecture", "Program Management", "Smart Cities"],
       linkedin: "https://www.linkedin.com/in/praveenashok",
-      photo: "",
+      photo: "/images/team/praveen.jpg",
       initials: "PA",
     },
     {
@@ -47,7 +47,7 @@ export const teamContent = {
     },
     {
       id: "anchana-m",
-      name: "Anchana M",
+      name: "Anchana",
       role: "AI & Full Stack Developer",
       bio: "Passionate developer focused on AI/ML and full-stack engineering. Builds user-centric applications and innovative solutions including AI-based detection systems and accessibility tools.",
       expertise: ["Python", "AI/ML", "Django", "Web Development", "Problem Solving"],
