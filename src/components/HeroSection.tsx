@@ -4,6 +4,7 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { HeroDashboard } from "@/components/HeroDashboard";
 
 interface HeroSectionProps {
   headline: string;
@@ -12,7 +13,6 @@ interface HeroSectionProps {
   ctaSecondary?: { label: string; href: string };
   positioning?: string[];
 }
-
 
 export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, positioning }: HeroSectionProps) {
   const words = headline.split(" ");
@@ -23,7 +23,7 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
   const after = hasHighlight ? words.slice(highlightStart + 2).join(" ") : headline;
 
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-center pt-24 pb-0 overflow-hidden hero-gradient">
+    <section className="relative min-h-[92vh] flex flex-col justify-center pt-24 pb-8 overflow-hidden hero-gradient">
       {/* Grid overlay */}
       <div
         className="absolute inset-0 opacity-[0.04] pointer-events-none"
@@ -48,8 +48,8 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
             {positioning && (
               <motion.div
                 className="flex flex-wrap gap-2 mb-8"
-                initial={{ opacity: 0, y: 16 }}
-                animate={{ opacity: 1, y: 0 }}
+                initial={{ y: 16 }}
+                animate={{ y: 0 }}
                 transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
               >
                 {positioning.map((tag, idx) => (
@@ -65,9 +65,9 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
 
             <motion.h1
               className="text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[3.75rem] font-bold leading-[1.08] mb-7 text-white"
-              initial={{ opacity: 0, y: 28 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.75, delay: 0.05, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+              initial={{ y: 20 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
             >
               {before}{" "}
               <span className="relative inline-block">
@@ -76,7 +76,7 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
                   className="absolute inset-x-0 -bottom-1 h-[3px] bg-blue-400/50 rounded-full"
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.6, delay: 0.7, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+                  transition={{ duration: 0.6, delay: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
                   style={{ originX: 0 }}
                 />
               </span>
@@ -85,18 +85,18 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
 
             <motion.p
               className="text-base md:text-[1.05rem] text-blue-100/85 leading-[1.75] mb-10 max-w-[520px]"
-              initial={{ opacity: 0, y: 24 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.75, delay: 0.15, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+              initial={{ y: 16 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
             >
               {subheadline}
             </motion.p>
 
             <motion.div
-              className="flex flex-col sm:flex-row gap-3.5 mb-14"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.7, delay: 0.25, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+              className="flex flex-col sm:flex-row gap-3.5"
+              initial={{ y: 12 }}
+              animate={{ y: 0 }}
+              transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
             >
               {ctaPrimary && (
                 <Link href={ctaPrimary.href}>
@@ -118,97 +118,20 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
                 </Link>
               )}
             </motion.div>
-
           </div>
 
-          {/* Right: animated image panel */}
+          {/* Right: animated dashboard */}
           <motion.div
             className="hidden lg:block"
-            initial={{ opacity: 0, x: 30, scale: 0.97 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 1.1, delay: 0.3, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+            initial={{ x: 20, scale: 0.98 }}
+            animate={{ x: 0, scale: 1 }}
+            transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
           >
-            <div className="relative">
-              {/* Main image with Ken Burns animation */}
-              <div className="relative rounded-2xl overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] border border-white/[0.08] ring-1 ring-white/[0.04]">
-                <div className="relative overflow-hidden" style={{ height: "420px" }}>
-                  <img
-                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
-                    alt="Enterprise analytics command center"
-                    className="w-full h-full object-cover"
-                    style={{
-                      animation: "kenBurns 18s ease-in-out infinite alternate",
-                      transformOrigin: "center center",
-                    }}
-                    loading="eager"
-                  />
-                  {/* Light overlay — visible but not washed out */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#08162B]/70 via-[#08162B]/15 to-transparent" />
-                </div>
-
-                {/* Bottom card */}
-                <div className="absolute bottom-0 left-0 right-0 p-5">
-                  <div className="glass-card rounded-xl px-4 py-3">
-                    <p className="text-[9px] font-mono text-blue-200/90 tracking-[0.14em] uppercase mb-1.5">Live Command View</p>
-                    <p className="text-sm text-white font-semibold">Operational Intelligence Platform</p>
-                    <div className="flex items-center gap-2 mt-2.5">
-                      <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                      <span className="text-[10px] text-emerald-300">All systems operational</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
-              {/* Floating metric card — bobs up & down */}
-              <motion.div
-                className="absolute -top-5 -left-6 glass-card rounded-xl px-4 py-3.5 shadow-xl"
-                animate={{ y: [0, -6, 0] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-              >
-                <p className="text-[9px] font-mono text-blue-200/90 tracking-[0.12em] uppercase mb-1">Decision Accuracy</p>
-                <p className="text-xl font-bold text-white stat-number">94.7%</p>
-                <p className="text-[10px] text-emerald-400 mt-0.5">↑ +12% vs baseline</p>
-              </motion.div>
-
-              {/* Floating data card — bobs opposite phase */}
-              <motion.div
-                className="absolute -bottom-4 -right-6 glass-card rounded-xl px-4 py-3.5 shadow-xl"
-                animate={{ y: [0, 6, 0] }}
-                transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
-              >
-                <p className="text-[9px] font-mono text-blue-200/90 tracking-[0.12em] uppercase mb-1">Data Points Processed</p>
-                <p className="text-xl font-bold text-white stat-number">2.4M</p>
-                <p className="text-[10px] text-blue-200/80 mt-0.5">per day, real-time</p>
-              </motion.div>
-
-              {/* Third floating card — streams diagonally */}
-              <motion.div
-                className="absolute top-1/2 -right-8 -translate-y-1/2 glass-card rounded-xl px-4 py-3 shadow-xl"
-                animate={{ y: [0, -4, 0], x: [0, 2, 0] }}
-                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-              >
-                <div className="flex items-center gap-2 mb-1.5">
-                  <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
-                  <p className="text-[9px] font-mono text-blue-200/80 tracking-[0.1em] uppercase">Active Sensors</p>
-                </div>
-                <p className="text-lg font-bold text-white stat-number">18,432</p>
-              </motion.div>
-            </div>
+            <HeroDashboard />
           </motion.div>
 
         </div>
       </div>
-
-
-      {/* Ken Burns keyframe */}
-      <style>{`
-        @keyframes kenBurns {
-          0%   { transform: scale(1.0) translate(0%, 0%); }
-          33%  { transform: scale(1.06) translate(-1.5%, -1%); }
-          66%  { transform: scale(1.04) translate(1.5%, -0.5%); }
-          100% { transform: scale(1.08) translate(-1%, 1%); }
-        }
-      `}</style>
     </section>
   );
 }
