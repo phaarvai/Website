@@ -25,23 +25,25 @@ function MemberCard({ member, index }: { member: typeof members[0]; index: numbe
     >
       {/* Photo — tall, consistent, no heavy overlay */}
       <div className="relative overflow-hidden shrink-0" style={{ height: "280px", backgroundColor: "#f0f4f8" }}>
-        <img
-          src={member.photo}
-          alt={member.name}
-          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-103"
-          style={{ objectPosition: "center top" }}
-          loading={isAboveFold ? "eager" : "lazy"}
-          fetchPriority={isAboveFold ? "high" : "auto"}
-          onError={(e) => {
-            const target = e.currentTarget as HTMLImageElement;
-            target.style.display = "none";
-            const fallback = target.nextElementSibling as HTMLElement | null;
-            if (fallback) fallback.style.display = "flex";
-          }}
-        />
-        {/* Initials fallback */}
+        {member.photo ? (
+          <img
+            src={member.photo}
+            alt={member.name}
+            className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-103"
+            style={{ objectPosition: "center top" }}
+            loading={isAboveFold ? "eager" : "lazy"}
+            fetchPriority={isAboveFold ? "high" : "auto"}
+            onError={(e) => {
+              const target = e.currentTarget as HTMLImageElement;
+              target.style.display = "none";
+              const fallback = target.nextElementSibling as HTMLElement | null;
+              if (fallback) fallback.style.display = "flex";
+            }}
+          />
+        ) : null}
+        {/* Initials fallback — shown when no photo or photo fails */}
         <div
-          className="absolute inset-0 hidden items-center justify-center"
+          className={`absolute inset-0 ${member.photo ? "hidden" : "flex"} items-center justify-center`}
           style={{ backgroundColor: "#e8eef5" }}
           aria-hidden="true"
         >

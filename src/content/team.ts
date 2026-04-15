@@ -12,7 +12,7 @@ export const teamContent = {
       bio: "Experienced leader with 10+ years in IoT, AI, and large-scale software systems. Specialises in delivering high-impact programs, digital twins, and smart infrastructure solutions across government and enterprise sectors.",
       expertise: ["IoT", "AI/ML", "Cloud Architecture", "Program Management", "Smart Cities"],
       linkedin: "https://www.linkedin.com/in/praveenashok",
-      photo: "/images/team/praveen.png",
+      photo: "",
       initials: "PA",
     },
     {
@@ -54,6 +54,16 @@ export const teamContent = {
       linkedin: "https://www.linkedin.com/in/anchana-mariselvam/",
       photo: "/images/team/anchana.jpg",
       initials: "AM",
+    },
+    {
+      id: "priyanka-praveen",
+      name: "Priyanka Praveen",
+      role: "Architect & Design Specialist",
+      bio: "Creative architect with experience in designing functional and aesthetic spaces, contributing to innovative and user-centric design solutions across residential and commercial projects.",
+      expertise: ["Architecture", "Space Design", "User-Centric Design", "Residential", "Commercial Projects"],
+      linkedin: "https://www.linkedin.com/in/ar-priyanka-praveen-8bb34418a",
+      photo: "/images/team/priyanka.jpg",
+      initials: "PP",
     },
   ],
   mission: {
