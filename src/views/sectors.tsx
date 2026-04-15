@@ -21,10 +21,10 @@ export const sectorSlugs: Record<string, string> = {
 };
 
 const fadeIn = {
-  initial: { opacity: 0, y: 14 },
+  initial: { opacity: 0, y: 12 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true, margin: "-40px" },
-  transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
+  transition: { duration: 0.38, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
 };
 
 export default function Sectors() {
@@ -51,24 +51,24 @@ export default function Sectors() {
         path="/sectors"
       />
 
-      <article className="pt-28 pb-16 bg-background">
+      <article className="pt-24 pb-12 bg-background">
         <div className="container mx-auto px-6 md:px-12">
 
           <motion.header
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 18 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            className="max-w-2xl mb-16"
+            transition={{ duration: 0.45 }}
+            className="max-w-2xl mb-10"
           >
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-3 leading-[1.1]">
               Sectors
             </h1>
             <p className="text-base text-muted-foreground leading-relaxed">
-              We operate in environments where operational data holds immense strategic value and where system failures carry significant institutional and public consequence.
+              We operate in environments where operational data holds immense strategic value and system failures carry significant public consequence.
             </p>
           </motion.header>
 
-          <div className="space-y-5 mb-24">
+          <div className="space-y-4 mb-12">
             {sectors.map((sector, idx) => {
               const Icon = iconMap[sector.icon] || Network;
               const slug = sectorSlugs[sector.name] || sector.name.toLowerCase().replace(/\s+/g, "-");
@@ -77,37 +77,37 @@ export default function Sectors() {
                   key={idx}
                   id={slug}
                   {...fadeIn}
-                  transition={{ ...fadeIn.transition, delay: idx * 0.06 }}
+                  transition={{ ...fadeIn.transition, delay: idx * 0.05 }}
                   className="bg-white border border-border rounded-xl overflow-hidden scroll-mt-24"
                   aria-label={sector.name}
                 >
-                  <header className="px-8 py-6 border-b border-border flex items-center gap-4">
-                    <div className="w-10 h-10 rounded-lg bg-primary/8 flex items-center justify-center text-primary shrink-0">
-                      <Icon size={20} />
+                  <header className="px-6 py-5 border-b border-border flex items-center gap-3">
+                    <div className="w-9 h-9 rounded-lg bg-primary/8 flex items-center justify-center text-primary shrink-0">
+                      <Icon size={18} />
                     </div>
                     <div>
-                      <h2 className="text-lg font-bold text-foreground">{sector.name}</h2>
-                      <p className="text-sm text-muted-foreground leading-relaxed mt-0.5 max-w-3xl">{sector.description}</p>
+                      <h2 className="text-base font-bold text-foreground">{sector.name}</h2>
+                      <p className="text-xs text-muted-foreground leading-relaxed mt-0.5 max-w-3xl">{sector.description}</p>
                     </div>
                   </header>
 
                   <div className="grid grid-cols-1 md:grid-cols-2 divide-y md:divide-y-0 md:divide-x divide-border">
-                    <div className="px-8 py-6">
-                      <h3 className="text-xs font-semibold tracking-widest uppercase text-rose-500/80 mb-4">Common Problems</h3>
-                      <ul className="space-y-2.5">
+                    <div className="px-6 py-5">
+                      <h3 className="text-[10px] font-semibold tracking-widest uppercase text-rose-500/80 mb-3">Common Problems</h3>
+                      <ul className="space-y-2">
                         {sector.problems.map((problem, pIdx) => (
-                          <li key={pIdx} className="flex items-start gap-3">
+                          <li key={pIdx} className="flex items-start gap-2.5">
                             <div className="w-1.5 h-1.5 rounded-full bg-rose-400 shrink-0 mt-1.5" />
                             <span className="text-sm text-muted-foreground leading-relaxed">{problem}</span>
                           </li>
                         ))}
                       </ul>
                     </div>
-                    <div className="px-8 py-6">
-                      <h3 className="text-xs font-semibold tracking-widest uppercase text-primary/80 mb-4">Systems We Build</h3>
-                      <ul className="space-y-2.5">
+                    <div className="px-6 py-5">
+                      <h3 className="text-[10px] font-semibold tracking-widest uppercase text-primary/80 mb-3">Systems We Build</h3>
+                      <ul className="space-y-2">
                         {sector.systemsBuilt.map((system, sIdx) => (
-                          <li key={sIdx} className="flex items-start gap-3">
+                          <li key={sIdx} className="flex items-start gap-2.5">
                             <div className="w-1.5 h-1.5 rounded-full bg-primary shrink-0 mt-1.5" />
                             <span className="text-sm text-foreground leading-relaxed">{system}</span>
                           </li>
