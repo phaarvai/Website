@@ -13,12 +13,6 @@ interface HeroSectionProps {
   positioning?: string[];
 }
 
-const stats = [
-  { value: "30+", label: "Institutions Served" },
-  { value: "6", label: "Sectors" },
-  { value: "100%", label: "Production Delivery" },
-  { value: "8+", label: "Countries" },
-];
 
 export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, positioning }: HeroSectionProps) {
   const words = headline.split(" ");
@@ -125,26 +119,6 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
               )}
             </motion.div>
 
-            {/* Stats row */}
-            <motion.div
-              className="grid grid-cols-4 gap-0 border-t border-white/10 pt-8"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.45 }}
-            >
-              {stats.map((stat, idx) => (
-                <motion.div
-                  key={idx}
-                  className={`pr-4 ${idx > 0 ? "pl-4 border-l border-white/10" : ""}`}
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.5, delay: 0.5 + idx * 0.07 }}
-                >
-                  <div className="text-2xl font-bold text-white stat-number mb-1">{stat.value}</div>
-                  <div className="text-[10px] text-blue-200/75 uppercase tracking-[0.1em] leading-tight">{stat.label}</div>
-                </motion.div>
-              ))}
-            </motion.div>
           </div>
 
           {/* Right: animated image panel */}
@@ -225,8 +199,6 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
         </div>
       </div>
 
-      {/* Bottom fade */}
-      <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-10" />
 
       {/* Ken Burns keyframe */}
       <style>{`
