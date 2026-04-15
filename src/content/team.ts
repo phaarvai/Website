@@ -46,16 +46,6 @@ export const teamContent = {
       initials: "RK",
     },
     {
-      id: "anchana-m",
-      name: "Anchana",
-      role: "AI & Full Stack Developer",
-      bio: "Passionate developer focused on AI/ML and full-stack engineering. Builds user-centric applications and innovative solutions including AI-based detection systems and accessibility tools.",
-      expertise: ["Python", "AI/ML", "Django", "Web Development", "Problem Solving"],
-      linkedin: "https://www.linkedin.com/in/anchana-mariselvam/",
-      photo: "/images/team/anchana.jpg",
-      initials: "AM",
-    },
-    {
       id: "priyanka-praveen",
       name: "Priyanka Praveen",
       role: "Architect & Design Specialist",
@@ -64,6 +54,16 @@ export const teamContent = {
       linkedin: "https://www.linkedin.com/in/ar-priyanka-praveen-8bb34418a",
       photo: "/images/team/priyanka.jpg",
       initials: "PP",
+    },
+    {
+      id: "anchana-m",
+      name: "Anchana",
+      role: "AI & Full Stack Developer",
+      bio: "Passionate developer focused on AI/ML and full-stack engineering. Builds user-centric applications and innovative solutions including AI-based detection systems and accessibility tools.",
+      expertise: ["Python", "AI/ML", "Django", "Web Development", "Problem Solving"],
+      linkedin: "https://www.linkedin.com/in/anchana-mariselvam/",
+      photo: "/images/team/anchana.jpg",
+      initials: "AM",
     },
   ],
   mission: {
