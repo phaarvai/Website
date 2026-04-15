@@ -21,14 +21,15 @@ function MemberCard({ member, index }: { member: typeof members[0]; index: numbe
     <motion.article
       {...fadeUp}
       transition={{ ...fadeUp.transition, delay: index * 0.05 }}
-      className="group relative bg-white border border-border rounded-2xl overflow-hidden flex flex-col shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300"
+      className="group relative bg-white border border-border rounded-2xl overflow-hidden flex flex-col shadow-sm hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300"
     >
-      {/* Photo */}
-      <div className="relative h-48 overflow-hidden bg-muted shrink-0">
+      {/* Photo — tall, consistent, no heavy overlay */}
+      <div className="relative overflow-hidden shrink-0" style={{ height: "280px", backgroundColor: "#f0f4f8" }}>
         <img
           src={member.photo}
           alt={member.name}
-          className="w-full h-full object-cover object-top opacity-90 group-hover:scale-105 transition-transform duration-500"
+          className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-103"
+          style={{ objectPosition: "center top" }}
           loading={isAboveFold ? "eager" : "lazy"}
           fetchPriority={isAboveFold ? "high" : "auto"}
           onError={(e) => {
@@ -38,28 +39,32 @@ function MemberCard({ member, index }: { member: typeof members[0]; index: numbe
             if (fallback) fallback.style.display = "flex";
           }}
         />
+        {/* Initials fallback */}
         <div
-          className="absolute inset-0 hidden items-center justify-center bg-primary/8"
+          className="absolute inset-0 hidden items-center justify-center"
+          style={{ backgroundColor: "#e8eef5" }}
           aria-hidden="true"
         >
-          <span className="text-4xl font-bold text-primary/40 tracking-wider">{member.initials}</span>
+          <span className="text-5xl font-bold tracking-wider" style={{ color: "#1e3a5f" }}>
+            {member.initials}
+          </span>
         </div>
 
-        {/* LinkedIn hover-reveal on photo */}
+        {/* Subtle bottom gradient — only 25% of image height, light */}
+        <div className="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-white/60 to-transparent" />
+
+        {/* LinkedIn hover badge — top right corner */}
         <a
           href={member.linkedin}
           target="_blank"
           rel="noopener noreferrer"
           aria-label={`View LinkedIn profile of ${member.name}`}
           title="View Profile"
-          className="absolute top-3 right-3 flex items-center justify-center w-9 h-9 rounded-xl bg-white/90 backdrop-blur-sm shadow-md opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 ease-out hover:bg-[#0A66C2] hover:scale-110"
-          style={{ transitionProperty: "opacity, transform, background-color, scale" }}
+          className="absolute top-3 right-3 flex items-center justify-center w-9 h-9 rounded-xl bg-white shadow-md opacity-0 translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 ease-out hover:bg-[#0A66C2] hover:scale-110"
           onClick={(e) => e.stopPropagation()}
         >
-          <Linkedin size={16} className="text-slate-600 group-hover/li:text-white transition-colors" style={{ color: "inherit" }} />
+          <Linkedin size={15} className="text-[#0A66C2] hover:text-white transition-colors" />
         </a>
-
-        <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent" />
       </div>
 
       {/* Content */}
@@ -82,8 +87,8 @@ function MemberCard({ member, index }: { member: typeof members[0]; index: numbe
           ))}
         </div>
 
-        {/* Bottom LinkedIn bar */}
-        <div className="pt-3 border-t border-border flex items-center justify-between">
+        {/* LinkedIn bar */}
+        <div className="pt-3 border-t border-border">
           <a
             href={member.linkedin}
             target="_blank"
@@ -112,7 +117,7 @@ export default function Team() {
       />
 
       <article>
-        {/* Hero — dark navy gradient, no white expanse */}
+        {/* Hero — dark navy gradient */}
         <div className="hero-gradient pt-24">
           <div className="container mx-auto px-6 md:px-12 max-w-5xl pt-10 pb-12">
             <motion.div
@@ -126,18 +131,18 @@ export default function Team() {
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight mb-3">
                 {hero.title}
               </h1>
-              <p className="text-base md:text-lg text-blue-100/70 max-w-lg leading-relaxed">
+              <p className="text-base md:text-lg text-blue-100/75 max-w-lg leading-relaxed">
                 {hero.subtitle}
               </p>
             </motion.div>
           </div>
         </div>
 
-        {/* Cards section — tight to hero */}
+        {/* Cards section */}
         <div className="container mx-auto px-6 md:px-12 max-w-6xl pt-10 pb-16">
 
           <section aria-label="Team members">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
               {members.map((member, idx) => (
                 <MemberCard key={member.id} member={member} index={idx} />
               ))}

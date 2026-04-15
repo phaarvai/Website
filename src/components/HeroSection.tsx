@@ -51,7 +51,6 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
 
           {/* Left: copy */}
           <div>
-            {/* Tag */}
             {positioning && (
               <motion.div
                 className="flex flex-wrap gap-2 mb-8"
@@ -148,7 +147,7 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
             </motion.div>
           </div>
 
-          {/* Right: dashboard */}
+          {/* Right: animated image panel */}
           <motion.div
             className="hidden lg:block"
             initial={{ opacity: 0, x: 30, scale: 0.97 }}
@@ -156,15 +155,22 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
             transition={{ duration: 1.1, delay: 0.3, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
           >
             <div className="relative">
-              {/* Main image */}
+              {/* Main image with Ken Burns animation */}
               <div className="relative rounded-2xl overflow-hidden shadow-[0_30px_80px_-20px_rgba(0,0,0,0.6)] border border-white/[0.08] ring-1 ring-white/[0.04]">
-                <img
-                  src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
-                  alt="Enterprise analytics command center"
-                  className="w-full object-cover"
-                  loading="eager"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#08162B]/85 via-[#08162B]/20 to-transparent" />
+                <div className="relative overflow-hidden" style={{ height: "420px" }}>
+                  <img
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80"
+                    alt="Enterprise analytics command center"
+                    className="w-full h-full object-cover"
+                    style={{
+                      animation: "kenBurns 18s ease-in-out infinite alternate",
+                      transformOrigin: "center center",
+                    }}
+                    loading="eager"
+                  />
+                  {/* Light overlay — visible but not washed out */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#08162B]/70 via-[#08162B]/15 to-transparent" />
+                </div>
 
                 {/* Bottom card */}
                 <div className="absolute bottom-0 left-0 right-0 p-5">
@@ -179,10 +185,10 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
                 </div>
               </div>
 
-              {/* Floating metric card */}
+              {/* Floating metric card — bobs up & down */}
               <motion.div
                 className="absolute -top-5 -left-6 glass-card rounded-xl px-4 py-3.5 shadow-xl"
-                animate={{ y: [0, -5, 0] }}
+                animate={{ y: [0, -6, 0] }}
                 transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
               >
                 <p className="text-[9px] font-mono text-blue-200/90 tracking-[0.12em] uppercase mb-1">Decision Accuracy</p>
@@ -190,15 +196,28 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
                 <p className="text-[10px] text-emerald-400 mt-0.5">↑ +12% vs baseline</p>
               </motion.div>
 
-              {/* Floating data card */}
+              {/* Floating data card — bobs opposite phase */}
               <motion.div
                 className="absolute -bottom-4 -right-6 glass-card rounded-xl px-4 py-3.5 shadow-xl"
-                animate={{ y: [0, 5, 0] }}
+                animate={{ y: [0, 6, 0] }}
                 transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
               >
                 <p className="text-[9px] font-mono text-blue-200/90 tracking-[0.12em] uppercase mb-1">Data Points Processed</p>
                 <p className="text-xl font-bold text-white stat-number">2.4M</p>
                 <p className="text-[10px] text-blue-200/80 mt-0.5">per day, real-time</p>
+              </motion.div>
+
+              {/* Third floating card — streams diagonally */}
+              <motion.div
+                className="absolute top-1/2 -right-8 -translate-y-1/2 glass-card rounded-xl px-4 py-3 shadow-xl"
+                animate={{ y: [0, -4, 0], x: [0, 2, 0] }}
+                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+              >
+                <div className="flex items-center gap-2 mb-1.5">
+                  <div className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse" />
+                  <p className="text-[9px] font-mono text-blue-200/80 tracking-[0.1em] uppercase">Active Sensors</p>
+                </div>
+                <p className="text-lg font-bold text-white stat-number">18,432</p>
               </motion.div>
             </div>
           </motion.div>
@@ -208,6 +227,16 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
 
       {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-background to-transparent z-10" />
+
+      {/* Ken Burns keyframe */}
+      <style>{`
+        @keyframes kenBurns {
+          0%   { transform: scale(1.0) translate(0%, 0%); }
+          33%  { transform: scale(1.06) translate(-1.5%, -1%); }
+          66%  { transform: scale(1.04) translate(1.5%, -0.5%); }
+          100% { transform: scale(1.08) translate(-1%, 1%); }
+        }
+      `}</style>
     </section>
   );
 }

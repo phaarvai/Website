@@ -71,7 +71,7 @@ export default function About() {
                   className="w-full h-full object-cover"
                   loading="eager"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/40 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/25 to-transparent" />
               </div>
             </motion.div>
           </div>

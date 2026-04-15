@@ -12,7 +12,7 @@ export const teamContent = {
       bio: "Experienced leader with 10+ years in IoT, AI, and large-scale software systems. Specialises in delivering high-impact programs, digital twins, and smart infrastructure solutions across government and enterprise sectors.",
       expertise: ["IoT", "AI/ML", "Cloud Architecture", "Program Management", "Smart Cities"],
       linkedin: "https://www.linkedin.com/in/praveenashok",
-      photo: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&q=75",
+      photo: "/images/team/praveen.png",
       initials: "PA",
     },
     {
@@ -22,7 +22,7 @@ export const teamContent = {
       bio: "Business development expert with strong experience in scaling operations, driving revenue growth, and leading cross-functional teams across multiple industries. Builds client relationships that deliver long-term value.",
       expertise: ["Business Strategy", "Sales Growth", "Digital Marketing", "Operations", "Client Management"],
       linkedin: "https://www.linkedin.com/in/prathipa-ashok",
-      photo: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=75",
+      photo: "/images/team/prathipa.jpg",
       initials: "PA",
     },
     {
@@ -32,7 +32,7 @@ export const teamContent = {
       bio: "Security specialist with over a decade of experience in AI/ML security, building secure architectures, and mitigating advanced vulnerabilities in large-scale production systems.",
       expertise: ["AI Security", "Cloud Security", "Threat Modeling", "Python", "AWS"],
       linkedin: "https://www.linkedin.com/in/udhgee",
-      photo: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&q=75",
+      photo: "/images/team/udhgee.jpg",
       initials: "UM",
     },
     {
@@ -42,7 +42,7 @@ export const teamContent = {
       bio: "Distributed systems expert with deep experience in AWS, building scalable high-performance platforms that handle millions of assets and real-time data pipelines at institutional scale.",
       expertise: ["Distributed Systems", "AWS", "Microservices", "System Design", "Scalability"],
       linkedin: "https://www.linkedin.com/in/raghavankothandaraman",
-      photo: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&q=75",
+      photo: "/images/team/raghavan.jpg",
       initials: "RK",
     },
     {
@@ -52,7 +52,7 @@ export const teamContent = {
       bio: "Passionate developer focused on AI/ML and full-stack engineering. Builds user-centric applications and innovative solutions including AI-based detection systems and accessibility tools.",
       expertise: ["Python", "AI/ML", "Django", "Web Development", "Problem Solving"],
       linkedin: "https://www.linkedin.com/in/anchana-mariselvam/",
-      photo: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&q=75",
+      photo: "/images/team/anchana.jpg",
       initials: "AM",
     },
   ],

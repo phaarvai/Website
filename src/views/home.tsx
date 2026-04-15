@@ -163,10 +163,10 @@ export default function Home() {
                         <img
                           src={imgUrl}
                           alt={area.title}
-                          className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-700"
+                          className="w-full h-full object-cover opacity-100 group-hover:scale-105 transition-all duration-700"
                           loading="lazy"
                         />
-                        <div className="absolute inset-0 bg-gradient-to-t from-card/60 to-transparent" />
+                        <div className="absolute inset-0 bg-gradient-to-t from-card/30 to-transparent" />
                       </div>
                     )}
                     <div className="flex flex-col flex-grow p-7">
@@ -297,7 +297,7 @@ export default function Home() {
                   className="w-full h-full object-cover"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-foreground/70 via-foreground/10 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-foreground/50 via-transparent to-transparent" />
                 <div className="absolute bottom-5 left-5 right-5">
                   <div className="glass-card rounded-xl px-4 py-3">
                     <p className="text-white text-sm font-semibold leading-snug">Strategy and execution — in one partner</p>
