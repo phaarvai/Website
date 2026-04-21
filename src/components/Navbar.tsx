@@ -42,12 +42,22 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-2 group">
-          <img
-            src="/images/logo-transparent.png"
-            alt="PHAARVAI"
-            className="h-10 w-auto object-contain"
-          />
+        <Link href="/" className="flex items-center gap-2.5 group">
+          {/* Show only the icon mark — clip away the "PHAARVAI" text in the image */}
+          <div className="overflow-hidden flex-shrink-0" style={{ width: 38, height: 38 }}>
+            <img
+              src="/images/logo-transparent.png"
+              alt="PHAARVAI icon"
+              style={{ width: 69, height: 69, marginTop: -3 }}
+            />
+          </div>
+          <span
+            className={`text-[1.15rem] font-bold tracking-[0.14em] transition-colors ${
+              onDark ? "text-white" : "text-foreground"
+            }`}
+          >
+            PHAARVAI
+          </span>
         </Link>
 
         <div className="hidden lg:flex items-center gap-8">
