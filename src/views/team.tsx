@@ -127,13 +127,13 @@ export default function Team() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
             >
-              <p className="text-[10px] font-mono tracking-[0.14em] uppercase text-blue-300/80 mb-3">
+              <p className="text-[10px] font-mono tracking-[0.14em] uppercase text-pink-300/80 mb-3">
                 {hero.label}
               </p>
               <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-[1.1] tracking-tight mb-3">
                 {hero.title}
               </h1>
-              <p className="text-base md:text-lg text-blue-100/75 max-w-lg leading-relaxed">
+              <p className="text-base md:text-lg text-pink-100/75 max-w-lg leading-relaxed">
                 {hero.subtitle}
               </p>
             </motion.div>

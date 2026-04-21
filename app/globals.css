@@ -56,35 +56,37 @@
   --app-font-mono: Menlo, monospace;
   --radius: 0.625rem;
 
-  --background: 210 33% 98%;
-  --foreground: 217 71% 11%;
+  --background: 330 20% 98%;
+  --foreground: 270 40% 10%;
 
   --card: 0 0% 100%;
-  --card-foreground: 217 71% 11%;
-  --card-border: 214 22% 91%;
+  --card-foreground: 270 40% 10%;
+  --card-border: 310 15% 90%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 217 71% 11%;
-  --popover-border: 214 22% 91%;
+  --popover-foreground: 270 40% 10%;
+  --popover-border: 310 15% 90%;
 
-  --primary: 221 83% 52%;
+  /* Primary: hot pink/magenta from logo */
+  --primary: 329 82% 52%;
   --primary-foreground: 0 0% 100%;
 
-  --secondary: 217 65% 18%;
+  /* Secondary: deep purple from logo */
+  --secondary: 286 60% 20%;
   --secondary-foreground: 0 0% 100%;
 
-  --muted: 210 22% 95%;
-  --muted-foreground: 215 18% 48%;
+  --muted: 330 15% 95%;
+  --muted-foreground: 270 12% 48%;
 
-  --accent: 210 22% 93%;
-  --accent-foreground: 217 71% 11%;
+  --accent: 330 18% 93%;
+  --accent-foreground: 270 40% 10%;
 
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 214 22% 91%;
-  --input: 214 22% 91%;
-  --ring: 221 83% 52%;
+  --border: 310 15% 90%;
+  --input: 310 15% 90%;
+  --ring: 329 82% 52%;
 
   --primary-border: hsl(var(--primary));
   --secondary-border: hsl(var(--secondary));
@@ -126,9 +128,9 @@
     transition: box-shadow 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
   }
   .card-hover:hover {
-    box-shadow: 0 8px 32px -8px rgba(11, 31, 58, 0.12);
+    box-shadow: 0 8px 32px -8px rgba(140, 20, 140, 0.14);
     transform: translateY(-2px);
-    border-color: hsl(214 22% 80%);
+    border-color: hsl(310 15% 80%);
   }
 
   /* Button elevate */
@@ -136,18 +138,18 @@
     transition: box-shadow 0.18s ease, transform 0.18s ease;
   }
   .hover-elevate:hover {
-    box-shadow: 0 6px 20px -4px rgba(37, 99, 235, 0.35);
+    box-shadow: 0 6px 20px -4px rgba(233, 30, 140, 0.40);
     transform: translateY(-1px);
   }
 
-  /* Dark gradient sections */
+  /* Dark gradient sections — logo palette darks */
   .hero-gradient {
-    background: linear-gradient(135deg, #08162B 0%, #0D2144 45%, #112B58 100%);
+    background: linear-gradient(135deg, #1A0726 0%, #2B0E40 45%, #1E0A30 100%);
   }
 
   /* Alternating section background */
   .section-alt {
-    background-color: hsl(210 28% 97%);
+    background-color: hsl(330 20% 97%);
   }
 
   /* Monospace label */
@@ -162,13 +164,13 @@
 
   /* Subtle inset card */
   .card-inset {
-    background-color: hsl(210 25% 97%);
-    border: 1px solid hsl(214 22% 91%);
+    background-color: hsl(330 18% 97%);
+    border: 1px solid hsl(310 15% 90%);
   }
 
-  /* Gradient text */
+  /* Gradient text — logo colours */
   .text-gradient {
-    background: linear-gradient(135deg, #2563EB 0%, #3b82f6 60%, #6366f1 100%);
+    background: linear-gradient(135deg, #F7941D 0%, #E91E8C 55%, #8B20B9 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -176,7 +178,7 @@
 
   /* Dot grid pattern */
   .bg-dot-grid {
-    background-image: radial-gradient(circle, hsl(214 20% 87%) 1px, transparent 1px);
+    background-image: radial-gradient(circle, hsl(310 15% 84%) 1px, transparent 1px);
     background-size: 22px 22px;
   }
 

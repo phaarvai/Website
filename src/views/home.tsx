@@ -26,8 +26,8 @@ const areaImages: Record<string, string> = {
 };
 
 const categoryColors: Record<string, string> = {
-  "AI": "bg-blue-50 text-blue-700 border-blue-100",
-  "Data": "bg-indigo-50 text-indigo-700 border-indigo-100",
+  "AI": "bg-pink-50 text-pink-700 border-pink-100",
+  "Data": "bg-purple-50 text-purple-700 border-purple-100",
   "IoT": "bg-cyan-50 text-cyan-700 border-cyan-100",
   "Reporting": "bg-violet-50 text-violet-700 border-violet-100",
   "Operations": "bg-emerald-50 text-emerald-700 border-emerald-100",
@@ -276,7 +276,7 @@ export default function Home() {
               transition={{ duration: 0.5 }}
               className="max-w-2xl"
             >
-              <p className="text-[10px] font-mono tracking-[0.16em] text-blue-300/85 uppercase mb-4">Our Approach</p>
+              <p className="text-[10px] font-mono tracking-[0.16em] text-pink-300/85 uppercase mb-4">Our Approach</p>
               <blockquote className="text-xl md:text-2xl font-bold text-white leading-[1.35]">
                 "We design the system and build it. Strategy and execution — in one partner, from architecture through production."
               </blockquote>

@@ -33,8 +33,8 @@ function LiveLineChart() {
       >
         <defs>
           <linearGradient id="hd-chartGrad" x1="0" y1="0" x2="0" y2="1">
-            <stop offset="0%" stopColor="rgba(96,165,250,0.4)" />
-            <stop offset="100%" stopColor="rgba(96,165,250,0)" />
+            <stop offset="0%" stopColor="rgba(233,30,140,0.45)" />
+            <stop offset="100%" stopColor="rgba(139,32,185,0)" />
           </linearGradient>
           <clipPath id="hd-chartClip">
             <rect x="0" y="0" width="100" height="50" />
@@ -46,13 +46,13 @@ function LiveLineChart() {
           <g style={{ animation: "hdWavePan 5s linear infinite" }}>
             <path d={AREA_D} fill="url(#hd-chartGrad)" />
             <path d={`M100,38 C105,28 110,42 115,30 C120,18 125,44 130,32 C135,20 140,46 145,28 C150,10 155,38 160,24 C165,10 170,40 175,26 C180,12 185,36 190,22 C195,8 200,34 200,28 L200,50 L100,50 Z`} fill="url(#hd-chartGrad)" />
-            <path d={WAVE_D} fill="none" stroke="rgba(96,165,250,0.85)" strokeWidth="1.5" strokeLinecap="round" />
-            <path d="M100,38 C105,28 110,42 115,30 C120,18 125,44 130,32 C135,20 140,46 145,28 C150,10 155,38 160,24 C165,10 170,40 175,26 C180,12 185,36 190,22 C195,8 200,34 200,28" fill="none" stroke="rgba(96,165,250,0.85)" strokeWidth="1.5" strokeLinecap="round" />
+            <path d={WAVE_D} fill="none" stroke="rgba(233,30,140,0.85)" strokeWidth="1.5" strokeLinecap="round" />
+            <path d="M100,38 C105,28 110,42 115,30 C120,18 125,44 130,32 C135,20 140,46 145,28 C150,10 155,38 160,24 C165,10 170,40 175,26 C180,12 185,36 190,22 C195,8 200,34 200,28" fill="none" stroke="rgba(233,30,140,0.85)" strokeWidth="1.5" strokeLinecap="round" />
           </g>
         </g>
 
         {/* Blinking live dot */}
-        <circle cx="98" cy="28" r="2.5" fill="#60a5fa" style={{ animation: "hdDotBlink 1.2s ease-in-out infinite" }} />
+        <circle cx="98" cy="28" r="2.5" fill="#E91E8C" style={{ animation: "hdDotBlink 1.2s ease-in-out infinite" }} />
       </svg>
     </div>
   );
@@ -91,7 +91,7 @@ export function HeroDashboard() {
 
       <div
         className="relative w-full rounded-2xl border border-white/10 shadow-[0_32px_72px_-16px_rgba(0,0,0,0.65)]"
-        style={{ background: "linear-gradient(145deg,#091525 0%,#0d2144 55%,#0e2a5a 100%)" }}
+        style={{ background: "linear-gradient(145deg,#12071E 0%,#1E0A35 55%,#230D42 100%)" }}
       >
         {/* Top bar */}
         <div className="flex items-center justify-between px-5 py-2.5 border-b border-white/[0.07]">
@@ -100,9 +100,9 @@ export function HeroDashboard() {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-400" />
             </span>
-            <span className="text-[9px] font-mono text-blue-200/70 tracking-widest uppercase">Operational Intelligence · Live</span>
+            <span className="text-[9px] font-mono text-pink-200/70 tracking-widest uppercase">Operational Intelligence · Live</span>
           </div>
-          <span className="text-[8px] font-mono text-blue-200/30">v5.4.1</span>
+          <span className="text-[8px] font-mono text-pink-200/30">v5.4.1</span>
         </div>
 
         <div className="p-4 space-y-3">
@@ -110,15 +110,15 @@ export function HeroDashboard() {
           <div className="grid grid-cols-3 gap-2">
             {[
               { label: "Decision Accuracy", value: "94.7%", color: "text-emerald-400" },
-              { label: "Data Points / Day", target: 2400000, color: "text-blue-300" },
-              { label: "Active Sensors", target: 18432, color: "text-purple-300" },
+              { label: "Data Points / Day", target: 2400000, color: "text-pink-300" },
+              { label: "Active Sensors", target: 18432, color: "text-orange-300" },
             ].map((kpi) => (
               <div
                 key={kpi.label}
                 className="rounded-xl p-2.5"
                 style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.07)" }}
               >
-                <p className="text-[7px] font-mono text-blue-200/50 uppercase tracking-wider mb-1 leading-tight">{kpi.label}</p>
+                <p className="text-[7px] font-mono text-pink-200/50 uppercase tracking-wider mb-1 leading-tight">{kpi.label}</p>
                 <p className={`text-sm font-bold ${kpi.color} leading-none tabular-nums`}>
                   {kpi.value ?? <AnimatedNumber target={kpi.target!} />}
                 </p>
@@ -132,7 +132,7 @@ export function HeroDashboard() {
             style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.065)" }}
           >
             <div className="flex items-center justify-between mb-1.5">
-              <span className="text-[8px] font-mono text-blue-200/50 uppercase tracking-wider">Real-Time Signal Stream</span>
+              <span className="text-[8px] font-mono text-pink-200/50 uppercase tracking-wider">Real-Time Signal Stream</span>
               <span className="text-[8px] font-mono text-emerald-400 flex items-center gap-1">
                 <span className="inline-block w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                 LIVE
@@ -147,8 +147,8 @@ export function HeroDashboard() {
             style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.065)" }}
           >
             <div className="flex items-center justify-between mb-2.5">
-              <span className="text-[8px] font-mono text-blue-200/50 uppercase tracking-wider">Sector Performance Index</span>
-              <span className="text-[8px] font-mono text-blue-200/30">Updated 2s ago</span>
+              <span className="text-[8px] font-mono text-pink-200/50 uppercase tracking-wider">Sector Performance Index</span>
+              <span className="text-[8px] font-mono text-pink-200/30">Updated 2s ago</span>
             </div>
             <div className="flex items-end gap-2 h-14">
               {BAR_DATA.map((b) => (
@@ -157,7 +157,7 @@ export function HeroDashboard() {
                     <div
                       className="absolute bottom-0 left-0 right-0"
                       style={{
-                        background: "linear-gradient(to top,rgba(59,130,246,0.5),rgba(96,165,250,0.9))",
+                        background: "linear-gradient(to top,rgba(139,32,185,0.6),rgba(233,30,140,0.9))",
                         height: `${b.pct}%`,
                         animationName: b.anim,
                         animationDuration: "3s",
@@ -167,7 +167,7 @@ export function HeroDashboard() {
                       }}
                     />
                   </div>
-                  <span className="text-[7px] font-mono text-blue-200/45">{b.label}</span>
+                  <span className="text-[7px] font-mono text-pink-200/45">{b.label}</span>
                 </div>
               ))}
             </div>
@@ -181,7 +181,7 @@ export function HeroDashboard() {
                 className="flex items-center justify-between px-2.5 py-1.5 rounded-lg"
                 style={{ background: "rgba(255,255,255,0.025)", border: "1px solid rgba(255,255,255,0.055)" }}
               >
-                <span className="text-[7.5px] text-blue-200/50 font-mono truncate mr-1.5">{row.label}</span>
+                <span className="text-[7.5px] text-pink-200/50 font-mono truncate mr-1.5">{row.label}</span>
                 <span className={`text-[8px] font-bold font-mono shrink-0 ${row.ok ? "text-emerald-400" : "text-amber-400"}`}>
                   {row.value}
                 </span>

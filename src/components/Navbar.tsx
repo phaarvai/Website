@@ -35,7 +35,7 @@ export function Navbar() {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/96 backdrop-blur-md border-b border-border shadow-[0_1px_12px_rgba(11,31,58,0.06)] py-3"
+          ? "bg-white/96 backdrop-blur-md border-b border-border shadow-[0_1px_12px_rgba(80,0,80,0.08)] py-3"
           : isHome
           ? "bg-transparent py-5"
           : "bg-white border-b border-border py-3"
@@ -43,9 +43,11 @@ export function Navbar() {
     >
       <div className="container mx-auto px-6 md:px-12 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group">
-          <span className={`text-xl font-bold tracking-[0.18em] transition-colors ${onDark ? "text-white" : "text-primary"}`}>
-            PHAARVAI
-          </span>
+          <img
+            src="/images/logo-transparent.png"
+            alt="PHAARVAI"
+            className="h-10 w-auto object-contain"
+          />
         </Link>
 
         <div className="hidden lg:flex items-center gap-8">
@@ -58,7 +60,7 @@ export function Navbar() {
                   pathname === link.href
                     ? onDark
                       ? "text-white bg-white/10"
-                      : "text-primary bg-primary/6"
+                      : "text-primary bg-primary/8"
                     : onDark
                     ? "text-white/70 hover:text-white hover:bg-white/8"
                     : "text-foreground/70 hover:text-foreground hover:bg-accent"
@@ -107,7 +109,7 @@ export function Navbar() {
                   onClick={() => setMobileMenuOpen(false)}
                   className={`px-3 py-3 rounded-lg text-base font-medium transition-colors ${
                     pathname === link.href
-                      ? "text-primary bg-primary/6"
+                      ? "text-primary bg-primary/8"
                       : "text-foreground/80 hover:text-foreground hover:bg-accent"
                   }`}
                 >

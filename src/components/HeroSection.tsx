@@ -33,11 +33,11 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
         }}
       />
 
-      {/* Ambient glows */}
+      {/* Ambient glows — logo palette */}
       <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/4 right-0 w-[60vw] h-[60vw] rounded-full bg-blue-500/8 blur-[140px] animate-pulse-glow" />
-        <div className="absolute bottom-0 left-0 w-[40vw] h-[40vw] rounded-full bg-indigo-700/10 blur-[100px]" />
-        <div className="absolute top-1/2 left-1/4 w-[30vw] h-[30vw] rounded-full bg-blue-600/5 blur-[80px]" />
+        <div className="absolute top-1/4 right-0 w-[60vw] h-[60vw] rounded-full bg-pink-500/10 blur-[140px] animate-pulse-glow" />
+        <div className="absolute bottom-0 left-0 w-[40vw] h-[40vw] rounded-full bg-purple-700/12 blur-[100px]" />
+        <div className="absolute top-1/2 left-1/4 w-[30vw] h-[30vw] rounded-full bg-orange-500/6 blur-[80px]" />
       </div>
 
       <div className="container mx-auto px-6 md:px-12 relative z-10 flex-1 flex flex-col justify-center">
@@ -55,7 +55,7 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
                 {positioning.map((tag, idx) => (
                   <span
                     key={idx}
-                    className="text-[10px] font-mono tracking-[0.14em] uppercase text-blue-200/80 bg-white/[0.07] border border-white/[0.14] px-3 py-1.5 rounded-full"
+                    className="text-[10px] font-mono tracking-[0.14em] uppercase text-pink-200/80 bg-white/[0.07] border border-white/[0.14] px-3 py-1.5 rounded-full"
                   >
                     {tag}
                   </span>
@@ -71,20 +71,30 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
             >
               {before}{" "}
               <span className="relative inline-block">
-                <span className="relative z-10 text-blue-300">{highlighted}</span>
+                <span
+                  className="relative z-10"
+                  style={{
+                    background: "linear-gradient(135deg, #F7941D 0%, #E91E8C 60%, #8B20B9 100%)",
+                    WebkitBackgroundClip: "text",
+                    WebkitTextFillColor: "transparent",
+                    backgroundClip: "text",
+                  }}
+                >
+                  {highlighted}
+                </span>
                 <motion.span
-                  className="absolute inset-x-0 -bottom-1 h-[3px] bg-blue-400/50 rounded-full"
+                  className="absolute inset-x-0 -bottom-1 h-[3px] rounded-full"
+                  style={{ background: "linear-gradient(90deg, #F7941D, #E91E8C, #8B20B9)", originX: 0 }}
                   initial={{ scaleX: 0 }}
                   animate={{ scaleX: 1 }}
                   transition={{ duration: 0.6, delay: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-                  style={{ originX: 0 }}
                 />
               </span>
               {" "}{after}
             </motion.h1>
 
             <motion.p
-              className="text-base md:text-[1.05rem] text-blue-100/85 leading-[1.75] mb-10 max-w-[520px]"
+              className="text-base md:text-[1.05rem] text-pink-100/85 leading-[1.75] mb-10 max-w-[520px]"
               initial={{ y: 16 }}
               animate={{ y: 0 }}
               transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
@@ -100,7 +110,7 @@ export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, p
             >
               {ctaPrimary && (
                 <Link href={ctaPrimary.href}>
-                  <Button size="lg" className="h-12 px-7 text-sm font-semibold bg-primary hover:bg-blue-500 text-white shadow-lg shadow-blue-900/30 hover-elevate gap-2 group">
+                  <Button size="lg" className="h-12 px-7 text-sm font-semibold bg-primary hover:bg-pink-500 text-white shadow-lg shadow-pink-900/30 hover-elevate gap-2 group">
                     {ctaPrimary.label}
                     <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
                   </Button>
