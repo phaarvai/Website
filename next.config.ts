@@ -20,7 +20,7 @@ const nextConfig: NextConfig = {
     return [
       {
         source: "/x-y/:path*",
-        destination: "https://x-y-app-nextjs-app.vercel.app/x-y/:path*",
+        destination: "https://x-y-app-nextjs-app.vercel.app/:path*",
       },
     ];
   },
