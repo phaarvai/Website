@@ -19,6 +19,10 @@ const nextConfig: NextConfig = {
   async rewrites() {
     return [
       {
+        source: "/x-y",
+        destination: "https://x-y-app-nextjs-app.vercel.app",
+      },
+      {
         source: "/x-y/:path*",
         destination: "https://x-y-app-nextjs-app.vercel.app/:path*",
       },
