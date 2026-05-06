@@ -11,6 +11,7 @@ export const metadata: Metadata = {
     description:
       "We build AI systems, data platforms, and digital infrastructure for governments, infrastructure operators, energy companies, and public-impact institutions.",
   },
+  
 };
 
 export default function Page() {
