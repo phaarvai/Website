@@ -25,6 +25,11 @@
     {
       "source": "/x%21y/:path*",
       "destination": "https://x-y-app-nextjs-app.vercel.app/:path*"
+    },
+
+    {
+      "source": "/_next/:path*",
+      "destination": "https://x-y-app-nextjs-app.vercel.app/_next/:path*"
     }
   ]
 }
