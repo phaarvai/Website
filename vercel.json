@@ -7,6 +7,14 @@
     {
       "source": "/x%21y",
       "destination": "https://x-y-nextjs-app.vercel.app/x-y-"
+    },
+    {
+      "source": "/x!y/:path*",
+      "destination": "https://x-y-nextjs-app.vercel.app/x-y-/:path*"
+    },
+    {
+      "source": "/x%21y/:path*",
+      "destination": "https://x-y-nextjs-app.vercel.app/x-y-/:path*"
     }
   ]
 }
