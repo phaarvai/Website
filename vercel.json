@@ -1,0 +1,12 @@
+{
+  "rewrites": [
+    {
+      "source": "/x!y",
+      "destination": "https://x-y-nextjs-app.vercel.app/x-y-"
+    },
+    {
+      "source": "/x%21y",
+      "destination": "https://x-y-nextjs-app.vercel.app/x-y-"
+    }
+  ]
+}
