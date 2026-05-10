@@ -1,8 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  basePath: "/x-y-",
-  assetPrefix: "/x-y-",
   images: {
     remotePatterns: [
       {
@@ -16,19 +14,6 @@ const nextConfig: NextConfig = {
 
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
-  },
-
-  async rewrites() {
-    return [
-      {
-        source: "/x-y",
-        destination: "https://x-y-app-nextjs-app.vercel.app",
-      },
-      {
-        source: "/x-y/:path*",
-        destination: "https://x-y-app-nextjs-app.vercel.app/:path*",
-      },
-    ];
   },
 };
 
