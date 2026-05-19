@@ -3,145 +3,122 @@
 import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
-import { HeroDashboard } from "@/components/HeroDashboard";
+import { ArrowRight, Sparkles } from "lucide-react";
 
 interface HeroSectionProps {
   headline: string;
   subheadline: string;
   ctaPrimary?: { label: string; href: string };
   ctaSecondary?: { label: string; href: string };
-  positioning?: string[];
+  ctaTertiary?: { label: string; href: string };
+  badges?: string[];
 }
 
-export function HeroSection({ headline, subheadline, ctaPrimary, ctaSecondary, positioning }: HeroSectionProps) {
-  const words = headline.split(" ");
-  const highlightStart = words.findIndex(w => w === "Institutions");
-  const hasHighlight = highlightStart !== -1;
-  const before = hasHighlight ? words.slice(0, highlightStart).join(" ") : "";
-  const highlighted = hasHighlight ? words.slice(highlightStart, highlightStart + 2).join(" ") : "";
-  const after = hasHighlight ? words.slice(highlightStart + 2).join(" ") : headline;
-
+export function HeroSection({
+  headline,
+  subheadline,
+  ctaPrimary,
+  ctaSecondary,
+  ctaTertiary,
+  badges,
+}: HeroSectionProps) {
   return (
-    <section className="relative min-h-[92vh] flex flex-col justify-center pt-24 pb-8 overflow-hidden hero-gradient">
-      {/* Grid overlay */}
-      <div
-        className="absolute inset-0 opacity-[0.04] pointer-events-none"
-        style={{
-          backgroundImage: "linear-gradient(rgba(255,255,255,0.6) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.6) 1px, transparent 1px)",
-          backgroundSize: "48px 48px"
+    <section className="relative min-h-[88vh] flex flex-col justify-center pt-28 pb-16 overflow-hidden bg-background">
+      <motion.div
+        className="absolute inset-0 pointer-events-none"
+        aria-hidden
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
+      >
+        <div className="absolute -top-24 right-0 w-[55vw] h-[55vw] max-w-[700px] rounded-full bg-teal-400/10 blur-[100px]" />
+        <motion.div
+          className="absolute bottom-0 left-0 w-[40vw] h-[40vw] max-w-[500px] rounded-full bg-indigo-400/8 blur-[90px]"
+          animate={{ scale: [1, 1.05, 1], opacity: [0.6, 0.9, 0.6] }}
+          transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
+        />
+        <div className="absolute inset-0 bg-dot-grid opacity-40" />
+        <motion.div
+          className="absolute top-1/3 right-[12%] w-32 h-32 rounded-2xl border border-primary/15 bg-white/60 backdrop-blur-sm shadow-sm hidden md:flex items-center justify-center"
+          animate={{ y: [0, -8, 0] }}
+          transition={{ duration: 5, repeat: Infinity, ease: "easeInOut" }}
+        >
+          <Sparkles className="text-primary w-8 h-8" strokeWidth={1.5} />
+        </motion.div>
+        <motion.div
+          className="absolute bottom-[28%] left-[8%] w-24 h-24 rounded-full border border-teal-200/60 bg-teal-50/50 hidden lg:block"
+          animate={{ y: [0, 6, 0] }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut", delay: 0.5 }}
+        />
+      </motion.div>
+
+      <motion.div
+        className="container mx-auto px-6 md:px-12 relative z-10"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.08 } },
         }}
-      />
-
-      {/* Ambient glows — logo palette */}
-      <div className="absolute inset-0 z-0 pointer-events-none">
-        <div className="absolute top-1/4 right-0 w-[60vw] h-[60vw] rounded-full bg-pink-500/10 blur-[140px] animate-pulse-glow" />
-        <div className="absolute bottom-0 left-0 w-[40vw] h-[40vw] rounded-full bg-purple-700/12 blur-[100px]" />
-        <div className="absolute top-1/2 left-1/4 w-[30vw] h-[30vw] rounded-full bg-orange-500/6 blur-[80px]" />
-      </div>
-
-      <div className="container mx-auto px-6 md:px-12 relative z-10 flex-1 flex flex-col justify-center">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 xl:gap-20 items-center">
-
-          {/* Left: copy */}
-          <div>
-            {positioning && (
-              <motion.div
-                className="flex flex-wrap gap-2 mb-8"
-                initial={{ y: 16 }}
-                animate={{ y: 0 }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-              >
-                {positioning.map((tag, idx) => (
-                  <span
-                    key={idx}
-                    className="text-[10px] font-mono tracking-[0.14em] uppercase text-pink-200/80 bg-white/[0.07] border border-white/[0.14] px-3 py-1.5 rounded-full"
-                  >
-                    {tag}
-                  </span>
-                ))}
-              </motion.div>
-            )}
-
-            <motion.h1
-              className="text-4xl md:text-5xl lg:text-[3.4rem] xl:text-[3.75rem] font-bold leading-[1.08] mb-7 text-white"
-              initial={{ y: 20 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-            >
-              {before}{" "}
-              <span className="relative inline-block">
-                <span
-                  className="relative z-10"
-                  style={{
-                    background: "linear-gradient(135deg, #F7941D 0%, #E91E8C 60%, #8B20B9 100%)",
-                    WebkitBackgroundClip: "text",
-                    WebkitTextFillColor: "transparent",
-                    backgroundClip: "text",
-                  }}
-                >
-                  {highlighted}
-                </span>
-                <motion.span
-                  className="absolute inset-x-0 -bottom-1 h-[3px] rounded-full"
-                  style={{ background: "linear-gradient(90deg, #F7941D, #E91E8C, #8B20B9)", originX: 0 }}
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  transition={{ duration: 0.6, delay: 0.6, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-                />
-              </span>
-              {" "}{after}
-            </motion.h1>
-
-            <motion.p
-              className="text-base md:text-[1.05rem] text-pink-100/85 leading-[1.75] mb-10 max-w-[520px]"
-              initial={{ y: 16 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.65, delay: 0.1, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-            >
-              {subheadline}
-            </motion.p>
-
-            <motion.div
-              className="flex flex-col sm:flex-row gap-3.5"
-              initial={{ y: 12 }}
-              animate={{ y: 0 }}
-              transition={{ duration: 0.6, delay: 0.15, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
-            >
-              {ctaPrimary && (
-                <Link href={ctaPrimary.href}>
-                  <Button size="lg" className="h-12 px-7 text-sm font-semibold bg-primary hover:bg-pink-500 text-white shadow-lg shadow-pink-900/30 hover-elevate gap-2 group">
-                    {ctaPrimary.label}
-                    <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
-                  </Button>
-                </Link>
-              )}
-              {ctaSecondary && (
-                <Link href={ctaSecondary.href}>
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="h-12 px-7 text-sm font-semibold bg-transparent border-white/20 text-white/90 hover:bg-white/8 hover:border-white/35 hover:text-white hover-elevate"
-                  >
-                    {ctaSecondary.label}
-                  </Button>
-                </Link>
-              )}
-            </motion.div>
-          </div>
-
-          {/* Right: animated dashboard */}
+      >
+        {badges && (
           <motion.div
-            className="hidden lg:block"
-            initial={{ x: 20, scale: 0.98 }}
-            animate={{ x: 0, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.05, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
+            className="flex flex-wrap gap-2 mb-8"
+            variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
           >
-            <HeroDashboard />
+            {badges.map((tag) => (
+              <span
+                key={tag}
+                className="text-[10px] font-mono tracking-[0.12em] uppercase text-primary/90 bg-primary/6 border border-primary/12 px-3 py-1.5 rounded-full"
+              >
+                {tag}
+              </span>
+            ))}
           </motion.div>
+        )}
 
-        </div>
-      </div>
+        <motion.h1
+          className="text-4xl md:text-5xl lg:text-[3.25rem] xl:text-[3.5rem] font-bold leading-[1.1] mb-6 text-foreground max-w-4xl"
+          variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0 } }}
+        >
+          {headline}
+        </motion.h1>
+
+        <motion.p
+          className="text-base md:text-lg text-muted-foreground leading-relaxed mb-10 max-w-2xl"
+          variants={{ hidden: { opacity: 0, y: 16 }, visible: { opacity: 1, y: 0 } }}
+        >
+          {subheadline}
+        </motion.p>
+
+        <motion.div
+          className="flex flex-col sm:flex-row flex-wrap gap-3"
+          variants={{ hidden: { opacity: 0, y: 12 }, visible: { opacity: 1, y: 0 } }}
+        >
+          {ctaPrimary && (
+            <Link href={ctaPrimary.href}>
+              <Button size="lg" className="h-12 px-7 font-semibold hover-elevate gap-2 group">
+                {ctaPrimary.label}
+                <ArrowRight size={15} className="group-hover:translate-x-0.5 transition-transform" />
+              </Button>
+            </Link>
+          )}
+          {ctaSecondary && (
+            <Link href={ctaSecondary.href}>
+              <Button size="lg" variant="outline" className="h-12 px-7 font-semibold hover-elevate">
+                {ctaSecondary.label}
+              </Button>
+            </Link>
+          )}
+          {ctaTertiary && (
+            <Link href={ctaTertiary.href}>
+              <Button size="lg" variant="ghost" className="h-12 px-7 font-semibold text-muted-foreground hover:text-foreground">
+                {ctaTertiary.label}
+              </Button>
+            </Link>
+          )}
+        </motion.div>
+      </motion.div>
     </section>
   );
 }

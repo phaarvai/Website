@@ -1,181 +1,133 @@
 export const siteContent = {
+  brand: {
+    name: "Phaarvai",
+    tagline: "AI for Good, built for public impact.",
+    positioning:
+      "An AI for Good company building practical technology solutions for governance, climate, economic development, startups, technology, and policy.",
+  },
   hero: {
-    headline: "Applied Innovation for Institutions That Cannot Afford to Fail",
-    subheadline: "We build AI systems, data platforms, and digital infrastructure for governments, infrastructure operators, energy companies, and public-impact institutions — from architecture through production deployment.",
-    ctaPrimary: "Explore Capabilities",
-    ctaSecondary: "Talk to Us",
-    positioning: [
-      "AI Implementation Partner",
-      "Systems Integration",
-      "Digital Transformation",
-      "Public Impact Programs"
-    ]
+    headline: "AI for Good, built for public impact.",
+    subheadline:
+      "Phaarvai develops AI-powered ideas, prototypes, and platforms across government, climate, economic development, startups, technology, and policy.",
+    ctaPrimary: { label: "Explore Themes", href: "/themes" },
+    ctaSecondary: { label: "View Projects", href: "/projects" },
+    ctaTertiary: { label: "Partner With Us", href: "/partner" },
+    badges: [
+      "AI for Good",
+      "Govtech & Policy",
+      "Proposal-Ready Innovation",
+      "Public Impact",
+    ],
   },
   whatWeDo: {
     title: "What We Do",
-    subtitle: "Four integrated practice areas that address the real operational gaps in large institutions.",
-    areas: [
-      {
-        id: "ai-decision-intelligence",
-        title: "AI & Decision Intelligence",
-        description: "Practical AI deployment that surfaces decision-ready insights from complex institutional data — without the pilot-project trap.",
-        href: "/capabilities"
-      },
-      {
-        id: "digitization-data-platforms",
-        title: "Digitization & Data Platforms",
-        description: "Secure, scalable data infrastructure that eliminates silos and gives decision-makers a reliable, unified view of operations.",
-        href: "/capabilities"
-      },
-      {
-        id: "iot-smart-infrastructure",
-        title: "IoT & Smart Infrastructure",
-        description: "Real-time monitoring systems that connect physical assets to digital intelligence, enabling predictive operations at scale.",
-        href: "/capabilities"
-      },
-      {
-        id: "public-impact-programs",
-        title: "Public Impact & Strategic Programs",
-        description: "Implementation-ready, fundable technology initiatives backed by rigorous outcome tracking and stakeholder reporting.",
-        href: "/capabilities"
-      }
-    ]
+    subtitle:
+      "We help turn public-interest challenges into fundable AI solutions, practical prototypes, and implementation-ready project concepts.",
+  },
+  operatingModel: {
+    title: "How Ideas Become Impact",
+    subtitle: "Our work follows a clear path from opportunity to deployment.",
+    steps: [
+      { label: "Opportunity", description: "Challenge or funding signal identified" },
+      { label: "Theme", description: "Aligned to a public-impact domain" },
+      { label: "Concept", description: "Structured idea and hypothesis" },
+      { label: "Prototype", description: "Demo or lightweight platform" },
+      { label: "Proposal", description: "Funder- and partner-ready package" },
+      { label: "Partner", description: "Institutional collaboration" },
+      { label: "Deployment", description: "Pilot or scaled implementation" },
+    ],
   },
   whyPhaarvai: {
-    title: "Why PHAARVAI",
-    subtitle: "Built for the realities of complex institutions — not for pilots.",
+    title: "Why Phaarvai",
+    subtitle:
+      "Built for funders, governments, and institutions that need credible innovation — not generic AI hype.",
     points: [
       {
-        title: "Strategy + Execution in One Partner",
-        description: "We do not separate advisory from delivery. We design the system and build it — ensuring technical feasibility is embedded into every strategic decision."
+        title: "Public-interest technology experience",
+        description:
+          "Deep familiarity with governance, climate, development, and institutional program design.",
       },
       {
-        title: "Grounded in Real Operational Problems",
-        description: "Our work begins with a rigorous mapping of existing friction: disconnected systems, manual workflows, and data that cannot inform decisions."
+        title: "Proposal and funding ecosystem fluency",
+        description:
+          "We structure concepts for grants, RFPs, and multilateral programs from the start.",
       },
       {
-        title: "Built for Scale, Not Pilots",
-        description: "Every system we design is architected to grow with the institution — interoperable, maintainable, and production-grade from day one."
+        title: "AI + governance positioning",
+        description:
+          "Responsible, institution-ready AI that earns trust with officials and funders.",
       },
       {
-        title: "Aligned to Fundable Initiatives",
-        description: "We structure technology programs to meet the compliance, reporting, and impact-measurement standards required by public funders and CSR mandates."
-      }
-    ]
+        title: "Ideas to prototypes, fast",
+        description:
+          "We convert thinking into demos and proposal assets partners can evaluate quickly.",
+      },
+    ],
   },
-  problemsSolve: {
-    title: "The Problems We Solve",
-    subtitle: "Operational friction that compounds over time and limits institutional effectiveness.",
-    problems: [
-      {
-        title: "Fragmented Workflows",
-        description: "Critical processes distributed across legacy systems, spreadsheets, and manual routing — creating delays, errors, and accountability gaps."
-      },
-      {
-        title: "Underutilized Operational Data",
-        description: "Institutions generating large volumes of data that never reaches decision-makers in a usable form. Insight trapped in silos."
-      },
-      {
-        title: "Disconnected Systems",
-        description: "Core infrastructure and business systems that cannot communicate, creating blind spots in executive visibility and operational control."
-      },
-      {
-        title: "Lack of Real-Time Visibility",
-        description: "Leadership making decisions based on reports that are days or weeks old. No live view of operational status across departments or assets."
-      },
-      {
-        title: "Limited Decision Support",
-        description: "Analysts spending hours on manual aggregation rather than interpretation. No systematic framework for scenario modeling or risk assessment."
-      },
-      {
-        title: "Stalled Scale",
-        description: "Successful pilots that stall at institutional scale due to integration failures, procurement barriers, or insufficient technical architecture."
-      }
-    ]
-  },
-  whatWeBuild: {
-    title: "What We Build",
-    subtitle: "Production systems — not prototypes. Every output is designed for institutional scale from day one.",
-    items: [
-      {
-        output: "AI Decision-Support Systems",
-        description: "ML models integrated into operational workflows with confidence scoring and full auditability for institutional oversight.",
-        category: "AI"
-      },
-      {
-        output: "Operational Data Platforms",
-        description: "Unified data infrastructure aggregating siloed institutional data into one reliable, queryable source of truth.",
-        category: "Data"
-      },
-      {
-        output: "Real-Time Infrastructure Monitoring",
-        description: "IoT sensor networks and telemetry pipelines delivering live asset health across distributed physical portfolios.",
-        category: "IoT"
-      },
-      {
-        output: "Executive Dashboards",
-        description: "Role-based real-time dashboards giving leadership a live, unified view of institutional performance — no analyst assembly required.",
-        category: "Reporting"
-      },
-      {
-        output: "Digital Workflow Platforms",
-        description: "Secure, automated replacements for paper-based approvals, manual routing, and email-dependent processes.",
-        category: "Operations"
-      },
-      {
-        output: "ESG & Sustainability Systems",
-        description: "Automated emissions and sustainability data pipelines producing audit-ready regulatory reports.",
-        category: "Compliance"
-      },
-      {
-        output: "Impact Tracking Platforms",
-        description: "Outcome measurement infrastructure for funded programs, generating automated stakeholder and funder reporting.",
-        category: "Public Impact"
-      },
-      {
-        output: "Predictive Maintenance Systems",
-        description: "Condition-based models that identify asset degradation before failure — converting reactive maintenance into planned intervention.",
-        category: "IoT"
-      }
-    ]
-  },
-  featuredSolutions: {
-    title: "Featured Solution Areas",
-    subtitle: "Concrete implementations that address the highest-cost operational problems.",
-    items: [
-      { title: "AI Decision Support", description: "Machine learning models integrated into operational workflows with confidence scoring and auditability." },
-      { title: "Workflow Digitization", description: "Automated digital workflows replacing manual routing, paper processes, and legacy approval chains." },
-      { title: "Smart Infrastructure Monitoring", description: "Continuous asset telemetry with anomaly detection and automated maintenance triggers." },
-      { title: "Sustainability Analytics", description: "Systems to track, measure, and report energy usage, emissions, and environmental compliance." },
-      { title: "Public Impact Systems", description: "Technology infrastructure for grant-funded and CSR programs, including outcome tracking and funder reporting." },
-      { title: "Strategic Digitization", description: "End-to-end transformation of paper-based institutional operations into secure, scalable digital platforms." }
-    ]
-  },
-  sectorsPreview: {
-    title: "Sectors We Serve",
-    subtitle: "Specialized in environments where operational failure has severe consequences and data holds immense strategic value."
-  },
-  fundingTeaser: {
-    title: "Supporting Funded & Public-Impact Initiatives",
-    description: "Many of the most consequential technology programs are enabled by grants, CSR capital, and donor funding. PHAARVAI specializes in structuring implementation-ready, fundable initiatives — ensuring that funding bodies receive rigorous technical execution, measurable outcomes, and full compliance reporting.",
-    cta: "Learn About Our Funding Alignment",
-    ctaHref: "/funding-partnerships"
+  partnerCta: {
+    title: "Have a public-impact challenge or funding opportunity? Let's build around it.",
+    description:
+      "Whether you are a government agency, funder, nonprofit, startup, or research institution — we collaborate to shape concepts, prototypes, and programs.",
+    primary: { label: "Partner With Us", href: "/partner" },
+    secondary: { label: "Contact Phaarvai", href: "/partner#contact" },
   },
   footer: {
-    tagline: "Applied AI and digital systems for complex institutions. Strategy and execution — in one partner.",
+    tagline: "AI for Good, built for public impact.",
+    statement:
+      "Practical AI solutions for governance, climate, economic development, startups, technology, and policy.",
+    email: "partnerships@phaarvai.com",
     links: {
-      company: [
-        { label: "About Us", href: "/about" },
+      explore: [
+        { label: "Themes", href: "/themes" },
+        { label: "Projects", href: "/projects" },
         { label: "Capabilities", href: "/capabilities" },
-        { label: "Solutions", href: "/solutions" },
-        { label: "Sectors", href: "/sectors" }
+        { label: "About", href: "/about" },
       ],
-      resources: [
-        { label: "Funding & Partnerships", href: "/funding-partnerships" },
-        { label: "Insights", href: "/insights" },
-        { label: "Contact", href: "/contact" }
-      ]
+      connect: [
+        { label: "Partner With Us", href: "/partner" },
+        { label: "Contact", href: "/partner#contact" },
+      ],
     },
-    copyright: `© ${new Date().getFullYear()} PHAARVAI. All rights reserved.`
-  }
+    copyright: `© ${new Date().getFullYear()} Phaarvai. All rights reserved.`,
+  },
 };
+
+export const partnerAudiences = [
+  {
+    id: "funders",
+    title: "Funders",
+    description:
+      "Philanthropies, development finance, and grantmakers seeking credible, proposal-ready innovation partners.",
+  },
+  {
+    id: "governments",
+    title: "Governments",
+    description:
+      "Agencies and public institutions exploring AI for services, governance, and citizen access.",
+  },
+  {
+    id: "nonprofits",
+    title: "Nonprofits",
+    description:
+      "Organizations scaling programs that need prototypes, data tools, and funder-aligned technology.",
+  },
+  {
+    id: "startups",
+    title: "Startups",
+    description:
+      "Founders and ecosystems building grant-ready, impact-focused ventures.",
+  },
+  {
+    id: "research",
+    title: "Research Institutions",
+    description:
+      "Universities and think tanks translating research into applied public-impact prototypes.",
+  },
+];
+
+export const collaborationFlow = [
+  { step: "01", title: "Share the challenge", description: "Tell us about the opportunity, program, or public-impact problem." },
+  { step: "02", title: "Align on theme and scope", description: "We map the challenge to themes, concepts, and partnership fit." },
+  { step: "03", title: "Co-create concepts", description: "Develop proposal-ready ideas, prototypes, or platform directions." },
+  { step: "04", title: "Build toward deployment", description: "Move from demo to pilot with institutional partners and funders." },
+];

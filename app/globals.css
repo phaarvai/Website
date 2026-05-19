@@ -56,37 +56,37 @@
   --app-font-mono: Menlo, monospace;
   --radius: 0.625rem;
 
-  --background: 330 20% 98%;
-  --foreground: 270 40% 10%;
+  --background: 210 25% 99%;
+  --foreground: 220 30% 12%;
 
   --card: 0 0% 100%;
-  --card-foreground: 270 40% 10%;
-  --card-border: 310 15% 90%;
+  --card-foreground: 220 30% 12%;
+  --card-border: 214 20% 92%;
 
   --popover: 0 0% 100%;
-  --popover-foreground: 270 40% 10%;
-  --popover-border: 310 15% 90%;
+  --popover-foreground: 220 30% 12%;
+  --popover-border: 214 20% 92%;
 
-  /* Primary: hot pink/magenta from logo */
-  --primary: 329 82% 52%;
+  /* Primary: calm teal — institutional, trustworthy */
+  --primary: 172 45% 38%;
   --primary-foreground: 0 0% 100%;
 
-  /* Secondary: deep purple from logo */
-  --secondary: 286 60% 20%;
+  /* Secondary: soft slate */
+  --secondary: 220 20% 22%;
   --secondary-foreground: 0 0% 100%;
 
-  --muted: 330 15% 95%;
-  --muted-foreground: 270 12% 48%;
+  --muted: 210 20% 96%;
+  --muted-foreground: 220 10% 46%;
 
-  --accent: 330 18% 93%;
-  --accent-foreground: 270 40% 10%;
+  --accent: 210 22% 94%;
+  --accent-foreground: 220 30% 12%;
 
   --destructive: 0 72% 51%;
   --destructive-foreground: 0 0% 100%;
 
-  --border: 310 15% 90%;
-  --input: 310 15% 90%;
-  --ring: 329 82% 52%;
+  --border: 214 20% 90%;
+  --input: 214 20% 90%;
+  --ring: 172 45% 38%;
 
   --primary-border: hsl(var(--primary));
   --secondary-border: hsl(var(--secondary));
@@ -128,9 +128,9 @@
     transition: box-shadow 0.22s ease, transform 0.22s ease, border-color 0.22s ease;
   }
   .card-hover:hover {
-    box-shadow: 0 8px 32px -8px rgba(140, 20, 140, 0.14);
+    box-shadow: 0 8px 32px -10px rgba(30, 80, 90, 0.12);
     transform: translateY(-2px);
-    border-color: hsl(310 15% 80%);
+    border-color: hsl(214 20% 82%);
   }
 
   /* Button elevate */
@@ -138,18 +138,18 @@
     transition: box-shadow 0.18s ease, transform 0.18s ease;
   }
   .hover-elevate:hover {
-    box-shadow: 0 6px 20px -4px rgba(233, 30, 140, 0.40);
+    box-shadow: 0 6px 20px -4px rgba(45, 120, 110, 0.28);
     transform: translateY(-1px);
-  }
-
-  /* Dark gradient sections — logo palette darks */
-  .hero-gradient {
-    background: linear-gradient(135deg, #1A0726 0%, #2B0E40 45%, #1E0A30 100%);
   }
 
   /* Alternating section background */
   .section-alt {
-    background-color: hsl(330 20% 97%);
+    background-color: hsl(210 22% 97%);
+  }
+
+  /* Soft CTA section */
+  .section-cta {
+    background: linear-gradient(180deg, hsl(210 25% 98%) 0%, hsl(172 30% 96%) 100%);
   }
 
   /* Monospace label */
@@ -168,9 +168,9 @@
     border: 1px solid hsl(310 15% 90%);
   }
 
-  /* Gradient text — logo colours */
+  /* Gradient text */
   .text-gradient {
-    background: linear-gradient(135deg, #F7941D 0%, #E91E8C 55%, #8B20B9 100%);
+    background: linear-gradient(135deg, hsl(172 45% 38%) 0%, hsl(200 50% 45%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -178,7 +178,7 @@
 
   /* Dot grid pattern */
   .bg-dot-grid {
-    background-image: radial-gradient(circle, hsl(310 15% 84%) 1px, transparent 1px);
+    background-image: radial-gradient(circle, hsl(214 18% 86%) 1px, transparent 1px);
     background-size: 22px 22px;
   }
 

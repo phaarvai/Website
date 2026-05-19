@@ -5,12 +5,15 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 
 export const metadata: Metadata = {
-  title: "PHAARVAI — Applied Innovation for Institutional Systems",
+  title: {
+    default: "Phaarvai — AI for Good, Built for Public Impact",
+    template: "%s | Phaarvai",
+  },
   description:
-    "We build AI systems, data platforms, and digital infrastructure for governments, infrastructure operators, energy companies, and public-impact institutions.",
+    "Phaarvai is an AI for Good company building practical technology solutions for governance, climate, economic development, startups, technology, and policy.",
   openGraph: {
     type: "website",
-    siteName: "PHAARVAI",
+    siteName: "Phaarvai",
   },
   robots: { index: true, follow: true },
 };
