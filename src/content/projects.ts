@@ -27,6 +27,51 @@ export const projectStages: ProjectStage[] = [
 
 export const projects: Project[] = [
   {
+    id: "government-services-ai",
+    slug: "government-services-ai",
+    title: "Government Services AI",
+    description:
+      "Operational civic workflow platform connecting citizen intake, AI assistance, review queues, and result dashboards.",
+    themes: ["government"],
+    stages: ["Prototype", "In Development"],
+    opportunity: "Digital service delivery modernization for governments",
+    building:
+      "A full-stack service operations application with request pipelines, status tracking, and institutional review workflows.",
+    potentialPartners: ["City digital teams", "Public service departments", "GovTech programs"],
+    status: ["In Development", "Seeking Partners"],
+    featured: true,
+  },
+  {
+    id: "resilience-resource-optimizer",
+    slug: "resilience-resource-optimizer",
+    title: "Resilience Resource Optimizer",
+    description:
+      "Climate resilience planning system for local governments to prioritize interventions and budget allocations for child-centered outcomes.",
+    themes: ["climate"],
+    stages: ["Prototype", "Pilot"],
+    opportunity: "Municipal adaptation planning and resilience budgeting",
+    building:
+      "Risk analysis, resource planning, reporting, and transparency modules for institutional climate governance.",
+    potentialPartners: ["Local governments", "Climate funds", "Development agencies"],
+    status: ["Pilot", "Seeking Partners"],
+    featured: true,
+  },
+  {
+    id: "x-y-manufacturing-platform",
+    slug: "x-y",
+    title: "x!y - Manufacturing Made Easy & Efficient",
+    description:
+      "AI-powered manufacturing operations platform for supplier discovery, workflow optimization, booking, and partner onboarding.",
+    themes: ["startups", "technology"],
+    stages: ["Prototype", "In Development"],
+    opportunity: "Startup and SME manufacturing acceleration",
+    building:
+      "Integrated manufacturing assistant, marketplace discovery, booking workflows, and provider setup operations.",
+    potentialPartners: ["Manufacturers", "Startup networks", "Innovation hubs"],
+    status: ["In Development", "Seeking Partners"],
+    featured: true,
+  },
+  {
     id: "ai-for-cities",
     slug: "ai-for-cities",
     title: "AI for Cities",

@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
+import Link from "next/link";
 import type { Project } from "@/content/projects";
 import { themes } from "@/content/themes";
 import { StatusBadge, ThemeBadge } from "@/components/StatusBadge";
@@ -38,6 +39,7 @@ export function ProjectCard({
         className
       )}
     >
+      <Link href={`/projects/${project.slug}`} className="block">
       <motion.div
         className="flex flex-wrap gap-2 mb-4"
         initial={false}
@@ -94,6 +96,7 @@ export function ProjectCard({
           </p>
         </motion.div>
       )}
+      </Link>
     </motion.article>
   );
 }
