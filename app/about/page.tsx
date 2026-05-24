@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import AboutPage from "@/views/about";
 
 export const metadata: Metadata = {
-  title: "About — AI for Good for Public Impact",
+  title: "About — Applied AI & Intelligent Infrastructure",
   description:
-    "Learn about Phaarvai's mission, vision, values, and AI for Good positioning for governance and public impact.",
+    "Phaarvai builds AI-powered systems and intelligent infrastructure for governments, institutions, and operational environments.",
 };
 
 export default function Page() {

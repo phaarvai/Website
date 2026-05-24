@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import ThemesPage from "@/views/themes";
 
 export const metadata: Metadata = {
-  title: "Impact Themes — Phaarvai",
+  title: "Operational Domains — Phaarvai",
   description:
-    "Explore Phaarvai's impact themes across government, climate, economic development, startups, technology, and policy.",
+    "Technology systems, government infrastructure, environment & resilience, data & AI, cybersecurity, and emerging research.",
 };
 
 export default function Page() {

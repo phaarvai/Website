@@ -46,7 +46,7 @@ export default function LoginView() {
           </span>
           <div>
             <h1 className="text-2xl font-bold text-foreground">Sign in</h1>
-            <p className="text-sm text-muted-foreground">Government Services AI prototype</p>
+            <p className="text-sm text-muted-foreground">Government Services AI — operational platform</p>
           </div>
         </div>
 

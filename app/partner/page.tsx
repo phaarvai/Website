@@ -4,7 +4,7 @@ import PartnerPage from "@/views/partner";
 export const metadata: Metadata = {
   title: "Partner With Us — Phaarvai",
   description:
-    "Collaborate with Phaarvai on public-impact challenges, funding opportunities, and AI for Good innovation.",
+    "Institutional partnerships, deployment collaborations, and applied AI programs for governments and infrastructure operators.",
 };
 
 export default function Page() {

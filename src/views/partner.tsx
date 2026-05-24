@@ -24,7 +24,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Loader2, Mail, MapPin, Clock } from "lucide-react";
+import { Loader2, Mail, MapPin, Globe } from "lucide-react";
 import { PageSEO } from "@/components/PageSEO";
 import { PageHeader } from "@/components/PageHeader";
 import {
@@ -48,7 +48,7 @@ type FormValues = z.infer<typeof formSchema>;
 const contactInfo = [
   { icon: MapPin, label: "Location", value: "Washington, D.C. · Global collaborations" },
   { icon: Mail, label: "Email", value: siteContent.footer.email },
-  { icon: Clock, label: "Response", value: "Within two business days" },
+  { icon: Globe, label: "Engagement", value: "Institutional partnerships · Deployments · Research collaboration" },
 ];
 
 const fadeIn = {
@@ -77,7 +77,7 @@ export default function Partner() {
   async function onSubmit(data: FormValues) {
     setIsSubmitting(true);
     try {
-      await fetch("/api/contact", {
+      const res = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -87,9 +87,13 @@ export default function Partner() {
           country: "Not specified",
         }),
       });
+      const json = await res.json();
+      if (!res.ok || !json.success) {
+        throw new Error(json.errors?.[0] || "Submission failed");
+      }
       toast({
         title: "Inquiry received",
-        description: "We'll respond within two business days.",
+        description: json.message || "Our team will follow up on your inquiry.",
       });
       form.reset();
     } catch {
@@ -106,8 +110,8 @@ export default function Partner() {
   return (
     <>
       <PageSEO
-        title="Partner With Us — Collaborate on Public Impact"
-        description="Partner with Phaarvai on public-impact challenges, funding opportunities, and AI for Good prototypes."
+        title="Partner With Us — Institutional Collaboration"
+        description="Partner with Phaarvai on AI systems deployments, infrastructure modernization, and applied AI programs for institutional environments."
         path="/partner"
       />
 
@@ -115,8 +119,8 @@ export default function Partner() {
         <div className="container mx-auto px-6 md:px-12">
           <PageHeader
             label="Partner With Us"
-            title="Build around a public-impact challenge"
-            description="We collaborate with funders, governments, nonprofits, startups, and research institutions to shape concepts, prototypes, and programs."
+            title="Institutional collaboration & deployment partnerships"
+            description="We partner with governments, infrastructure operators, research ecosystems, and mission-driven institutions on applied AI systems and intelligent infrastructure."
           />
 
           {/* Audiences */}
@@ -141,7 +145,7 @@ export default function Partner() {
           {/* Collaboration flow */}
           <section className="mb-16 section-alt border border-border rounded-2xl p-8 md:p-10">
             <h2 className="text-xl font-bold text-foreground mb-8 text-center">
-              Collaboration flow
+              Engagement model
             </h2>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               {collaborationFlow.map((step, idx) => (
@@ -169,8 +173,8 @@ export default function Partner() {
               <motion.div {...fadeIn} className="lg:col-span-2">
                 <h2 className="text-2xl font-bold text-foreground mb-4">Contact Phaarvai</h2>
                 <p className="text-sm text-muted-foreground leading-relaxed mb-8">
-                  Share a challenge, funding opportunity, or collaboration idea. The more context
-                  you provide, the more useful our response.
+                  Share your operational environment, deployment objectives, or collaboration scope.
+                  The more context you provide, the more useful our response.
                 </p>
                 <div className="space-y-5">
                   {contactInfo.map((item) => {
@@ -224,7 +228,7 @@ export default function Partner() {
                               Organization
                             </FormLabel>
                             <FormControl>
-                              <Input placeholder="Agency, funder, or institution" className="h-11" {...field} />
+                              <Input placeholder="Agency, operator, or institution" className="h-11" {...field} />
                             </FormControl>
                             <FormMessage />
                           </FormItem>
@@ -281,12 +285,12 @@ export default function Partner() {
                         render={({ field }) => (
                           <FormItem>
                             <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">
-                              Theme interest
+                              Operational domain
                             </FormLabel>
                             <Select onValueChange={field.onChange} value={field.value}>
                               <FormControl>
                                 <SelectTrigger className="h-11">
-                                  <SelectValue placeholder="Select theme" />
+                                  <SelectValue placeholder="Select domain" />
                                 </SelectTrigger>
                               </FormControl>
                               <SelectContent>
@@ -314,7 +318,7 @@ export default function Partner() {
                           </FormLabel>
                           <FormControl>
                             <Textarea
-                              placeholder="Describe the challenge, funding opportunity, or collaboration you have in mind."
+                              placeholder="Describe the system, deployment environment, or partnership scope you have in mind."
                               className="min-h-[120px] resize-none"
                               {...field}
                             />

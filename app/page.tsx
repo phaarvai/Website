@@ -2,14 +2,14 @@ import type { Metadata } from "next";
 import HomePage from "@/views/home";
 
 export const metadata: Metadata = {
-  title: "Phaarvai — AI for Good, Built for Public Impact",
+  title: "Phaarvai — Applied AI & Intelligent Infrastructure",
   description:
-    "Phaarvai develops AI-powered ideas, prototypes, and platforms across government, climate, economic development, startups, technology, and policy.",
+    "Phaarvai develops AI-powered systems and intelligent infrastructure for governments, institutions, and real-world operational environments.",
   openGraph: {
     url: "https://phaarvai.com",
-    title: "Phaarvai — AI for Good, Built for Public Impact",
+    title: "Phaarvai — Applied AI & Intelligent Infrastructure",
     description:
-      "Practical AI solutions for governance, climate, economic development, startups, technology, and policy.",
+      "Deployment-grade AI systems, operational intelligence, and intelligent infrastructure for institutional environments.",
   },
 };
 

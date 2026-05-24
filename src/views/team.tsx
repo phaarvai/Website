@@ -13,7 +13,7 @@ const fadeUp = {
   transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] as [number, number, number, number] },
 };
 
-const { hero, members, mission } = teamContent;
+const { hero, members, mission, credibilityMetrics } = teamContent;
 
 function MemberCard({ member, index }: { member: typeof members[0]; index: number }) {
   const isAboveFold = index < 3;
@@ -114,8 +114,8 @@ export default function Team() {
   return (
     <>
       <PageSEO
-        title="Our Team — PHAARVAI"
-        description="Meet the practitioners behind PHAARVAI — experienced leaders in AI, IoT, cloud security, distributed systems, and institutional strategy."
+        title="Our Team — Phaarvai"
+        description="Deployment-grade practitioners in applied AI, intelligent infrastructure, security, and distributed systems at institutional scale."
       />
 
       <article>
@@ -142,6 +142,22 @@ export default function Team() {
 
         {/* Cards section */}
         <div className="container mx-auto px-6 md:px-12 max-w-6xl pt-10 pb-16">
+
+          <motion.section
+            {...fadeUp}
+            className="mb-12 grid grid-cols-2 sm:grid-cols-4 gap-4"
+            aria-label="Team delivery metrics"
+          >
+            {credibilityMetrics.map((metric) => (
+              <div
+                key={metric.label}
+                className="glass-panel rounded-xl border border-border p-4 text-center"
+              >
+                <p className="stat-number text-xl font-bold text-primary mb-1">{metric.value}</p>
+                <p className="text-[10px] text-muted-foreground leading-snug">{metric.label}</p>
+              </div>
+            ))}
+          </motion.section>
 
           <section aria-label="Team members">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -175,9 +191,9 @@ export default function Team() {
 
         <CTASection
           title="Work with our team"
-          description="Have a project in mind? We partner directly — no intermediaries, no handoffs."
-          buttonLabel="Start a Conversation"
-          buttonHref="/contact"
+          description="Partner on applied AI systems and intelligent infrastructure — architecture through deployment."
+          buttonLabel="Partner With Us"
+          buttonHref="/partner"
         />
       </article>
     </>

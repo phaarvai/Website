@@ -10,7 +10,6 @@ import { ProjectCard } from "@/components/ProjectCard";
 import { PageHeader } from "@/components/PageHeader";
 import { CTASection } from "@/components/CTASection";
 import { PageSEO } from "@/components/PageSEO";
-import { siteContent } from "@/content/site";
 import { Input } from "@/components/ui/input";
 import { cn } from "@/lib/utils";
 
@@ -32,7 +31,7 @@ export default function Projects() {
         p.title.toLowerCase().includes(q) ||
         p.description.toLowerCase().includes(q) ||
         p.building.toLowerCase().includes(q) ||
-        (p.opportunity?.toLowerCase().includes(q) ?? false);
+        (p.deploymentContext?.toLowerCase().includes(q) ?? false);
       return matchesTheme && matchesStage && matchesSearch;
     });
   }, [search, themeFilter, stageFilter]);
@@ -40,20 +39,19 @@ export default function Projects() {
   return (
     <>
       <PageSEO
-        title="Projects — AI for Good Concepts & Prototypes"
-        description="Explore Phaarvai's active concepts, prototypes, and proposal-ready projects across government, climate, policy, and more."
+        title="Systems & Deployments"
+        description="Explore Phaarvai's applied AI systems, operational platforms, and deployment environments across institutional domains."
         path="/projects"
       />
 
       <article className="pt-28 pb-12 bg-background">
         <div className="container mx-auto px-6 md:px-12">
           <PageHeader
-            label="Projects"
-            title="Proposal-ready innovation in progress"
-            description="Our project portfolio is the core growth engine of Phaarvai — every funding opportunity, challenge, or prototype becomes a public credibility asset."
+            label="Systems"
+            title="Deployment portfolio"
+            description="Applied AI platforms and intelligent infrastructure systems — open live environments and operational applications directly."
           />
 
-          {/* Filters */}
           <motion.div
             className="mb-10 space-y-5"
             initial={{ opacity: 0, y: 10 }}
@@ -63,23 +61,23 @@ export default function Projects() {
             <div className="relative max-w-md">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
               <Input
-                placeholder="Search projects..."
+                placeholder="Search systems..."
                 value={search}
                 onChange={(e) => setSearch(e.target.value)}
                 className="pl-10 h-11 bg-card"
-                aria-label="Search projects"
+                aria-label="Search systems"
               />
             </div>
 
             <div>
               <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-                Theme
+                Domain
               </p>
               <div className="flex flex-wrap gap-2">
                 <FilterChip
                   active={themeFilter === "all"}
                   onClick={() => setThemeFilter("all")}
-                  label="All themes"
+                  label="All domains"
                 />
                 {themes.map((t) => (
                   <FilterChip
@@ -94,7 +92,7 @@ export default function Projects() {
 
             <motion.div>
               <p className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-2">
-                Stage
+                Deployment stage
               </p>
               <div className="flex flex-wrap gap-2">
                 <FilterChip
@@ -115,12 +113,12 @@ export default function Projects() {
           </motion.div>
 
           <p className="text-sm text-muted-foreground mb-6">
-            Showing {filtered.length} of {projects.length} projects
+            Showing {filtered.length} of {projects.length} systems
           </p>
 
           {filtered.length === 0 ? (
             <div className="text-center py-16 border border-dashed border-border rounded-2xl">
-              <p className="text-muted-foreground">No projects match your filters.</p>
+              <p className="text-muted-foreground">No systems match your filters.</p>
             </div>
           ) : (
             <motion.div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
@@ -137,8 +135,8 @@ export default function Projects() {
         </div>
 
         <CTASection
-          title="Have a challenge that should become a project?"
-          description="We add new concepts and prototypes as opportunities emerge. Partner with us to co-create the next one."
+          title="Partner on your next system deployment"
+          description="We design and deliver AI systems for institutional and operational environments. Let's discuss your requirements."
           buttonLabel="Partner With Us"
           buttonHref="/partner"
         />

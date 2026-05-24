@@ -1,16 +1,10 @@
 import {
-  Search,
-  FileText,
-  Boxes,
-  Database,
-  Palette,
-  Handshake,
-  Lightbulb,
-  PenLine,
   Bot,
-  BarChart3,
-  Globe,
-  Sparkles,
+  Database,
+  Shield,
+  Network,
+  Building2,
+  FlaskConical,
   type LucideIcon,
 } from "lucide-react";
 
@@ -24,138 +18,106 @@ export interface CapabilityArea {
 
 export const capabilityProcess: CapabilityArea[] = [
   {
-    id: "challenge-discovery",
-    title: "Challenge Discovery",
+    id: "ai-systems-applications",
+    title: "AI Systems & Applications",
     description:
-      "We map public-interest challenges, funding landscapes, and system gaps to identify where AI can create practical, fundable impact.",
-    icon: Search,
-    items: [
-      "Opportunity and challenge scoping",
-      "Stakeholder and ecosystem mapping",
-      "Gap analysis across institutions",
-      "Theme-aligned concept framing",
-    ],
-  },
-  {
-    id: "proposal-development",
-    title: "Proposal Development",
-    description:
-      "We translate concepts into proposal-ready narratives, budgets, and technical approaches aligned to funder and government requirements.",
-    icon: PenLine,
-    items: [
-      "Grant and RFP strategy",
-      "Technical approach documentation",
-      "Impact and outcomes framing",
-      "Compliance-ready program design",
-    ],
-  },
-  {
-    id: "ai-prototyping",
-    title: "AI Prototyping",
-    description:
-      "We build lightweight demos and prototypes that make ideas tangible for partners, reviewers, and funding committees.",
+      "Enterprise AI workflows, intelligent agents, multimodal systems, and operational AI built for real institutional use.",
     icon: Bot,
     items: [
-      "Rapid AI product prototyping",
-      "Workflow and UX validation",
-      "Pilot-ready technical architecture",
-      "Responsible AI guardrails",
+      "AI workflow orchestration and agents",
+      "Multimodal operational intelligence",
+      "Institutional copilots and assistants",
+      "Production AI application architecture",
     ],
   },
   {
-    id: "data-research",
-    title: "Data and Research",
+    id: "data-infrastructure",
+    title: "Data & Infrastructure",
     description:
-      "We synthesize evidence, build data models, and create intelligence layers that strengthen decisions and proposals.",
+      "AI-ready data systems, streaming architecture, operational analytics, and infrastructure intelligence at scale.",
     icon: Database,
     items: [
-      "Ecosystem and policy research",
-      "Data pipeline design",
+      "High-throughput data ingestion pipelines",
+      "Operational analytics and dashboards",
       "Knowledge graphs and intelligence layers",
-      "Evidence synthesis for decisions",
+      "Cloud and hybrid infrastructure design",
     ],
   },
   {
-    id: "product-design",
-    title: "Product Design",
+    id: "cybersecurity-trust",
+    title: "Cybersecurity & Trust",
     description:
-      "We design inclusive, accessible experiences for diverse users — citizens, officials, founders, and program teams.",
-    icon: Palette,
+      "Trusted AI systems, privacy-aware architecture, secure deployment, and institutional trust frameworks.",
+    icon: Shield,
     items: [
-      "Service and product UX",
-      "Multilingual and inclusive design",
-      "Institutional workflow design",
-      "Accessibility-first interfaces",
+      "AI security architecture and threat modeling",
+      "Privacy-aware system design",
+      "Secure deployment and compliance readiness",
+      "Governed access and audit systems",
     ],
   },
   {
-    id: "implementation-partnerships",
-    title: "Implementation Partnerships",
+    id: "intelligent-infrastructure",
+    title: "Intelligent Infrastructure",
     description:
-      "We collaborate with governments, funders, nonprofits, and institutions to move from prototype to deployment.",
-    icon: Handshake,
+      "IoT systems, digital twins, smart facilities, and operational technology for infrastructure-grade environments.",
+    icon: Network,
     items: [
-      "Co-design with institutional partners",
-      "Pilot planning and delivery support",
-      "Vendor and ecosystem coordination",
-      "Scale and sustainability planning",
+      "Digital twin and sensor integration",
+      "Smart facility operations",
+      "Edge and IoT orchestration",
+      "OT/IT convergence platforms",
+    ],
+  },
+  {
+    id: "civic-institutional",
+    title: "Civic & Institutional Technology",
+    description:
+      "Multilingual systems, public-access infrastructure, modernization platforms, and institutional workflows.",
+    icon: Building2,
+    items: [
+      "Government service operations platforms",
+      "Multilingual and accessible interfaces",
+      "Institutional workflow modernization",
+      "Citizen and official-facing systems",
+    ],
+  },
+  {
+    id: "research-emerging",
+    title: "Research & Emerging Technology",
+    description:
+      "Applied R&D, advanced systems integration, and future technology pathways for institutional deployment.",
+    icon: FlaskConical,
+    items: [
+      "Applied research-to-deployment programs",
+      "Advanced systems prototyping",
+      "Emerging AI integration",
+      "Institutional technology roadmaps",
     ],
   },
 ];
 
-export const homeCapabilities = [
-  {
-    id: "ai-product-prototyping",
-    title: "AI Product Prototyping",
-    description: "Lightweight demos and platforms that make public-impact ideas tangible and fundable.",
-    icon: Lightbulb,
-  },
-  {
-    id: "grant-proposal-strategy",
-    title: "Grant & Proposal Strategy",
-    description: "Proposal-ready concepts aligned to government, philanthropic, and development finance requirements.",
-    icon: FileText,
-  },
-  {
-    id: "civic-govtech",
-    title: "Civic & Government Technology",
-    description: "Tools for public services, governance workflows, and citizen-facing digital access.",
-    icon: Boxes,
-  },
-  {
-    id: "data-ecosystem",
-    title: "Data & Ecosystem Intelligence",
-    description: "Research, data systems, and intelligence layers for policy and program decisions.",
-    icon: BarChart3,
-  },
-  {
-    id: "multilingual-design",
-    title: "Multilingual & Inclusive Design",
-    description: "Accessible experiences designed for diverse communities and institutional users.",
-    icon: Globe,
-  },
-  {
-    id: "emerging-technology",
-    title: "Emerging Technology",
-    description: "Applied AI, automation, robotics, and digital infrastructure for public systems.",
-    icon: Sparkles,
-  },
-] as const;
+export const homeCapabilities = capabilityProcess.map((cap) => ({
+  id: cap.id,
+  title: cap.title,
+  description: cap.description,
+  icon: cap.icon,
+}));
 
 export const whatWeDoSteps = [
   {
-    title: "Discover opportunities and system gaps",
+    title: "Architect intelligent systems",
     description:
-      "Identify public-interest challenges, funding pathways, and institutional friction worth solving.",
+      "Design AI infrastructure, data flows, and operational platforms aligned to institutional environments.",
   },
   {
-    title: "Design AI-powered prototypes",
+    title: "Build deployment-grade platforms",
     description:
-      "Build concepts, demos, and proposal-ready solutions that partners can evaluate quickly.",
+      "Deliver applications, agents, and infrastructure components institutions can operate in production.",
   },
   {
-    title: "Deploy solutions with institutions and partners",
+    title: "Deploy across operational environments",
     description:
-      "Collaborate with governments, funders, and organizations to move from prototype to impact.",
+      "Pilot, integrate, and scale systems with governments, operators, and mission-driven partners.",
   },
 ] as const;

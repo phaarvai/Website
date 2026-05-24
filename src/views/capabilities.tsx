@@ -2,11 +2,9 @@
 
 import { motion } from "framer-motion";
 import { capabilityProcess } from "@/content/capabilities";
-import { ProcessFlow } from "@/components/ProcessFlow";
 import { PageHeader } from "@/components/PageHeader";
 import { CTASection } from "@/components/CTASection";
 import { PageSEO } from "@/components/PageSEO";
-import { siteContent } from "@/content/site";
 import { CheckCircle2 } from "lucide-react";
 
 const fadeIn = {
@@ -20,8 +18,8 @@ export default function Capabilities() {
   return (
     <>
       <PageSEO
-        title="Capabilities — From Discovery to Deployment"
-        description="Challenge discovery, proposal development, AI prototyping, data research, product design, and implementation partnerships for public impact."
+        title="Capabilities — Applied AI & Infrastructure"
+        description="AI systems, data infrastructure, cybersecurity, intelligent infrastructure, civic technology, and emerging research integration."
         path="/capabilities"
       />
 
@@ -29,19 +27,9 @@ export default function Capabilities() {
         <motion.div className="container mx-auto px-6 md:px-12">
           <PageHeader
             label="Capabilities"
-            title="End-to-end support for AI for Good"
-            description="We help institutions and partners move from public-interest challenges to fundable concepts, working prototypes, and deployment-ready programs."
+            title="Enterprise-grade AI systems delivery"
+            description="Six capability pillars for building, securing, and deploying intelligent systems in institutional and operational environments."
           />
-
-          <section className="mb-16 section-alt border border-border rounded-2xl p-8 md:p-10">
-            <h2 className="text-lg font-bold text-foreground mb-2 text-center">
-              {siteContent.operatingModel.title}
-            </h2>
-            <p className="text-sm text-muted-foreground text-center mb-8 max-w-xl mx-auto">
-              {siteContent.operatingModel.subtitle}
-            </p>
-            <ProcessFlow steps={siteContent.operatingModel.steps} />
-          </section>
 
           <div className="space-y-12">
             {capabilityProcess.map((cap, idx) => {
@@ -89,7 +77,7 @@ export default function Capabilities() {
 
         <CTASection
           title="Need a specific capability for your program?"
-          description="Tell us about your challenge — we'll outline how our team can support discovery, prototyping, or partnership."
+          description="Tell us about your operational environment — we'll outline how our team can architect, build, and deploy."
           buttonLabel="Partner With Us"
           buttonHref="/partner"
         />

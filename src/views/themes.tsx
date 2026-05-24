@@ -21,17 +21,17 @@ export default function Themes() {
   return (
     <>
       <PageSEO
-        title="Impact Themes — Government, Climate, Policy & More"
-        description="Explore Phaarvai's six impact themes: government, climate, economic development, startups, technology, and policy."
+        title="Operational Domains — Applied AI Systems"
+        description="Technology systems, government infrastructure, environment & resilience, data & AI, cybersecurity, and emerging research."
         path="/themes"
       />
 
       <article className="pt-28 pb-12 bg-background">
         <div className="container mx-auto px-6 md:px-12">
           <PageHeader
-            label="Impact Themes"
-            title="Where public challenges meet practical AI"
-            description="Each theme represents a domain where we identify gaps, develop prototypes, and build proposal-ready solutions with institutions and partners."
+            label="Operational Domains"
+            title="Where we build and deploy AI systems"
+            description="Six domains where Phaarvai delivers applied AI, operational intelligence, and intelligent infrastructure for institutional environments."
           />
 
           <div className="space-y-20">
@@ -65,7 +65,7 @@ export default function Themes() {
                   <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-8">
                     <div>
                       <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
-                        Problem Areas
+                        Operational challenges
                       </h3>
                       <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2">
                         {theme.problemAreas.map((area) => (
@@ -83,7 +83,7 @@ export default function Themes() {
                     {related.length > 0 && (
                       <div>
                         <h3 className="text-xs font-semibold uppercase tracking-widest text-muted-foreground mb-4">
-                          Related Projects
+                          Related systems
                         </h3>
                         <motion.div className="grid gap-4">
                           {related.map((project, idx) => (
@@ -103,7 +103,7 @@ export default function Themes() {
                     href="/projects"
                     className="text-sm font-semibold text-primary hover:underline"
                   >
-                    View all projects in this theme →
+                    View all systems in this domain →
                   </Link>
 
                   {themeIdx < themes.length - 1 && (

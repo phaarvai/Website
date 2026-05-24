@@ -1,11 +1,11 @@
 import type { ThemeId } from "./types";
 import {
+  Cpu,
   Building2,
   CloudRain,
-  TrendingUp,
-  Rocket,
-  Cpu,
-  Scale,
+  Database,
+  Shield,
+  FlaskConical,
   type LucideIcon,
 } from "lucide-react";
 
@@ -21,17 +21,35 @@ export interface Theme {
 
 export const themes: Theme[] = [
   {
-    id: "government",
-    title: "Government",
+    id: "technology-systems",
+    title: "Technology Systems",
     shortDescription:
-      "AI tools for public services, governance, civic workflows, and citizen access.",
+      "Applied AI, automation, enterprise platforms, and deployment-grade digital infrastructure.",
     description:
-      "We design AI-powered tools that strengthen public services, streamline governance workflows, and improve how citizens access essential programs and information.",
+      "We build technology systems that institutions can deploy — from AI orchestration and data platforms to operational software and integration layers.",
+    icon: Cpu,
+    problemAreas: [
+      "Fragmented enterprise systems",
+      "AI adoption without operational fit",
+      "Legacy integration complexity",
+      "Scalability and reliability gaps",
+      "Automation without governance",
+      "Platform modernization needs",
+    ],
+    href: "/themes#technology-systems",
+  },
+  {
+    id: "government",
+    title: "Government & Public Infrastructure",
+    shortDescription:
+      "AI systems for public services, civic operations, governance workflows, and citizen access.",
+    description:
+      "We deliver AI-powered platforms that strengthen public services, modernize institutional workflows, and improve how citizens access essential systems.",
     icon: Building2,
     problemAreas: [
-      "Fragmented civic service delivery",
+      "Service delivery fragmentation",
       "Manual approval and routing chains",
-      "Low visibility across departments",
+      "Cross-agency visibility gaps",
       "Citizen access barriers",
       "Legacy system interoperability",
       "Compliance and audit readiness",
@@ -39,94 +57,76 @@ export const themes: Theme[] = [
     href: "/themes#government",
   },
   {
-    id: "climate",
-    title: "Climate",
+    id: "environment-resilience",
+    title: "Environment & Resilience",
     shortDescription:
-      "AI for resilience, adaptation, environmental intelligence, and climate finance.",
+      "Operational intelligence for climate resilience, environmental systems, and adaptation planning.",
     description:
-      "We build intelligence systems for climate resilience, environmental monitoring, adaptation planning, and climate finance readiness.",
+      "We build intelligence platforms for resilience planning, environmental monitoring, risk visibility, and institutional adaptation operations.",
     icon: CloudRain,
     problemAreas: [
       "Climate risk visibility gaps",
       "Adaptation planning data silos",
       "Environmental monitoring at scale",
-      "Climate finance readiness",
-      "Resilience program reporting",
+      "Resilience program coordination",
+      "Resource allocation complexity",
       "Cross-agency environmental data",
     ],
-    href: "/themes#climate",
+    href: "/themes#environment-resilience",
   },
   {
-    id: "economic-development",
-    title: "Economic Development",
+    id: "data-ai-systems",
+    title: "Data & AI Systems",
     shortDescription:
-      "AI for jobs, entrepreneurship, funding access, and inclusive growth.",
+      "AI-ready data architecture, streaming systems, analytics, and operational intelligence layers.",
     description:
-      "We develop solutions that expand economic opportunity — connecting people and enterprises to jobs, capital, skills, and inclusive growth pathways.",
-    icon: TrendingUp,
+      "We design data and AI systems that power institutional decisions — pipelines, knowledge layers, and analytics built for operational environments.",
+    icon: Database,
     problemAreas: [
-      "Uneven access to economic opportunity",
-      "Funding discovery friction",
-      "Workforce and skills mismatches",
-      "SME and entrepreneur support gaps",
-      "Program impact measurement",
-      "Inclusive growth program design",
-    ],
-    href: "/themes#economic-development",
-  },
-  {
-    id: "startups",
-    title: "Startups",
-    shortDescription:
-      "AI support for grants, proposals, ecosystem building, and startup readiness.",
-    description:
-      "We help startup ecosystems, accelerators, and founders navigate grants, proposals, and AI-enabled readiness for public and philanthropic programs.",
-    icon: Rocket,
-    problemAreas: [
-      "Grant and proposal readiness",
-      "Ecosystem intelligence gaps",
-      "Founder support at scale",
-      "Program-to-startup matching",
-      "Impact narrative development",
-      "Innovation pipeline visibility",
-    ],
-    href: "/themes#startups",
-  },
-  {
-    id: "technology",
-    title: "Technology",
-    shortDescription:
-      "Applied AI, automation, digital infrastructure, robotics, and data systems.",
-    description:
-      "We prototype applied AI, automation, and data infrastructure that institutions can adopt incrementally — from research through lightweight platforms.",
-    icon: Cpu,
-    problemAreas: [
-      "Applied AI adoption barriers",
       "Data platform fragmentation",
-      "Automation without governance",
-      "Research-to-prototype gaps",
-      "Digital infrastructure readiness",
-      "Responsible AI deployment",
+      "Low-quality operational signals",
+      "Analytics disconnected from action",
+      "Knowledge silos across teams",
+      "Real-time ingestion challenges",
+      "AI-ready data foundations",
     ],
-    href: "/themes#technology",
+    href: "/themes#data-ai-systems",
   },
   {
-    id: "policy",
-    title: "Policy",
+    id: "cybersecurity-trust",
+    title: "Cybersecurity & Trust",
     shortDescription:
-      "AI for research, ecosystem intelligence, governance, and evidence-based decisions.",
+      "Trusted AI, secure deployment, privacy-aware architecture, and institutional trust systems.",
     description:
-      "We support evidence-based policy with ecosystem intelligence, research synthesis, and governance-oriented AI tools.",
-    icon: Scale,
+      "We engineer security and trust into AI systems — from threat modeling and governed data access to compliant deployment in sensitive environments.",
+    icon: Shield,
     problemAreas: [
-      "Policy research fragmentation",
-      "Weak ecosystem intelligence",
-      "Evidence synthesis bottlenecks",
-      "Stakeholder mapping gaps",
-      "Regulatory readiness",
-      "Cross-institution coordination",
+      "AI security and adversarial risk",
+      "Privacy and data governance gaps",
+      "Compliance in regulated environments",
+      "Identity and access complexity",
+      "Audit and observability needs",
+      "Institutional trust requirements",
     ],
-    href: "/themes#policy",
+    href: "/themes#cybersecurity-trust",
+  },
+  {
+    id: "research-emerging",
+    title: "Research & Emerging Technology",
+    shortDescription:
+      "Applied R&D, advanced systems, and emerging technology integration for institutional deployment.",
+    description:
+      "We bridge research and deployment — integrating emerging AI, advanced systems, and experimental capabilities into operational institutional programs.",
+    icon: FlaskConical,
+    problemAreas: [
+      "Research-to-deployment gaps",
+      "Experimental technology integration",
+      "Evidence synthesis bottlenecks",
+      "Cross-institution coordination",
+      "Advanced systems validation",
+      "Future capability roadmapping",
+    ],
+    href: "/themes#research-emerging",
   },
 ];
 

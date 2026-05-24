@@ -2,7 +2,6 @@
 
 import { motion } from "framer-motion";
 import { aboutContent } from "@/content/about";
-import { ProcessFlow } from "@/components/ProcessFlow";
 import { PageHeader } from "@/components/PageHeader";
 import { CTASection } from "@/components/CTASection";
 import { PageSEO } from "@/components/PageSEO";
@@ -19,8 +18,8 @@ export default function About() {
   return (
     <>
       <PageSEO
-        title="About Phaarvai — AI for Good for Public Impact"
-        description="Phaarvai builds practical AI solutions for governance, climate, economic development, startups, technology, and policy."
+        title="About — Applied AI & Intelligent Infrastructure"
+        description="Phaarvai builds AI-powered systems and intelligent infrastructure for governments, institutions, and operational environments."
         path="/about"
       />
 
@@ -28,15 +27,12 @@ export default function About() {
         <motion.div className="container mx-auto px-6 md:px-12">
           <PageHeader
             label="About"
-            title="A public-impact innovation platform"
+            title="Applied AI for institutional environments"
             description={aboutContent.narrative}
           />
 
           <section className="grid grid-cols-1 lg:grid-cols-2 gap-5 mb-16" aria-label="Mission and Vision">
-            <motion.div
-              {...fadeIn}
-              className="bg-card border border-border rounded-2xl p-8"
-            >
+            <motion.div {...fadeIn} className="bg-card border border-border rounded-2xl p-8">
               <span className="label-mono mb-3 block">Mission</span>
               <p className="text-lg font-semibold text-foreground leading-relaxed">
                 {aboutContent.mission}
@@ -54,23 +50,42 @@ export default function About() {
             </motion.div>
           </section>
 
-          <section className="mb-16" aria-label="AI for Good positioning">
+          <section className="mb-16" aria-label="Scale and delivery metrics">
+            <motion.h2 {...fadeIn} className="text-2xl font-bold text-foreground mb-8">
+              Scale & Delivery Metrics
+            </motion.h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              {aboutContent.deliveryMetrics.map((metric, idx) => (
+                <motion.div
+                  key={metric.label}
+                  {...fadeIn}
+                  transition={{ ...fadeIn.transition, delay: idx * 0.04 }}
+                  className="glass-panel rounded-xl p-5 border border-border text-center"
+                >
+                  <p className="stat-number text-2xl font-bold text-primary mb-1">{metric.value}</p>
+                  <p className="text-[11px] text-muted-foreground leading-snug">{metric.label}</p>
+                </motion.div>
+              ))}
+            </div>
+          </section>
+
+          <section className="mb-16" aria-label="Applied AI positioning">
             <motion.h2 {...fadeIn} className="text-2xl font-bold text-foreground mb-6">
-              AI for Good positioning
+              What we build
             </motion.h2>
             <motion.div
               className="bg-primary/5 border border-primary/15 rounded-2xl p-8"
               {...fadeIn}
             >
               <p className="text-muted-foreground leading-relaxed mb-4">
-                Phaarvai is not a generic AI startup. We are an AI for Good company focused on
-                governance, climate, funding access, and institutional collaboration — building
-                practical technology that funders and governments can understand and trust.
+                Phaarvai is not a generic consultancy or innovation lab. We are an applied AI and
+                intelligent infrastructure company — building systems that governments, operators,
+                and institutions can deploy in real operational environments.
               </p>
               <p className="text-muted-foreground leading-relaxed">
-                Our work spans opportunity identification, concept development, prototyping,
-                proposal support, and partnership — designed to scale as new public-impact
-                challenges emerge.
+                Our work spans AI systems architecture, operational intelligence platforms, data
+                infrastructure, cybersecurity, and institutional technology — delivered with the
+                rigor expected of enterprise-grade engineering.
               </p>
             </motion.div>
           </section>
@@ -94,16 +109,6 @@ export default function About() {
                 </motion.div>
               ))}
             </div>
-          </section>
-
-          <section className="mb-16 section-alt border border-border rounded-2xl p-8 md:p-10">
-            <h2 className="text-xl font-bold text-foreground mb-2 text-center">
-              How we work
-            </h2>
-            <p className="text-sm text-muted-foreground text-center mb-8">
-              From opportunity to deployment
-            </p>
-            <ProcessFlow steps={siteContent.operatingModel.steps} />
           </section>
 
           <section aria-label="Why partner">

@@ -62,7 +62,7 @@ export function Footer() {
 
           <div>
             <h4 className="font-semibold text-white mb-5 text-sm uppercase tracking-wider">
-              Themes
+              Domains
             </h4>
             <ul className="flex flex-col gap-2.5">
               {themes.map((theme) => (

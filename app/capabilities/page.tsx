@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import CapabilitiesPage from "@/views/capabilities";
 
 export const metadata: Metadata = {
-  title: "Capabilities — Discovery to Deployment",
+  title: "Capabilities — Applied AI & Infrastructure",
   description:
-    "Challenge discovery, proposal development, AI prototyping, data research, product design, and implementation partnerships.",
+    "AI systems, data infrastructure, cybersecurity, intelligent infrastructure, civic technology, and emerging research integration.",
 };
 
 export default function Page() {

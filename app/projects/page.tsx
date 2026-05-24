@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import ProjectsPage from "@/views/projects";
 
 export const metadata: Metadata = {
-  title: "Projects — Phaarvai",
+  title: "Systems & Deployments — Phaarvai",
   description:
-    "Active concepts, prototypes, and proposal-ready projects from Phaarvai's AI for Good portfolio.",
+    "Applied AI systems, operational platforms, and deployment environments from Phaarvai's intelligent infrastructure portfolio.",
 };
 
 export default function Page() {

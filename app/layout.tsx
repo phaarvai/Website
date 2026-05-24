@@ -9,7 +9,7 @@ export const metadata: Metadata = {
     template: "%s | Phaarvai",
   },
   description:
-    "Phaarvai is an AI for Good company building practical technology solutions for governance, climate, economic development, startups, technology, and policy.",
+    "Phaarvai develops AI-powered systems and intelligent infrastructure for governments, institutions, and real-world operational environments.",
   openGraph: {
     type: "website",
     siteName: "Phaarvai",

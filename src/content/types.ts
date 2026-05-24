@@ -1,17 +1,14 @@
 export type ProjectStage =
-  | "Concept"
-  | "Prototype"
-  | "Proposal"
+  | "Deployed"
   | "Pilot"
-  | "Seeking Partners"
-  | "Seeking Funding"
-  | "In Development"
-  | "Research";
+  | "Production Candidate"
+  | "In Integration"
+  | "Research System";
 
 export type ThemeId =
+  | "technology-systems"
   | "government"
-  | "climate"
-  | "economic-development"
-  | "startups"
-  | "technology"
-  | "policy";
+  | "environment-resilience"
+  | "data-ai-systems"
+  | "cybersecurity-trust"
+  | "research-emerging";

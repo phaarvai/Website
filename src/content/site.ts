@@ -1,87 +1,121 @@
 export const siteContent = {
   brand: {
     name: "Phaarvai",
-    tagline: "AI for Good, built for public impact.",
+    tagline: "AI for Good. Built for Public Impact.",
     positioning:
-      "An AI for Good company building practical technology solutions for governance, climate, economic development, startups, technology, and policy.",
+      "An applied AI and intelligent infrastructure company building deployment-grade systems for governments, institutions, and complex operational environments.",
   },
   hero: {
-    headline: "AI for Good, built for public impact.",
+    headline: "AI for Good. Built for Public Impact.",
     subheadline:
-      "Phaarvai develops AI-powered ideas, prototypes, and platforms across government, climate, economic development, startups, technology, and policy.",
-    ctaPrimary: { label: "Explore Themes", href: "/themes" },
-    ctaSecondary: { label: "View Projects", href: "/projects" },
+      "Applied AI systems and intelligent infrastructure for governments, institutions, and operational environments.",
+    ctaPrimary: { label: "Explore Domains", href: "/themes" },
+    ctaSecondary: { label: "View Systems", href: "/projects" },
     ctaTertiary: { label: "Partner With Us", href: "/partner" },
-    badges: [
-      "AI for Good",
-      "Govtech & Policy",
-      "Proposal-Ready Innovation",
-      "Public Impact",
-    ],
+    badges: ["AI for Good. Built for Public Impact."],
   },
   whatWeDo: {
     title: "What We Do",
     subtitle:
-      "We help turn public-interest challenges into fundable AI solutions, practical prototypes, and implementation-ready project concepts.",
+      "We develop AI-enabled systems, operational intelligence platforms, and intelligent infrastructure technologies for complex real-world environments.",
   },
-  operatingModel: {
-    title: "How Ideas Become Impact",
-    subtitle: "Our work follows a clear path from opportunity to deployment.",
-    steps: [
-      { label: "Opportunity", description: "Challenge or funding signal identified" },
-      { label: "Theme", description: "Aligned to a public-impact domain" },
-      { label: "Concept", description: "Structured idea and hypothesis" },
-      { label: "Prototype", description: "Demo or lightweight platform" },
-      { label: "Proposal", description: "Funder- and partner-ready package" },
-      { label: "Partner", description: "Institutional collaboration" },
-      { label: "Deployment", description: "Pilot or scaled implementation" },
+  infrastructureSnapshot: {
+    title: "At a glance",
+    subtitle: "",
+    metrics: [
+      { label: "AI Systems", value: "12+", description: "Applied AI applications and agents" },
+      { label: "Operational Platforms", value: "8+", description: "Live and pilot deployments" },
+      { label: "Institutional Deployments", value: "15+", description: "Government and enterprise programs" },
+      { label: "Infrastructure Domains", value: "6", description: "Operational domain coverage" },
+      { label: "Multilingual Intelligence", value: "20+", description: "Languages and accessibility layers" },
+      { label: "Public Impact Systems", value: "Global", description: "Mission-driven operational reach" },
     ],
+  },
+  systemsArchitecture: {
+    title: "Operational Intelligence Stack",
+    subtitle: "From data ingestion and AI orchestration to secure deployment across institutional environments.",
+    layers: [
+      {
+        id: "ingest",
+        label: "Data & Signals",
+        description: "Streaming ingestion, operational telemetry, and AI-ready data foundations.",
+      },
+      {
+        id: "intelligence",
+        label: "AI Orchestration",
+        description: "Agents, workflows, multimodal models, and operational decision layers.",
+      },
+      {
+        id: "platform",
+        label: "Application Platforms",
+        description: "Institutional dashboards, service systems, and domain-specific applications.",
+      },
+      {
+        id: "trust",
+        label: "Security & Governance",
+        description: "Privacy-aware architecture, trusted AI, and compliance-ready deployment.",
+      },
+      {
+        id: "deploy",
+        label: "Deployment Layer",
+        description: "Cloud, edge, IoT, and hybrid infrastructure for production environments.",
+      },
+    ],
+  },
+  operationalDomains: {
+    title: "Operational Domains",
+    subtitle: "",
+  },
+  featuredDeployments: {
+    title: "Featured Systems",
+    subtitle: "",
+    label: "Deployments",
   },
   whyPhaarvai: {
     title: "Why Phaarvai",
     subtitle:
-      "Built for funders, governments, and institutions that need credible innovation — not generic AI hype.",
+      "Built for governments, research ecosystems, infrastructure operators, and mission-driven institutions that need credible, deployable technology.",
     points: [
       {
-        title: "Public-interest technology experience",
+        title: "Applied AI systems expertise",
         description:
-          "Deep familiarity with governance, climate, development, and institutional program design.",
+          "We design and deliver AI-native platforms — not slide decks — for governance, resilience, and institutional operations.",
       },
       {
-        title: "Proposal and funding ecosystem fluency",
+        title: "Intelligent infrastructure delivery",
         description:
-          "We structure concepts for grants, RFPs, and multilateral programs from the start.",
+          "Digital twins, IoT, data pipelines, and operational technology integrated into deployable architectures.",
       },
       {
-        title: "AI + governance positioning",
+        title: "Institutional trust by design",
         description:
-          "Responsible, institution-ready AI that earns trust with officials and funders.",
+          "Security, privacy, and governance embedded from architecture through production deployment.",
       },
       {
-        title: "Ideas to prototypes, fast",
+        title: "Operational deployment focus",
         description:
-          "We convert thinking into demos and proposal assets partners can evaluate quickly.",
+          "We build systems institutions can run — with clear paths from pilot to scaled operations.",
       },
     ],
   },
   partnerCta: {
-    title: "Have a public-impact challenge or funding opportunity? Let's build around it.",
-    description:
-      "Whether you are a government agency, funder, nonprofit, startup, or research institution — we collaborate to shape concepts, prototypes, and programs.",
+    title: "Partner with Phaarvai",
+    description: "Deployments, modernization, and applied AI for mission-critical environments.",
     primary: { label: "Partner With Us", href: "/partner" },
     secondary: { label: "Contact Phaarvai", href: "/partner#contact" },
   },
   footer: {
-    tagline: "AI for Good, built for public impact.",
+    tagline: "AI for Good. Built for Public Impact.",
     statement:
-      "Practical AI solutions for governance, climate, economic development, startups, technology, and policy.",
+      "Applied AI systems and intelligent infrastructure for governments, institutions, and operational environments.",
     email: "partnerships@phaarvai.com",
     links: {
       explore: [
-        { label: "Themes", href: "/themes" },
-        { label: "Projects", href: "/projects" },
+        { label: "Operational Domains", href: "/themes" },
+        { label: "Systems", href: "/projects" },
         { label: "Capabilities", href: "/capabilities" },
         { label: "About", href: "/about" },
+        { label: "Team", href: "/team" },
       ],
       connect: [
         { label: "Partner With Us", href: "/partner" },
@@ -94,40 +128,56 @@ export const siteContent = {
 
 export const partnerAudiences = [
   {
-    id: "funders",
-    title: "Funders",
-    description:
-      "Philanthropies, development finance, and grantmakers seeking credible, proposal-ready innovation partners.",
-  },
-  {
     id: "governments",
-    title: "Governments",
+    title: "Governments & Public Agencies",
     description:
-      "Agencies and public institutions exploring AI for services, governance, and citizen access.",
+      "National and local institutions modernizing services, operations, and citizen-facing systems with applied AI.",
   },
   {
-    id: "nonprofits",
-    title: "Nonprofits",
+    id: "infrastructure",
+    title: "Infrastructure Operators",
     description:
-      "Organizations scaling programs that need prototypes, data tools, and funder-aligned technology.",
-  },
-  {
-    id: "startups",
-    title: "Startups",
-    description:
-      "Founders and ecosystems building grant-ready, impact-focused ventures.",
+      "Utilities, facilities, and operational technology teams deploying intelligent infrastructure and digital twins.",
   },
   {
     id: "research",
-    title: "Research Institutions",
+    title: "Research Ecosystems",
     description:
-      "Universities and think tanks translating research into applied public-impact prototypes.",
+      "Universities, labs, and research networks integrating advanced systems into applied deployment programs.",
+  },
+  {
+    id: "enterprise",
+    title: "Enterprise & Institutions",
+    description:
+      "Mission-driven organizations requiring secure, scalable AI platforms and operational intelligence.",
+  },
+  {
+    id: "technology",
+    title: "Technology Partners",
+    description:
+      "Platform vendors, integrators, and ecosystem partners co-delivering deployment-grade AI systems.",
   },
 ];
 
 export const collaborationFlow = [
-  { step: "01", title: "Share the challenge", description: "Tell us about the opportunity, program, or public-impact problem." },
-  { step: "02", title: "Align on theme and scope", description: "We map the challenge to themes, concepts, and partnership fit." },
-  { step: "03", title: "Co-create concepts", description: "Develop proposal-ready ideas, prototypes, or platform directions." },
-  { step: "04", title: "Build toward deployment", description: "Move from demo to pilot with institutional partners and funders." },
+  {
+    step: "01",
+    title: "Define operational scope",
+    description: "Align on systems, environments, stakeholders, and deployment objectives.",
+  },
+  {
+    step: "02",
+    title: "Architect the solution",
+    description: "Design AI infrastructure, data flows, security, and integration patterns.",
+  },
+  {
+    step: "03",
+    title: "Build and integrate",
+    description: "Develop platforms, agents, and infrastructure components for institutional use.",
+  },
+  {
+    step: "04",
+    title: "Deploy and scale",
+    description: "Pilot, operationalize, and expand across environments with measurable outcomes.",
+  },
 ];

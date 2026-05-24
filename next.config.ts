@@ -23,7 +23,6 @@ const nextConfig: NextConfig = {
       { source: "/funding-partnerships", destination: "/partner", permanent: true },
       { source: "/contact", destination: "/partner", permanent: true },
       { source: "/insights", destination: "/projects", permanent: false },
-      { source: "/team", destination: "/about", permanent: true },
     ];
   },
 };

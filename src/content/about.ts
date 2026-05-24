@@ -1,41 +1,49 @@
 export const aboutContent = {
   mission:
-    "Make public systems, development opportunities, and social-impact solutions easier to discover, access, and act on.",
+    "Build AI-powered systems and intelligent infrastructure that make public institutions, infrastructure operators, and mission-driven organizations more capable in real operational environments.",
   vision:
-    "A world where citizens, governments, funders, startups, and institutions can use AI to solve public-interest challenges faster and more inclusively.",
+    "A world where governments and institutions deploy trustworthy AI systems — securely, inclusively, and at the scale their missions require.",
   values: [
     {
-      title: "Public impact",
-      description: "Every initiative starts with measurable benefit for communities and institutions.",
+      title: "Operational impact",
+      description: "Every system is measured by what institutions can run, monitor, and improve in production.",
     },
     {
-      title: "Practical innovation",
-      description: "We prioritize prototypes and proposals that can move toward real deployment.",
+      title: "Deployment-grade engineering",
+      description: "We build platforms and infrastructure designed for real environments — not demos alone.",
     },
     {
       title: "Trust and responsibility",
-      description: "Responsible AI, transparency, and governance are built into our approach.",
+      description: "Security, privacy, and governance are architectural requirements, not afterthoughts.",
     },
     {
       title: "Inclusion and accessibility",
-      description: "Solutions designed for diverse users, languages, and contexts.",
+      description: "Systems designed for diverse users, languages, and institutional contexts.",
     },
     {
-      title: "Evidence and action",
-      description: "Research and data inform decisions — then we build toward implementation.",
+      title: "Evidence-driven operations",
+      description: "Data and intelligence inform decisions — then we deploy systems that act on them.",
     },
     {
-      title: "Partnerships over silos",
-      description: "We collaborate across governments, funders, startups, and institutions.",
+      title: "Institutional partnership",
+      description: "We collaborate with governments, operators, and research ecosystems as long-term technology partners.",
     },
   ],
   positioning: [
-    "Experience across public-interest technology and govtech",
-    "Proposal strategy aligned to funder and government requirements",
-    "Understanding of funding ecosystems and program design",
-    "AI + governance positioning for institutional credibility",
-    "Emerging-market and inclusive innovation focus",
-    "Ability to convert ideas into prototypes and fundable proposals",
+    "Applied AI systems across government and infrastructure",
+    "Operational intelligence and data platform expertise",
+    "Intelligent infrastructure — IoT, digital twins, OT integration",
+    "AI security and institutional trust architecture",
+    "Multilingual and accessible institutional technology",
+    "Deployment-focused delivery at enterprise scale",
   ],
-  narrative: `Phaarvai is an AI for Good company building practical technology solutions for governance, climate, economic development, startups, technology, and policy. We work at the intersection of public impact, innovation, and institutional collaboration — turning challenges into concepts, prototypes, and partnership-ready programs.`,
+  deliveryMetrics: [
+    { label: "Catalog assets managed", value: "60M+" },
+    { label: "Peak ingestion throughput", value: "50K TPS" },
+    { label: "Governed identity records", value: "100M+ PII" },
+    { label: "Program delivery scale", value: "$15M+" },
+    { label: "Digital twin deployments", value: "Multi-sector" },
+    { label: "AI security architecture", value: "Production-grade" },
+  ],
+  narrative: `Phaarvai is an applied AI and intelligent infrastructure company. We develop AI-enabled systems, operational intelligence platforms, and deployment-grade technology for governments, institutions, and complex operational environments — from public-sector modernization to resilience, data systems, and secure institutional AI.`,
 };
