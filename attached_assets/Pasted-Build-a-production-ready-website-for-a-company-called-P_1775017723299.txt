@@ -1,0 +1,262 @@
+Build a production-ready website for a company called “PHAARVAI” using Next.js (App Router), React, TypeScript, and Tailwind CSS.
+
+This is NOT a basic website. It must feel like a premium, mission-driven, AI and digital systems company — not a generic startup template.
+
+---
+
+## TECH STACK & SETUP
+
+* Use Next.js (latest, App Router)
+* TypeScript enabled
+* Tailwind CSS for styling
+* Clean, scalable folder structure
+* No unnecessary heavy dependencies
+* Optimize for performance and low compute usage (important)
+
+---
+
+## PROJECT STRUCTURE
+
+Follow this structure exactly:
+
+/app
+/about
+/capabilities
+/solutions
+/sectors
+/funding-partnerships
+/insights
+/contact
+layout.tsx
+page.tsx
+
+/components
+Navbar.tsx
+Footer.tsx
+HeroSection.tsx
+SectionIntro.tsx
+Card.tsx
+CTASection.tsx
+
+/content
+site.ts
+capabilities.ts
+solutions.ts
+sectors.ts
+insights.ts
+
+---
+
+## IMPORTANT RULES
+
+* DO NOT hardcode content directly inside JSX
+* Use structured content from /content files
+* Build reusable components
+* Keep design clean, minimal, and professional
+* Avoid flashy animations (only subtle hover + fade effects)
+* Ensure mobile responsiveness
+
+---
+
+## DESIGN STYLE
+
+* Premium, clean, modern
+* Use whitespace effectively
+* Color palette: dark blue, charcoal, white, subtle gradients
+* Strong typography
+* Card-based layout
+* Slight hover elevation on cards
+
+---
+
+## PAGES TO BUILD
+
+1. HOME PAGE (/)
+   Sections:
+
+* Hero (headline + subheadline + 2 CTAs)
+* 4 Practice Area Cards:
+
+  * AI & Decision Intelligence
+  * Digitization & Data Platforms
+  * IoT & Smart Infrastructure
+  * Public Impact Programs
+* Why PHAARVAI (4 bullets)
+* Problems We Solve (real-world problem statements)
+* Featured Solution Areas
+* Sectors
+* Insights Preview (3 cards)
+* Final CTA
+
+2. ABOUT PAGE
+
+* Company story
+* Mission
+* Vision
+* How we work (3-step process)
+* Principles
+
+3. CAPABILITIES PAGE
+   4 sections:
+
+* AI & Decision Intelligence
+* Digitization & Data Platforms
+* IoT & Smart Infrastructure
+* Public Impact Programs
+
+Each section must include:
+
+* intro
+* services list
+* example deliverables
+
+4. SOLUTIONS PAGE
+   Create 6 use-case cards:
+
+* AI decision support
+* Workflow digitization
+* Infrastructure monitoring
+* Executive dashboards
+* Sustainability analytics
+* Funded program design
+
+5. SECTORS PAGE
+   List sectors with short descriptions:
+
+* Government
+* Infrastructure
+* Energy
+* Foundations
+* Innovation ecosystems
+
+6. FUNDING & PARTNERSHIPS PAGE
+   Sections:
+
+* Why funding alignment matters
+* Types of partnerships
+* How PHAARVAI contributes
+* CTA
+
+7. INSIGHTS PAGE
+
+* Blog-style layout
+* 3 placeholder articles using content file
+
+8. CONTACT PAGE
+
+* Contact form with fields:
+  name, email, organization, message, area of interest
+* Simple API route (/api/contact) placeholder
+
+---
+
+## CONTENT HANDLING
+
+Populate /content files with structured placeholder text like:
+
+export const hero = {
+title: "...",
+subtitle: "...",
+}
+
+Each page must pull content from these files.
+
+---
+
+## COMPONENT REQUIREMENTS
+
+* Navbar (sticky, clean, CTA button “Talk to us”)
+* Footer (links + simple branding)
+* HeroSection
+* Reusable Card component
+* CTASection
+
+---
+
+## PERFORMANCE & CLEAN CODE
+
+* Use semantic HTML
+* Optimize images
+* Keep components modular
+* Avoid unnecessary client-side JS
+* Ensure fast loading
+
+---
+
+## FINAL GOAL
+
+The site should feel like:
+
+* A serious AI + digital systems company
+* Built for institutions and public-impact work
+* Clean, credible, and scalable
+
+NOT:
+
+* A generic IT services template
+* A flashy startup landing page
+
+---
+
+After building:
+
+* Ensure all pages load correctly
+* Ensure navigation works
+* Ensure mobile responsiveness
+* Keep code clean and well-structured,  -----------------------------------
+STRATEGIC CONTENT RULES (CRITICAL)
+-----------------------------------
+
+This website must NOT feel like a generic IT services or SaaS company.
+
+Ensure all content follows these principles:
+
+1. Problem-first messaging:
+Each section must describe real-world problems such as:
+- fragmented workflows
+- manual operations
+- disconnected systems
+- underutilized data
+- lack of decision visibility
+
+2. Positioning:
+PHAARVAI must feel like:
+- a digital systems company
+- an AI implementation partner
+- a mission-driven innovation firm
+- NOT a generic software agency
+
+3. Language rules:
+Avoid words like:
+- cutting-edge
+- revolutionary
+- disruptive
+- world-class
+
+Use language like:
+- practical AI deployment
+- scalable systems
+- operational intelligence
+- institutional capability
+- measurable impact
+
+4. Differentiation:
+Clearly show:
+- strategy + execution in one
+- built for scale, not pilots
+- designed for real-world institutional use
+
+5. Funding alignment:
+Content must reflect that PHAARVAI supports:
+- funded programs
+- CSR initiatives
+- donor-backed projects
+- public-impact systems
+
+But DO NOT say:
+“we help you get grants”
+
+Instead say:
+“we support implementation-ready, fundable initiatives”
+
+-----------------------------------

@@ -1,0 +1,30 @@
+{
+  "rewrites": [
+    {
+      "source": "/x-y",
+      "destination": "https://x-y-app-nextjs-app.vercel.app"
+    },
+    {
+      "source": "/x-y/:path*",
+      "destination": "https://x-y-app-nextjs-app.vercel.app/:path*"
+    },
+
+    {
+      "source": "/x!y",
+      "destination": "https://x-y-app-nextjs-app.vercel.app"
+    },
+    {
+      "source": "/x!y/:path*",
+      "destination": "https://x-y-app-nextjs-app.vercel.app/:path*"
+    },
+
+    {
+      "source": "/x%21y",
+      "destination": "https://x-y-app-nextjs-app.vercel.app"
+    },
+    {
+      "source": "/x%21y/:path*",
+      "destination": "https://x-y-app-nextjs-app.vercel.app/:path*"
+    }
+  ]
+}

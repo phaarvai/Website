@@ -1,0 +1,92 @@
+export const insights = [
+  {
+    id: "institutional-ai-deployment",
+    title: "The Reality of Institutional AI Deployment",
+    category: "AI for Public Impact",
+    date: "March 18, 2024",
+    readTime: "6 min read",
+    excerpt: "Moving past pilot projects to deploy machine learning models in environments where decisions carry significant public and financial consequence requires a fundamentally different approach.",
+    content: "Deploying AI in an institutional context is fundamentally different from consumer software. It requires rigorous auditability, clear confidence scoring, and integration into existing human-in-the-loop workflows. The organizations that succeed are those that begin with operational use cases — not technology ambitions. They identify the decisions being made manually today that carry the highest cost of error, and they build precise, narrow systems to support those decisions first. Scale comes second."
+  },
+  {
+    id: "digitization-gap-public-institutions",
+    title: "Closing the Digitization Gap in Public Institutions",
+    category: "Digitization Gaps",
+    date: "February 5, 2024",
+    readTime: "7 min read",
+    excerpt: "Why so many digitization initiatives in public institutions stall before they reach operational scale — and the structural changes required to close the gap between strategy and systems.",
+    content: "Across governments and development institutions globally, billions have been committed to digitization with limited operational returns. The failure pattern is consistent: technology is procured without workflow transformation, data is collected without integration architecture, and dashboards are built without the operational data pipelines to sustain them. Closing the digitization gap requires starting from process, not platform — mapping the operational friction first, then designing technology to remove it with precision and institutional alignment."
+  },
+  {
+    id: "data-silos-infrastructure",
+    title: "Breaking Data Silos in Critical Infrastructure",
+    category: "Infrastructure Intelligence",
+    date: "January 22, 2024",
+    readTime: "8 min read",
+    excerpt: "How transit authorities and utilities are modernizing legacy systems to achieve single-pane-of-glass operational visibility — and what separates successful integrations from failed ones.",
+    content: "The greatest barrier to operational efficiency in critical infrastructure is not a lack of data, but its fragmentation. Legacy systems, proprietary vendor platforms, and manual tracking create blind spots across even well-funded organizations. We examine the architectural patterns required to unify telemetry and operational data securely — and the governance frameworks required to sustain that integration over time."
+  },
+  {
+    id: "why-dashboards-fail",
+    title: "Why Most Executive Dashboards Fail",
+    category: "Digitization Gaps",
+    date: "December 10, 2023",
+    readTime: "5 min read",
+    excerpt: "The gap between a visually impressive dashboard and one that actually changes institutional decisions is wider than most organizations realize.",
+    content: "A dashboard built on stale, manually assembled data is not a decision tool — it is a report with better formatting. The dashboards that produce measurable institutional change are designed around the specific decisions their users must make, fed by automated data pipelines, and integrated into approval workflows. Most fail because they are designed around presentation rather than decision architecture. The right question is not: what do we want to display? It is: what decisions are being made badly, and what data would change them?"
+  },
+  {
+    id: "ai-social-impact",
+    title: "AI for Social Impact: Moving from Aspiration to Architecture",
+    category: "AI for Public Impact",
+    date: "November 14, 2023",
+    readTime: "6 min read",
+    excerpt: "The most consequential applications of AI in public life are not in consumer products — they are in the operational systems that governments and foundations use to allocate resources and measure outcomes.",
+    content: "When AI is applied to public sector challenges — resource allocation in healthcare, infrastructure prioritization, program impact measurement — the stakes of getting it wrong are severe. Unlike commercial AI, these systems must be explainable, auditable, and human-supervised. They must earn institutional trust before they can influence decisions. The path forward requires building these systems with the same rigor applied to the decisions they support: iteratively, transparently, and with measurable accountability."
+  },
+  {
+    id: "fundable-programs",
+    title: "What Makes a Technology Program Fundable",
+    category: "Sustainability & Impact",
+    date: "October 3, 2023",
+    readTime: "5 min read",
+    excerpt: "Funding bodies — whether government, philanthropic, or CSR — are increasingly sophisticated in evaluating the technical credibility of program proposals. What distinguishes the initiatives that get funded and delivered.",
+    content: "The programs that attract and sustain funding share a common architecture: they define measurable outcomes before they define technology; they embed impact tracking into the system design rather than retrofitting it; and they structure reporting to match the rhythm of the funding cycle, not the operational rhythm of the implementing organization. Technical credibility — demonstrating that you can build what you propose, at the scale you claim, with the accountability funders require — is now a primary selection criterion."
+  },
+  {
+    id: "sustainability-systems-design",
+    title: "Designing Sustainability Systems That Regulators Actually Accept",
+    category: "Sustainability Systems",
+    date: "September 12, 2023",
+    readTime: "7 min read",
+    excerpt: "Sustainability commitments are only as credible as the data systems behind them. Most ESG reporting infrastructure cannot withstand external audit.",
+    content: "Regulatory bodies and institutional investors are intensifying scrutiny of sustainability claims. Organizations that cannot demonstrate a clear data lineage from sensor or operational input to reported metric face growing reputational and legal risk. Building an audit-ready sustainability data system requires starting from the regulatory reporting requirement and working backward — designing data pipelines, calculation methodologies, and access controls that produce evidence, not assertions. The technical architecture of ESG systems is now a strategic capability, not a compliance checkbox."
+  },
+  {
+    id: "iot-critical-infrastructure-deployment",
+    title: "Deploying IoT in Critical Infrastructure: What the Spec Sheets Don't Tell You",
+    category: "Infrastructure Intelligence",
+    date: "August 20, 2023",
+    readTime: "8 min read",
+    excerpt: "Sensor deployment at institutional scale — across power grids, transit systems, and water networks — fails for reasons that have nothing to do with the technology. Here is what actually determines success.",
+    content: "IoT deployments in critical infrastructure fail not because the sensors malfunction, but because the surrounding architecture — data ingestion pipelines, edge computing strategy, alert logic, and maintenance workflow integration — is not designed for the operational realities of the environment. Success requires designing from the endpoint first: what data must be captured, at what frequency, with what latency tolerance, and what should happen when it arrives. The technology follows that design — not the other way around."
+  },
+  {
+    id: "command-center-architecture",
+    title: "Building Institutional Command Centers That Actually Get Used",
+    category: "Digitization Gaps",
+    date: "July 9, 2023",
+    readTime: "6 min read",
+    excerpt: "Operational command centers are built to improve institutional visibility — yet most are abandoned within six months. The design principles that determine whether a command center changes how an institution operates.",
+    content: "The command centers that become embedded in institutional operations share a common characteristic: they were designed around the decisions their users make, not around the data that was available. This means starting with a structured analysis of what each role must decide, how often, and what information would reduce the cost of error in that decision. The technology stack is secondary. Data pipeline automation is essential. And the interface must be built to match the cognitive workflow of each user, not the preferences of the designers."
+  },
+  {
+    id: "ai-procurement-risk",
+    title: "The Hidden Risk in Government AI Procurement",
+    category: "AI for Public Impact",
+    date: "June 3, 2023",
+    readTime: "7 min read",
+    excerpt: "Government agencies procuring AI systems face a structural risk that is rarely addressed in RFPs: the vendor delivers what was specified, not what was needed. How to close this gap before signing.",
+    content: "The most expensive AI failures in the public sector are not technical failures — they are specification failures. The agency specifies a system based on what they can articulate, the vendor builds exactly that, and the delivered system does not change how decisions are made because the problem was not correctly framed at the start. Rigorous AI procurement requires a discovery process that surfaces the actual decision being supported, the data that currently informs it, and the failure mode that the AI must address. Only then can a specification be written with confidence."
+  }
+];
