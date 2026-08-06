@@ -11,7 +11,8 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const hideMarketingChrome =
     isGsaiAppPath(pathname) ||
     pathname.startsWith("/projects/resilience-resource-optimizer") ||
-    pathname.startsWith("/projects/x-y");
+    pathname.startsWith("/projects/x-y") ||
+    pathname.startsWith("/x-y");
 
   if (hideMarketingChrome) {
     return <>{children}</>;

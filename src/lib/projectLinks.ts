@@ -1,9 +1,6 @@
 import type { Project } from "@/content/projects";
 import type { ProjectLinkType } from "@/content/types";
 
-const SITE_ORIGIN =
-  process.env.NEXT_PUBLIC_SITE_URL?.replace(/\/$/, "") ?? "https://phaarvai.com";
-
 export const PROJECT_LINK_LABELS: Record<ProjectLinkType, string> = {
   live: "Launch Application",
   platform: "Launch Platform",
@@ -14,16 +11,13 @@ export const PROJECT_LINK_LABELS: Record<ProjectLinkType, string> = {
   github: "View on GitHub",
 };
 
-/** Resolve configured URLs to absolute destinations (supports http(s) or site-relative paths). */
+/** Resolve configured URLs (http(s) absolute, or site-relative paths). */
 export function resolveProjectUrl(url: string): string {
   if (/^https?:\/\//i.test(url)) {
     return url;
   }
-  const path = url.startsWith("/") ? url : `/${url}`;
-  if (typeof window !== "undefined") {
-    return `${window.location.origin}${path}`;
-  }
-  return `${SITE_ORIGIN}${path}`;
+  // Keep relative paths relative so SSR and client hrefs match (avoids hydration errors).
+  return url.startsWith("/") ? url : `/${url}`;
 }
 
 export function getProjectLinkLabel(project: Project): string {

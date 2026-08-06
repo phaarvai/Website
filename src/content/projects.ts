@@ -97,10 +97,11 @@ export const projects: Project[] = [
     potentialPartners: ["Manufacturers", "Industrial networks", "Technology consortiums"],
     status: ["In Integration", "Production Candidate"],
     featured: true,
-    externalUrl: "/projects/x-y",
+    externalUrl: "/x-y",
     linkType: "system",
     badge: "Live",
-    openInNewTab: true,
+    // Same-tab so browser Back returns to the previous Phaarvai page (e.g. /themes).
+    openInNewTab: false,
   },
   {
     id: "ai-for-cities",
