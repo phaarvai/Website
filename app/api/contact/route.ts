@@ -14,8 +14,8 @@ const ContactSchema = z.object({
   themeInterest: z.string().optional(),
   areaOfInterest: z.string().optional(),
   message: z.string().min(10, "Message must be at least 10 characters"),
-  source: z.string().min(1).default("website"),
-  website: z.string().max(0).optional(),
+  source: z.string().min(1).optional(),
+  website: z.string().optional(),
 });
 
 function getClientIp(request: NextRequest): string {
@@ -80,7 +80,7 @@ export async function POST(request: NextRequest) {
         themeInterest: data.themeInterest,
         areaOfInterest: data.areaOfInterest,
         message: data.message,
-        source: data.source,
+        source: data.source || "website",
       });
 
       return NextResponse.json({

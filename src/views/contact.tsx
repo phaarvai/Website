@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -39,7 +39,6 @@ const formSchema = z.object({
   orgType: z.string().min(1, "Please select an organization type."),
   areaOfInterest: z.string().min(1, "Please select an area of interest."),
   message: z.string().min(10, "Please provide a brief overview of your inquiry."),
-  website: z.string().max(0).optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -57,6 +56,8 @@ const contactInfo = [
 export default function Contact() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">("idle");
+  const honeypotRef = useRef<HTMLInputElement>(null);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),
@@ -68,13 +69,14 @@ export default function Contact() {
       orgType: "",
       areaOfInterest: "",
       message: "",
-      website: "",
     },
   });
 
   async function onSubmit(data: FormValues) {
     setIsSubmitting(true);
+    setFormStatus("idle");
     try {
+      const honeypot = honeypotRef.current?.value?.trim() ?? "";
       const orgLabel =
         contactContent.organizationTypes.find((t) => t.id === data.orgType)?.label ?? data.orgType;
       const interestLabel =
@@ -90,19 +92,22 @@ export default function Contact() {
         areaOfInterest: interestLabel,
         message: data.message,
         source: "contact",
-        website: data.website,
+        website: honeypot || undefined,
       });
 
       if (!result.success) {
         throw new Error(result.errors?.[0] || "Submission failed");
       }
 
+      setFormStatus("success");
       toast({
         title: contactContent.successTitle,
         description: contactContent.followUpMessage,
       });
       form.reset();
+      if (honeypotRef.current) honeypotRef.current.value = "";
     } catch {
+      setFormStatus("error");
       toast({
         variant: "destructive",
         title: "Submission failed",
@@ -170,15 +175,28 @@ export default function Contact() {
                 className="lg:col-span-3 bg-card border border-border card-pad rounded-2xl"
               >
                 <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-                    <input
-                      type="text"
-                      tabIndex={-1}
-                      autoComplete="off"
-                      aria-hidden
-                      className="sr-only"
-                      {...form.register("website")}
-                    />
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit, () => {
+                      toast({
+                        variant: "destructive",
+                        title: "Please complete the required fields",
+                        description: "Name, organization, role, email, organization type, area of interest, and a short overview are required.",
+                      });
+                    })}
+                    className="space-y-5 relative z-10"
+                    noValidate
+                  >
+                    <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
+                      <label htmlFor="company_url_confirm_contact">Company URL</label>
+                      <input
+                        id="company_url_confirm_contact"
+                        ref={honeypotRef}
+                        type="text"
+                        name="company_url_confirm"
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+                    </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <FormField
@@ -255,7 +273,7 @@ export default function Contact() {
                             <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">
                               Organization type
                             </FormLabel>
-                            <Select onValueChange={field.onChange} value={field.value}>
+                            <Select onValueChange={field.onChange} value={field.value || undefined}>
                               <FormControl>
                                 <SelectTrigger className="h-11">
                                   <SelectValue placeholder="Select type" />
@@ -281,7 +299,7 @@ export default function Contact() {
                             <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">
                               Area of interest
                             </FormLabel>
-                            <Select onValueChange={field.onChange} value={field.value}>
+                            <Select onValueChange={field.onChange} value={field.value || undefined}>
                               <FormControl>
                                 <SelectTrigger className="h-11">
                                   <SelectValue placeholder="Select area" />
@@ -321,10 +339,21 @@ export default function Contact() {
                       )}
                     />
 
+                    {formStatus === "success" && (
+                      <p className="text-sm text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2">
+                        {contactContent.followUpMessage}
+                      </p>
+                    )}
+                    {formStatus === "error" && (
+                      <p className="text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-lg px-3 py-2">
+                        {contactContent.failureMessage}
+                      </p>
+                    )}
+
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full h-12 font-semibold hover-elevate gap-2 group"
+                      className="w-full h-12 font-semibold hover-elevate gap-2 group relative z-10 pointer-events-auto"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (

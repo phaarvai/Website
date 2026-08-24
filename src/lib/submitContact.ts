@@ -23,25 +23,45 @@ export interface ContactSubmitResult {
 export async function submitContactInquiry(
   payload: ContactInquiryPayload
 ): Promise<ContactSubmitResult> {
-  const res = await fetch("/api/contact", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(payload),
-  });
+  try {
+    const { website, ...fields } = payload;
+    const body = website ? { ...fields, website } : fields;
 
-  const json = (await res.json()) as ContactSubmitResult & { errors?: string[] };
+    const res = await fetch("/api/contact", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(body),
+    });
 
-  if (!res.ok || !json.success) {
+    let json: ContactSubmitResult & { errors?: string[] } = {};
+    try {
+      json = (await res.json()) as ContactSubmitResult & { errors?: string[] };
+    } catch {
+      return {
+        success: false,
+        errors: ["Could not read the server response. Please try again."],
+        message: "Could not read the server response. Please try again.",
+      };
+    }
+
+    if (!res.ok || !json.success) {
+      return {
+        success: false,
+        errors: json.errors ?? ["Submission failed"],
+        message: json.errors?.[0],
+      };
+    }
+
+    return {
+      success: true,
+      message: json.message,
+      emailed: json.emailed,
+    };
+  } catch {
     return {
       success: false,
-      errors: json.errors ?? ["Submission failed"],
-      message: json.errors?.[0],
+      errors: ["Network error. Please check your connection and try again."],
+      message: "Network error. Please check your connection and try again.",
     };
   }
-
-  return {
-    success: true,
-    message: json.message,
-    emailed: json.emailed,
-  };
 }

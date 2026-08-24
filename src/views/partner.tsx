@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -42,7 +42,6 @@ const formSchema = z.object({
   email: z.string().email("Invalid email address."),
   partnershipInterest: z.string().min(1, "Please select a partnership area."),
   message: z.string().min(10, "Please provide a brief overview of your collaboration interest."),
-  website: z.string().max(0).optional(),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -67,6 +66,8 @@ const fadeIn = {
 export default function Partner() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">("idle");
+  const honeypotRef = useRef<HTMLInputElement>(null);
   const { hero, partnershipAreas, collaborationPrinciples, contact, partnershipInterests } =
     partnerContent;
 
@@ -79,13 +80,14 @@ export default function Partner() {
       email: "",
       partnershipInterest: "",
       message: "",
-      website: "",
     },
   });
 
   async function onSubmit(data: FormValues) {
     setIsSubmitting(true);
+    setFormStatus("idle");
     try {
+      const honeypot = honeypotRef.current?.value?.trim() ?? "";
       const interestLabel =
         partnershipInterests.find((i) => i.id === data.partnershipInterest)?.label ??
         data.partnershipInterest;
@@ -99,19 +101,22 @@ export default function Partner() {
         areaOfInterest: interestLabel,
         message: data.message,
         source: "partner",
-        website: data.website,
+        website: honeypot || undefined,
       });
 
       if (!result.success) {
         throw new Error(result.errors?.[0] || "Submission failed");
       }
 
+      setFormStatus("success");
       toast({
         title: contactContent.successTitle,
         description: contactContent.followUpMessage,
       });
       form.reset();
+      if (honeypotRef.current) honeypotRef.current.value = "";
     } catch {
+      setFormStatus("error");
       toast({
         variant: "destructive",
         title: "Submission failed",
@@ -288,15 +293,28 @@ export default function Partner() {
                 className="lg:col-span-3 bg-card border border-border card-pad rounded-2xl"
               >
                 <Form {...form}>
-                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-5">
-                    <input
-                      type="text"
-                      tabIndex={-1}
-                      autoComplete="off"
-                      aria-hidden
-                      className="sr-only"
-                      {...form.register("website")}
-                    />
+                  <form
+                    onSubmit={form.handleSubmit(onSubmit, () => {
+                      toast({
+                        variant: "destructive",
+                        title: "Please complete the required fields",
+                        description: "Name, organization, role, email, partnership interest, and a short overview are required.",
+                      });
+                    })}
+                    className="space-y-5 relative z-10"
+                    noValidate
+                  >
+                    <div className="absolute -left-[9999px] h-0 w-0 overflow-hidden" aria-hidden>
+                      <label htmlFor="company_url_confirm">Company URL</label>
+                      <input
+                        id="company_url_confirm"
+                        ref={honeypotRef}
+                        type="text"
+                        name="company_url_confirm"
+                        tabIndex={-1}
+                        autoComplete="off"
+                      />
+                    </div>
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                       <FormField
@@ -381,7 +399,7 @@ export default function Partner() {
                           <FormLabel className="text-xs uppercase tracking-wider text-muted-foreground">
                             Partnership interest
                           </FormLabel>
-                          <Select onValueChange={field.onChange} value={field.value}>
+                          <Select onValueChange={field.onChange} value={field.value || undefined}>
                             <FormControl>
                               <SelectTrigger className="h-11">
                                 <SelectValue placeholder="Select partnership area" />
@@ -420,10 +438,21 @@ export default function Partner() {
                       )}
                     />
 
+                    {formStatus === "success" && (
+                      <p className="text-sm text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2">
+                        {contactContent.followUpMessage}
+                      </p>
+                    )}
+                    {formStatus === "error" && (
+                      <p className="text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-lg px-3 py-2">
+                        {contactContent.failureMessage}
+                      </p>
+                    )}
+
                     <Button
                       type="submit"
                       size="lg"
-                      className="w-full h-12 font-semibold hover-elevate gap-2 group"
+                      className="w-full h-12 font-semibold hover-elevate gap-2 group relative z-10 pointer-events-auto"
                       disabled={isSubmitting}
                     >
                       {isSubmitting ? (
