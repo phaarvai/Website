@@ -33,9 +33,9 @@ export async function submitContactInquiry(
       body: JSON.stringify(body),
     });
 
-    let json: ContactSubmitResult & { errors?: string[] } = {};
+    let json: ContactSubmitResult;
     try {
-      json = (await res.json()) as ContactSubmitResult & { errors?: string[] };
+      json = (await res.json()) as ContactSubmitResult;
     } catch {
       return {
         success: false,
@@ -48,7 +48,7 @@ export async function submitContactInquiry(
       return {
         success: false,
         errors: json.errors ?? ["Submission failed"],
-        message: json.errors?.[0],
+        message: json.errors?.[0] ?? json.message ?? "Submission failed",
       };
     }
 
