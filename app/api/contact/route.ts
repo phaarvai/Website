@@ -3,18 +3,26 @@ import { z } from "zod";
 import { deliverContactSubmission, getContactDeliveryConfig } from "@/lib/contact";
 import { checkRateLimit } from "@/lib/rate-limit";
 
+const optionalText = z
+  .string()
+  .optional()
+  .transform((value) => {
+    const trimmed = value?.trim();
+    return trimmed ? trimmed : undefined;
+  });
+
 const ContactSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters"),
-  email: z.string().email("Invalid email address"),
-  organization: z.string().min(2, "Organization is required").optional(),
-  role: z.string().optional(),
-  country: z.string().optional(),
-  orgType: z.string().optional(),
-  partnerType: z.string().optional(),
-  themeInterest: z.string().optional(),
-  areaOfInterest: z.string().optional(),
-  message: z.string().min(10, "Message must be at least 10 characters"),
-  source: z.string().min(1).optional(),
+  name: z.string().trim().min(2, "Name must be at least 2 characters"),
+  email: z.string().trim().email("Invalid email address"),
+  organization: optionalText,
+  role: optionalText,
+  country: optionalText,
+  orgType: optionalText,
+  partnerType: optionalText,
+  themeInterest: optionalText,
+  areaOfInterest: optionalText,
+  message: z.string().trim().min(10, "Message must be at least 10 characters"),
+  source: optionalText,
   website: z.string().optional(),
 });
 
@@ -27,13 +35,15 @@ function getClientIp(request: NextRequest): string {
 export async function POST(request: NextRequest) {
   try {
     const ip = getClientIp(request);
-    const rate = checkRateLimit(`contact:${ip}`);
+    const rate = checkRateLimit(`contact:${ip}`, 30, 15 * 60 * 1000);
 
     if (!rate.allowed) {
       return NextResponse.json(
         {
           success: false,
-          errors: ["Too many submissions. Please try again later or email partnerships@phaarvai.com directly."],
+          errors: [
+            "Too many submissions. Please try again later or email partnerships@phaarvai.com directly.",
+          ],
         },
         {
           status: 429,
@@ -44,9 +54,23 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    const body = await request.json();
+    let body: unknown;
+    try {
+      body = await request.json();
+    } catch {
+      return NextResponse.json(
+        { success: false, errors: ["Invalid request body"] },
+        { status: 400 }
+      );
+    }
 
-    if (body.website) {
+    if (
+      body &&
+      typeof body === "object" &&
+      "website" in body &&
+      typeof (body as { website?: unknown }).website === "string" &&
+      (body as { website: string }).website.trim().length > 0
+    ) {
       return NextResponse.json({
         success: true,
         emailed: false,
@@ -68,43 +92,38 @@ export async function POST(request: NextRequest) {
 
     const data = result.data;
 
-    try {
-      const { emailed, deliveryStatus } = await deliverContactSubmission({
-        name: data.name,
-        email: data.email,
-        organization: data.organization,
-        role: data.role,
-        country: data.country,
-        orgType: data.orgType,
-        partnerType: data.partnerType,
-        themeInterest: data.themeInterest,
-        areaOfInterest: data.areaOfInterest,
-        message: data.message,
-        source: data.source || "website",
-      });
+    const { emailed, deliveryStatus, persisted } = await deliverContactSubmission({
+      name: data.name,
+      email: data.email,
+      organization: data.organization,
+      role: data.role,
+      country: data.country,
+      orgType: data.orgType,
+      partnerType: data.partnerType,
+      themeInterest: data.themeInterest,
+      areaOfInterest: data.areaOfInterest,
+      message: data.message,
+      source: data.source || "website",
+    });
 
-      return NextResponse.json({
-        success: true,
-        emailed,
-        deliveryStatus,
-        message:
-          "Thank you for your inquiry. Our team reviews all submissions and will connect where there is strategic alignment.",
-      });
-    } catch {
-      return NextResponse.json(
-        {
-          success: false,
-          errors: [
-            "We received your message but could not complete delivery. Please email partnerships@phaarvai.com directly.",
-          ],
-        },
-        { status: 503 }
-      );
-    }
-  } catch {
+    return NextResponse.json({
+      success: true,
+      emailed,
+      deliveryStatus,
+      persisted,
+      message:
+        "Thank you for your inquiry. Our team reviews all submissions and will connect where there is strategic alignment.",
+    });
+  } catch (error) {
+    console.error("[contact] Unexpected submission error:", error);
     return NextResponse.json(
-      { success: false, errors: ["Invalid request body"] },
-      { status: 400 }
+      {
+        success: false,
+        errors: [
+          "We could not process your inquiry right now. Please email partnerships@phaarvai.com directly.",
+        ],
+      },
+      { status: 500 }
     );
   }
 }
@@ -116,7 +135,7 @@ export async function GET() {
     contact: {
       ...config,
       rateLimitWindowMinutes: 15,
-      rateLimitMaxRequests: 8,
+      rateLimitMaxRequests: 30,
     },
   });
 }

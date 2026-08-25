@@ -105,7 +105,7 @@ export default function Partner() {
       });
 
       if (!result.success) {
-        throw new Error(result.errors?.[0] || "Submission failed");
+        throw new Error(result.message || result.errors?.[0] || "Submission failed");
       }
 
       setFormStatus("success");
@@ -115,12 +115,12 @@ export default function Partner() {
       });
       form.reset();
       if (honeypotRef.current) honeypotRef.current.value = "";
-    } catch {
+    } catch (error) {
       setFormStatus("error");
       toast({
         variant: "destructive",
         title: "Submission failed",
-        description: contactContent.failureMessage,
+        description: error instanceof Error ? error.message : contactContent.failureMessage,
       });
     } finally {
       setIsSubmitting(false);

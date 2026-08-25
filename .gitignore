@@ -5,6 +5,9 @@
 .turbo/
 out/
 .data/
+.env
+.env.local
+.env*.local
 
 # compiled output
 dist

@@ -17,20 +17,30 @@ export interface ContactSubmission {
   deliveryStatus: "logged" | "emailed" | "failed";
 }
 
+const DEFAULT_CONTACT_TO = "partnerships@phaarvai.com";
+
+function getContactToEmail(): string {
+  return process.env.CONTACT_TO_EMAIL?.trim() || DEFAULT_CONTACT_TO;
+}
+
 function shouldPersist(): boolean {
   if (process.env.CONTACT_PERSIST === "false") return false;
-  if (process.env.CONTACT_PERSIST === "true") return true;
-  return process.env.NODE_ENV === "production";
+  return true;
 }
 
 async function persistSubmission(data: ContactSubmission): Promise<boolean> {
   if (!shouldPersist()) return false;
 
-  const dir = process.env.CONTACT_DATA_DIR || path.join(process.cwd(), ".data");
-  await mkdir(dir, { recursive: true });
-  const file = path.join(dir, "contact-submissions.jsonl");
-  await appendFile(file, `${JSON.stringify(data)}\n`, "utf8");
-  return true;
+  try {
+    const dir = process.env.CONTACT_DATA_DIR || path.join(process.cwd(), ".data");
+    await mkdir(dir, { recursive: true });
+    const file = path.join(dir, "contact-submissions.jsonl");
+    await appendFile(file, `${JSON.stringify(data)}\n`, "utf8");
+    return true;
+  } catch (error) {
+    console.error("[contact] Failed to persist submission:", error);
+    return false;
+  }
 }
 
 function formatSubject(data: ContactSubmission): string {
@@ -39,12 +49,12 @@ function formatSubject(data: ContactSubmission): string {
   return `Phaarvai [${source}] — ${org}`;
 }
 
-async function sendViaResend(data: ContactSubmission): Promise<void> {
+async function sendViaResend(data: ContactSubmission): Promise<boolean> {
   const apiKey = process.env.RESEND_API_KEY;
-  const to = process.env.CONTACT_TO_EMAIL;
+  const to = getContactToEmail();
   const from = process.env.CONTACT_FROM_EMAIL || "Phaarvai <onboarding@resend.dev>";
 
-  if (!apiKey || !to) return;
+  if (!apiKey) return false;
 
   const res = await fetch("https://api.resend.com/emails", {
     method: "POST",
@@ -65,14 +75,16 @@ async function sendViaResend(data: ContactSubmission): Promise<void> {
     const err = await res.text();
     throw new Error(`Resend error: ${err}`);
   }
+
+  return true;
 }
 
-async function sendViaPostmark(data: ContactSubmission): Promise<void> {
+async function sendViaPostmark(data: ContactSubmission): Promise<boolean> {
   const apiKey = process.env.POSTMARK_SERVER_TOKEN;
-  const to = process.env.CONTACT_TO_EMAIL;
+  const to = getContactToEmail();
   const from = process.env.CONTACT_FROM_EMAIL;
 
-  if (!apiKey || !to || !from) return;
+  if (!apiKey || !from) return false;
 
   const res = await fetch("https://api.postmarkapp.com/email", {
     method: "POST",
@@ -94,6 +106,53 @@ async function sendViaPostmark(data: ContactSubmission): Promise<void> {
     const err = await res.text();
     throw new Error(`Postmark error: ${err}`);
   }
+
+  return true;
+}
+
+/**
+ * Email delivery that only needs CONTACT_TO_EMAIL (no Resend/Postmark keys).
+ * First inquiry triggers an activation email to that inbox — click Activate once.
+ * Docs: https://formsubmit.co/ajax-documentation
+ */
+async function sendViaFormSubmit(data: ContactSubmission): Promise<boolean> {
+  const to = getContactToEmail();
+  const disabled = process.env.CONTACT_FORMSUBMIT === "false";
+  if (disabled || !to) return false;
+
+  const res = await fetch(`https://formsubmit.co/ajax/${encodeURIComponent(to)}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+      Accept: "application/json",
+    },
+    body: JSON.stringify({
+      name: data.name,
+      email: data.email,
+      organization: data.organization || "",
+      role: data.role || "",
+      partnerType: data.partnerType || data.orgType || "",
+      areaOfInterest: data.areaOfInterest || data.themeInterest || "",
+      country: data.country || "",
+      source: data.source,
+      message: data.message,
+      _subject: formatSubject(data),
+      _replyto: data.email,
+      _template: "table",
+    }),
+  });
+
+  const payload = (await res.json().catch(() => ({}))) as {
+    success?: string | boolean;
+    message?: string;
+  };
+
+  if (!res.ok) {
+    throw new Error(`FormSubmit error: ${payload.message || res.statusText}`);
+  }
+
+  // FormSubmit returns success even when activation is pending.
+  return true;
 }
 
 function formatEmailBody(data: ContactSubmission): string {
@@ -129,18 +188,25 @@ async function notifyWebhook(data: ContactSubmission): Promise<void> {
 }
 
 export function getContactDeliveryConfig() {
-  const hasResend = Boolean(process.env.RESEND_API_KEY && process.env.CONTACT_TO_EMAIL);
-  const hasPostmark = Boolean(
-    process.env.POSTMARK_SERVER_TOKEN && process.env.CONTACT_TO_EMAIL && process.env.CONTACT_FROM_EMAIL
-  );
+  const to = getContactToEmail();
+  const hasResend = Boolean(process.env.RESEND_API_KEY);
+  const hasPostmark = Boolean(process.env.POSTMARK_SERVER_TOKEN && process.env.CONTACT_FROM_EMAIL);
+  const formSubmitEnabled = process.env.CONTACT_FORMSUBMIT !== "false";
   const provider = process.env.CONTACT_EMAIL_PROVIDER?.toLowerCase();
-  const emailConfigured = hasResend || hasPostmark || Boolean(provider);
-  const destination = process.env.CONTACT_TO_EMAIL ?? null;
+
+  let activeProvider: string | null = null;
+  if (hasResend && (provider === "resend" || !provider || provider === "auto")) {
+    activeProvider = "resend";
+  } else if (hasPostmark && (provider === "postmark" || !hasResend)) {
+    activeProvider = "postmark";
+  } else if (formSubmitEnabled && to) {
+    activeProvider = "formsubmit";
+  }
 
   return {
-    emailConfigured,
-    destination,
-    provider: provider ?? (hasResend ? "resend" : hasPostmark ? "postmark" : null),
+    emailConfigured: Boolean(activeProvider),
+    destination: to,
+    provider: activeProvider,
     persistEnabled: shouldPersist(),
     webhookConfigured: Boolean(process.env.CONTACT_WEBHOOK_URL),
   };
@@ -154,10 +220,9 @@ export async function deliverContactSubmission(
 
   let emailed = false;
   const provider = process.env.CONTACT_EMAIL_PROVIDER?.toLowerCase();
-  const hasResend = Boolean(process.env.RESEND_API_KEY && process.env.CONTACT_TO_EMAIL);
-  const hasPostmark = Boolean(
-    process.env.POSTMARK_SERVER_TOKEN && process.env.CONTACT_TO_EMAIL && process.env.CONTACT_FROM_EMAIL
-  );
+  const hasResend = Boolean(process.env.RESEND_API_KEY);
+  const hasPostmark = Boolean(process.env.POSTMARK_SERVER_TOKEN && process.env.CONTACT_FROM_EMAIL);
+  const formSubmitEnabled = process.env.CONTACT_FORMSUBMIT !== "false";
 
   const submission: ContactSubmission = {
     ...data,
@@ -165,24 +230,26 @@ export async function deliverContactSubmission(
     deliveryStatus,
   };
 
-  if (hasResend || hasPostmark || provider) {
-    try {
-      if (provider === "postmark" || (hasPostmark && provider !== "resend")) {
-        await sendViaPostmark(submission);
-        emailed = true;
-      } else if (provider === "resend" || hasResend) {
-        await sendViaResend(submission);
-        emailed = true;
-      }
+  try {
+    let sent = false;
+
+    if (hasResend && (provider === "resend" || provider === "auto" || !provider)) {
+      sent = await sendViaResend(submission);
+    } else if (hasPostmark && (provider === "postmark" || !hasResend)) {
+      sent = await sendViaPostmark(submission);
+    } else if (formSubmitEnabled) {
+      sent = await sendViaFormSubmit(submission);
+    }
+
+    if (sent) {
+      emailed = true;
       deliveryStatus = "emailed";
       submission.deliveryStatus = deliveryStatus;
-    } catch (error) {
-      submission.deliveryStatus = "failed";
-      console.error("[contact] Email delivery failed:", error);
-      await persistSubmission(submission);
-      await notifyWebhook(submission);
-      throw error;
     }
+  } catch (error) {
+    deliveryStatus = "failed";
+    submission.deliveryStatus = deliveryStatus;
+    console.error("[contact] Email delivery failed (submission still accepted):", error);
   }
 
   const persisted = await persistSubmission(submission);
@@ -196,6 +263,7 @@ export async function deliverContactSubmission(
     deliveryStatus: submission.deliveryStatus,
     emailed,
     persisted,
+    destination: getContactToEmail(),
   });
 
   return { emailed, persisted, deliveryStatus: submission.deliveryStatus };
