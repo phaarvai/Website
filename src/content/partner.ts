@@ -134,9 +134,9 @@ export const partnerContent = {
     description:
       "Share your organization, partnership interest, and collaboration scope. Our team reviews all partnership inquiries and will connect where there is strategic alignment.",
     submitLabel: "Connect With Our Team",
-    successTitle: "Inquiry received",
+    successTitle: "Submitted",
     successDescription:
-      "Our team reviews all partnership inquiries and will connect where there is strategic alignment.",
+      "Thank you! Your partnership inquiry has been submitted successfully.",
   },
 
   partnershipInterests: [

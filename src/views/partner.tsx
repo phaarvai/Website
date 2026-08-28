@@ -32,16 +32,23 @@ import { OperationalDashboard } from "@/components/visuals/OperationalDashboard"
 import { partnerContent } from "@/content/partner";
 import { contactContent } from "@/content/contact";
 import { partnerAudiences, siteContent } from "@/content/site";
-import { submitContactInquiry } from "@/lib/submitContact";
+import { submitPartnershipInquiry } from "@/lib/submitPartnership";
 import { cn } from "@/lib/utils";
 
+const SUCCESS_MESSAGE =
+  "Thank you! Your partnership inquiry has been submitted successfully.";
+const FAILURE_MESSAGE = "Something went wrong. Please try again later.";
+
 const formSchema = z.object({
-  name: z.string().min(2, "Name must be at least 2 characters."),
-  organization: z.string().min(2, "Organization is required."),
-  role: z.string().min(2, "Role is required."),
-  email: z.string().email("Invalid email address."),
+  name: z.string().min(2, "Name must be at least 2 characters.").max(200),
+  organization: z.string().min(2, "Organization is required.").max(200),
+  role: z.string().min(2, "Role is required.").max(200),
+  email: z.string().email("Invalid email address.").max(320),
   partnershipInterest: z.string().min(1, "Please select a partnership area."),
-  message: z.string().min(10, "Please provide a brief overview of your collaboration interest."),
+  message: z
+    .string()
+    .min(10, "Please provide a brief overview of your collaboration interest.")
+    .max(5000),
 });
 
 type FormValues = z.infer<typeof formSchema>;
@@ -67,7 +74,9 @@ export default function Partner() {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [formStatus, setFormStatus] = useState<"idle" | "success" | "error">("idle");
+  const [statusMessage, setStatusMessage] = useState("");
   const honeypotRef = useRef<HTMLInputElement>(null);
+  const submitLockRef = useRef(false);
   const { hero, partnershipAreas, collaborationPrinciples, contact, partnershipInterests } =
     partnerContent;
 
@@ -84,45 +93,57 @@ export default function Partner() {
   });
 
   async function onSubmit(data: FormValues) {
+    if (submitLockRef.current || isSubmitting) return;
+    submitLockRef.current = true;
     setIsSubmitting(true);
     setFormStatus("idle");
+    setStatusMessage("");
     try {
       const honeypot = honeypotRef.current?.value?.trim() ?? "";
       const interestLabel =
         partnershipInterests.find((i) => i.id === data.partnershipInterest)?.label ??
         data.partnershipInterest;
 
-      const result = await submitContactInquiry({
+      const result = await submitPartnershipInquiry({
         name: data.name,
         organization: data.organization,
         role: data.role,
         email: data.email,
-        partnerType: interestLabel,
-        areaOfInterest: interestLabel,
+        partnershipInterest: interestLabel,
         message: data.message,
-        source: "partner",
         website: honeypot || undefined,
       });
 
-      if (!result.success) {
-        throw new Error(result.message || result.errors?.[0] || "Submission failed");
+      if (!result.success || result.emailed === false) {
+        const errorMessage =
+          result.message || result.errors?.[0] || FAILURE_MESSAGE;
+        setStatusMessage(errorMessage);
+        setFormStatus("error");
+        toast({
+          variant: "destructive",
+          title: "Submission failed",
+          description: errorMessage,
+        });
+        return;
       }
 
       setFormStatus("success");
       toast({
-        title: contactContent.successTitle,
-        description: contactContent.followUpMessage,
+        title: "Submitted",
+        description: SUCCESS_MESSAGE,
       });
       form.reset();
       if (honeypotRef.current) honeypotRef.current.value = "";
-    } catch (error) {
+    } catch {
+      setStatusMessage(FAILURE_MESSAGE);
       setFormStatus("error");
       toast({
         variant: "destructive",
         title: "Submission failed",
-        description: error instanceof Error ? error.message : contactContent.failureMessage,
+        description: FAILURE_MESSAGE,
       });
     } finally {
+      submitLockRef.current = false;
       setIsSubmitting(false);
     }
   }
@@ -440,12 +461,12 @@ export default function Partner() {
 
                     {formStatus === "success" && (
                       <p className="text-sm text-emerald-700 bg-emerald-50 border border-emerald-200 rounded-lg px-3 py-2">
-                        {contactContent.followUpMessage}
+                        {SUCCESS_MESSAGE}
                       </p>
                     )}
                     {formStatus === "error" && (
                       <p className="text-sm text-destructive bg-destructive/10 border border-destructive/20 rounded-lg px-3 py-2">
-                        {contactContent.failureMessage}
+                        {statusMessage || FAILURE_MESSAGE}
                       </p>
                     )}
 
