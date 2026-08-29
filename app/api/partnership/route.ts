@@ -66,7 +66,7 @@ export async function POST(request: NextRequest) {
           success: false,
           emailed: false,
           errors: [
-            "Too many submissions. Please try again later or email partnerships@gmail.com directly.",
+            "Too many submissions. Please try again later.",
           ],
           message: "Something went wrong. Please try again later.",
         },

@@ -15,32 +15,28 @@ export interface PartnershipSubmission {
   submittedAt: string;
 }
 
-const DEFAULT_PARTNERSHIP_TO = "partnerships@gmail.com";
-const DEFAULT_RESEND_ACCOUNT_EMAIL = "priya.bakkiyaraj@phaarvai.com";
-const DEFAULT_DEV_FROM = "Phaarvai <onboarding@resend.dev>";
-
 const RESEND_NOT_CONFIGURED_ERROR =
-  "Partnership email is not configured. Add RESEND_API_KEY and RESEND_FROM_EMAIL to your server environment, then restart the development server.";
+  "Partnership email is not configured. Set RESEND_API_KEY, RESEND_FROM_EMAIL, and PARTNERSHIP_TO_EMAIL in your server environment, then restart the development server.";
 
-function getPartnershipToEmail(): string {
-  return process.env.PARTNERSHIP_TO_EMAIL?.trim() || DEFAULT_PARTNERSHIP_TO;
+function getPartnershipToEmail(): string | undefined {
+  return process.env.PARTNERSHIP_TO_EMAIL?.trim() || undefined;
 }
 
 function getResendFromEmail(): string | undefined {
   return process.env.RESEND_FROM_EMAIL?.trim() || undefined;
 }
 
-function getResendAccountEmail(): string {
-  return process.env.RESEND_ACCOUNT_EMAIL?.trim() || DEFAULT_RESEND_ACCOUNT_EMAIL;
+function getDevFromEmail(): string | undefined {
+  return process.env.RESEND_DEV_FROM_EMAIL?.trim() || undefined;
 }
 
-function getDevFromEmail(): string {
-  return process.env.RESEND_DEV_FROM_EMAIL?.trim() || DEFAULT_DEV_FROM;
+function getResendAccountEmail(): string | undefined {
+  return process.env.RESEND_ACCOUNT_EMAIL?.trim() || undefined;
 }
 
 /** Ensure Resend receives "Name <email@domain.com>" format. */
 function normalizeFromEmail(from: string): string {
-  const trimmed = from.trim();
+  const trimmed = from.trim().replace(/^["']|["']$/g, "");
   if (trimmed.includes("<") && trimmed.includes(">")) return trimmed;
   return `Phaarvai <${trimmed}>`;
 }
@@ -48,7 +44,6 @@ function normalizeFromEmail(from: string): string {
 function isDomainVerificationError(error: {
   statusCode?: number | null;
   message?: string | null;
-  name?: string;
 }): boolean {
   return (
     error.statusCode === 403 &&
@@ -90,17 +85,22 @@ function formatEmailBody(data: PartnershipSubmission, intendedTo?: string): stri
 }
 
 function isResendConfigured(): boolean {
-  return Boolean(process.env.RESEND_API_KEY?.trim() && getResendFromEmail());
+  return Boolean(
+    process.env.RESEND_API_KEY?.trim() &&
+      getResendFromEmail() &&
+      getPartnershipToEmail()
+  );
 }
 
 export function getPartnershipDeliveryConfig() {
   return {
     emailConfigured: isResendConfigured(),
-    destination: getPartnershipToEmail(),
+    destination: getPartnershipToEmail() ?? null,
+    fromEmail: getResendFromEmail() ?? null,
     provider: isResendConfigured() ? "resend" : null,
     resendConfigured: Boolean(process.env.RESEND_API_KEY?.trim()),
     fromEmailConfigured: Boolean(getResendFromEmail()),
-    devFallbackAvailable: Boolean(getDevFromEmail() && getResendAccountEmail()),
+    destinationConfigured: Boolean(getPartnershipToEmail()),
   };
 }
 
@@ -113,11 +113,13 @@ export async function deliverPartnershipSubmission(
 ): Promise<PartnershipDeliveryResult> {
   const apiKey = process.env.RESEND_API_KEY?.trim();
   const from = getResendFromEmail();
+  const to = getPartnershipToEmail();
 
-  if (!apiKey || !from) {
+  if (!apiKey || !from || !to) {
     console.error("[partnership] Resend is not configured", {
       hasApiKey: Boolean(apiKey),
       hasFromEmail: Boolean(from),
+      hasDestination: Boolean(to),
     });
     return {
       emailed: false,
@@ -137,13 +139,12 @@ export async function deliverPartnershipSubmission(
     submittedAt,
   };
 
-  const intendedTo = getPartnershipToEmail();
   const resend = new Resend(apiKey);
 
   try {
     const primary = await resend.emails.send({
       from: normalizeFromEmail(from),
-      to: [intendedTo],
+      to: [to],
       replyTo: submission.email,
       subject: formatSubject(submission),
       text: formatEmailBody(submission),
@@ -152,43 +153,42 @@ export async function deliverPartnershipSubmission(
     if (!primary.error) {
       console.info("[partnership] Inquiry emailed via Resend", {
         organization: submission.organization,
-        destination: intendedTo,
+        destination: to,
       });
       return { emailed: true, provider: "resend" };
     }
 
-    if (isDomainVerificationError(primary.error)) {
-      const accountEmail = getResendAccountEmail();
+    // Optional dev fallback when domain is not yet verified in Resend.
+    const devFrom = getDevFromEmail();
+    const accountEmail = getResendAccountEmail();
+    if (isDomainVerificationError(primary.error) && devFrom && accountEmail) {
       const fallback = await resend.emails.send({
-        from: normalizeFromEmail(getDevFromEmail()),
+        from: normalizeFromEmail(devFrom),
         to: [accountEmail],
         replyTo: submission.email,
-        subject: `${formatSubject(submission)} [route to ${intendedTo}]`,
-        text: formatEmailBody(submission, intendedTo),
+        subject: `${formatSubject(submission)} [route to ${to}]`,
+        text: formatEmailBody(submission, to),
       });
 
       if (!fallback.error) {
         console.info("[partnership] Inquiry emailed via Resend dev fallback", {
           organization: submission.organization,
           destination: accountEmail,
-          intendedTo,
+          intendedTo: to,
         });
         return { emailed: true, provider: "resend-dev-fallback" };
       }
 
       console.error("[partnership] Resend dev fallback failed:", fallback.error);
-      return {
-        emailed: false,
-        error:
-          "Email could not be sent. Verify phaarvai.com in your Resend dashboard, then restart the server.",
-        status: 500,
-      };
     }
 
     console.error("[partnership] Resend delivery failed:", primary.error);
     return {
       emailed: false,
-      error: "Something went wrong. Please try again later.",
+      error:
+        isDomainVerificationError(primary.error)
+          ? "Email could not be sent. Verify your domain in the Resend dashboard, then restart the server."
+          : "Something went wrong. Please try again later.",
       status: 500,
     };
   } catch (error) {
