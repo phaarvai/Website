@@ -44,9 +44,10 @@ export async function submitContactInquiry(
       };
     }
 
-    if (!res.ok || !json.success) {
+    if (!res.ok || !json.success || json.emailed !== true) {
       return {
         success: false,
+        emailed: false,
         errors: json.errors ?? ["Submission failed"],
         message: json.errors?.[0] ?? json.message ?? "Submission failed",
       };

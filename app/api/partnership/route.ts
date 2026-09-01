@@ -139,6 +139,8 @@ export async function POST(request: NextRequest) {
     });
 
     if (!delivery.emailed) {
+      console.error("[partnership] Delivery failed:", delivery.error);
+
       return NextResponse.json(
         {
           success: false,

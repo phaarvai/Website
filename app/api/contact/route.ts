@@ -92,7 +92,7 @@ export async function POST(request: NextRequest) {
 
     const data = result.data;
 
-    const { emailed, deliveryStatus, persisted } = await deliverContactSubmission({
+    const delivery = await deliverContactSubmission({
       name: data.name,
       email: data.email,
       organization: data.organization,
@@ -106,11 +106,27 @@ export async function POST(request: NextRequest) {
       source: data.source || "website",
     });
 
+    if (!delivery.emailed) {
+      console.error("[contact] Delivery failed:", delivery.error);
+
+      return NextResponse.json(
+        {
+          success: false,
+          emailed: false,
+          deliveryStatus: delivery.deliveryStatus,
+          persisted: delivery.persisted,
+          errors: [delivery.error],
+          message: delivery.error,
+        },
+        { status: delivery.status }
+      );
+    }
+
     return NextResponse.json({
       success: true,
-      emailed,
-      deliveryStatus,
-      persisted,
+      emailed: true,
+      deliveryStatus: delivery.deliveryStatus,
+      persisted: delivery.persisted,
       message:
         "Thank you for your inquiry. Our team reviews all submissions and will connect where there is strategic alignment.",
     });

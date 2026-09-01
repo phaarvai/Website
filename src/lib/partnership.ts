@@ -1,9 +1,12 @@
-/**
- * Partnership inquiry email delivery via Resend.
- * Success requires emailed === true.
- */
-
-import { Resend } from "resend";
+import {
+  GENERIC_EMAIL_ERROR,
+  getClientSafeEmailError,
+  getResendApiKey,
+  getResendFromEmail,
+  logResendError,
+  sendResendEmail,
+  type ResendErrorShape,
+} from "@/lib/resend-mail";
 
 export interface PartnershipSubmission {
   name: string;
@@ -15,40 +18,8 @@ export interface PartnershipSubmission {
   submittedAt: string;
 }
 
-const RESEND_NOT_CONFIGURED_ERROR =
-  "Partnership email is not configured. Set RESEND_API_KEY, RESEND_FROM_EMAIL, and PARTNERSHIP_TO_EMAIL in your server environment, then restart the development server.";
-
 function getPartnershipToEmail(): string | undefined {
   return process.env.PARTNERSHIP_TO_EMAIL?.trim() || undefined;
-}
-
-function getResendFromEmail(): string | undefined {
-  return process.env.RESEND_FROM_EMAIL?.trim() || undefined;
-}
-
-function getDevFromEmail(): string | undefined {
-  return process.env.RESEND_DEV_FROM_EMAIL?.trim() || undefined;
-}
-
-function getResendAccountEmail(): string | undefined {
-  return process.env.RESEND_ACCOUNT_EMAIL?.trim() || undefined;
-}
-
-/** Ensure Resend receives "Name <email@domain.com>" format. */
-function normalizeFromEmail(from: string): string {
-  const trimmed = from.trim().replace(/^["']|["']$/g, "");
-  if (trimmed.includes("<") && trimmed.includes(">")) return trimmed;
-  return `Phaarvai <${trimmed}>`;
-}
-
-function isDomainVerificationError(error: {
-  statusCode?: number | null;
-  message?: string | null;
-}): boolean {
-  return (
-    error.statusCode === 403 &&
-    /domain is not verified|not verified/i.test(error.message ?? "")
-  );
 }
 
 export function sanitizeField(value: string, maxLen: number): string {
@@ -63,8 +34,8 @@ function formatSubject(data: PartnershipSubmission): string {
   return `New Partnership Inquiry – ${data.organization}`;
 }
 
-function formatEmailBody(data: PartnershipSubmission, intendedTo?: string): string {
-  const lines = [
+function formatEmailBody(data: PartnershipSubmission): string {
+  return [
     "New Partnership Inquiry",
     "",
     `Name: ${data.name}`,
@@ -75,21 +46,11 @@ function formatEmailBody(data: PartnershipSubmission, intendedTo?: string): stri
     `Message/Description: ${data.message}`,
     "",
     `Submitted At: ${data.submittedAt}`,
-  ];
-
-  if (intendedTo) {
-    lines.splice(2, 0, `Intended inbox: ${intendedTo}`, "");
-  }
-
-  return lines.join("\n");
+  ].join("\n");
 }
 
 function isResendConfigured(): boolean {
-  return Boolean(
-    process.env.RESEND_API_KEY?.trim() &&
-      getResendFromEmail() &&
-      getPartnershipToEmail()
-  );
+  return Boolean(getResendApiKey() && getResendFromEmail() && getPartnershipToEmail());
 }
 
 export function getPartnershipDeliveryConfig() {
@@ -98,7 +59,7 @@ export function getPartnershipDeliveryConfig() {
     destination: getPartnershipToEmail() ?? null,
     fromEmail: getResendFromEmail() ?? null,
     provider: isResendConfigured() ? "resend" : null,
-    resendConfigured: Boolean(process.env.RESEND_API_KEY?.trim()),
+    resendConfigured: Boolean(getResendApiKey()),
     fromEmailConfigured: Boolean(getResendFromEmail()),
     destinationConfigured: Boolean(getPartnershipToEmail()),
   };
@@ -111,19 +72,20 @@ export type PartnershipDeliveryResult =
 export async function deliverPartnershipSubmission(
   data: Omit<PartnershipSubmission, "submittedAt">
 ): Promise<PartnershipDeliveryResult> {
-  const apiKey = process.env.RESEND_API_KEY?.trim();
-  const from = getResendFromEmail();
+  const fromRaw = getResendFromEmail();
   const to = getPartnershipToEmail();
 
-  if (!apiKey || !from || !to) {
+  if (!getResendApiKey() || !fromRaw || !to) {
     console.error("[partnership] Resend is not configured", {
-      hasApiKey: Boolean(apiKey),
-      hasFromEmail: Boolean(from),
+      hasApiKey: Boolean(getResendApiKey()),
+      hasFromEmail: Boolean(fromRaw),
       hasDestination: Boolean(to),
     });
+
     return {
       emailed: false,
-      error: RESEND_NOT_CONFIGURED_ERROR,
+      error:
+        "Partnership email is not configured. Set RESEND_API_KEY, RESEND_FROM_EMAIL, and PARTNERSHIP_TO_EMAIL.",
       status: 503,
     };
   }
@@ -139,63 +101,46 @@ export async function deliverPartnershipSubmission(
     submittedAt,
   };
 
-  const resend = new Resend(apiKey);
-
   try {
-    const primary = await resend.emails.send({
-      from: normalizeFromEmail(from),
-      to: [to],
+    const result = await sendResendEmail({
+      from: fromRaw,
+      to,
       replyTo: submission.email,
       subject: formatSubject(submission),
       text: formatEmailBody(submission),
     });
 
-    if (!primary.error) {
-      console.info("[partnership] Inquiry emailed via Resend", {
+    if (!result.success) {
+      logResendError("partnership", result.error, {
+        from: fromRaw,
+        to,
         organization: submission.organization,
-        destination: to,
-      });
-      return { emailed: true, provider: "resend" };
-    }
-
-    // Optional dev fallback when domain is not yet verified in Resend.
-    const devFrom = getDevFromEmail();
-    const accountEmail = getResendAccountEmail();
-    if (isDomainVerificationError(primary.error) && devFrom && accountEmail) {
-      const fallback = await resend.emails.send({
-        from: normalizeFromEmail(devFrom),
-        to: [accountEmail],
-        replyTo: submission.email,
-        subject: `${formatSubject(submission)} [route to ${to}]`,
-        text: formatEmailBody(submission, to),
       });
 
-      if (!fallback.error) {
-        console.info("[partnership] Inquiry emailed via Resend dev fallback", {
-          organization: submission.organization,
-          destination: accountEmail,
-          intendedTo: to,
-        });
-        return { emailed: true, provider: "resend-dev-fallback" };
-      }
-
-      console.error("[partnership] Resend dev fallback failed:", fallback.error);
+      return {
+        emailed: false,
+        error: getClientSafeEmailError(result.error, GENERIC_EMAIL_ERROR),
+        status: 500,
+      };
     }
 
-    console.error("[partnership] Resend delivery failed:", primary.error);
-    return {
-      emailed: false,
-      error:
-        isDomainVerificationError(primary.error)
-          ? "Email could not be sent. Verify your domain in the Resend dashboard, then restart the server."
-          : "Something went wrong. Please try again later.",
-      status: 500,
-    };
+    console.info("[partnership] Inquiry emailed successfully", {
+      organization: submission.organization,
+      destination: to,
+    });
+
+    return { emailed: true, provider: "resend" };
   } catch (error) {
-    console.error("[partnership] Resend delivery failed:", error);
+    const resendError = error as ResendErrorShape;
+    logResendError("partnership", resendError, {
+      from: fromRaw,
+      to,
+      organization: submission.organization,
+    });
+
     return {
       emailed: false,
-      error: "Something went wrong. Please try again later.",
+      error: getClientSafeEmailError(resendError, GENERIC_EMAIL_ERROR),
       status: 500,
     };
   }

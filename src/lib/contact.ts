@@ -1,5 +1,14 @@
 import { mkdir, appendFile } from "fs/promises";
 import path from "path";
+import {
+  GENERIC_EMAIL_ERROR,
+  getClientSafeEmailError,
+  getResendApiKey,
+  getResendFromEmail,
+  logResendError,
+  sendResendEmail,
+  type ResendErrorShape,
+} from "@/lib/resend-mail";
 
 export interface ContactSubmission {
   name: string;
@@ -49,34 +58,32 @@ function formatSubject(data: ContactSubmission): string {
   return `Phaarvai [${source}] — ${org}`;
 }
 
-async function sendViaResend(data: ContactSubmission): Promise<boolean> {
-  const apiKey = process.env.RESEND_API_KEY;
+async function sendViaResend(data: ContactSubmission): Promise<void> {
+  const from = getResendFromEmail();
   const to = getContactToEmail();
-  const from = process.env.CONTACT_FROM_EMAIL || "Phaarvai <onboarding@resend.dev>";
 
-  if (!apiKey) return false;
-
-  const res = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from,
-      to: [to],
-      reply_to: data.email,
-      subject: formatSubject(data),
-      text: formatEmailBody(data),
-    }),
-  });
-
-  if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`Resend error: ${err}`);
+  if (!getResendApiKey() || !from) {
+    throw new Error(
+      "Contact email is not configured. Set RESEND_API_KEY and RESEND_FROM_EMAIL."
+    );
   }
 
-  return true;
+  const result = await sendResendEmail({
+    from,
+    to,
+    replyTo: data.email,
+    subject: formatSubject(data),
+    text: formatEmailBody(data),
+  });
+
+  if (!result.success) {
+    logResendError("contact", result.error, { from, to, source: data.source });
+    const error = new Error(
+      getClientSafeEmailError(result.error, GENERIC_EMAIL_ERROR)
+    ) as Error & { resendError?: ResendErrorShape };
+    error.resendError = result.error;
+    throw error;
+  }
 }
 
 async function sendViaPostmark(data: ContactSubmission): Promise<boolean> {
@@ -189,7 +196,7 @@ async function notifyWebhook(data: ContactSubmission): Promise<void> {
 
 export function getContactDeliveryConfig() {
   const to = getContactToEmail();
-  const hasResend = Boolean(process.env.RESEND_API_KEY);
+  const hasResend = Boolean(getResendApiKey() && getResendFromEmail());
   const hasPostmark = Boolean(process.env.POSTMARK_SERVER_TOKEN && process.env.CONTACT_FROM_EMAIL);
   const formSubmitEnabled = process.env.CONTACT_FORMSUBMIT !== "false";
   const provider = process.env.CONTACT_EMAIL_PROVIDER?.toLowerCase();
@@ -206,65 +213,136 @@ export function getContactDeliveryConfig() {
   return {
     emailConfigured: Boolean(activeProvider),
     destination: to,
+    fromEmail: getResendFromEmail() ?? null,
     provider: activeProvider,
     persistEnabled: shouldPersist(),
     webhookConfigured: Boolean(process.env.CONTACT_WEBHOOK_URL),
   };
 }
 
-export async function deliverContactSubmission(
-  data: Omit<ContactSubmission, "submittedAt" | "deliveryStatus">
-): Promise<{ emailed: boolean; persisted: boolean; deliveryStatus: ContactSubmission["deliveryStatus"] }> {
-  let deliveryStatus: ContactSubmission["deliveryStatus"] = "logged";
-  const submittedAt = new Date().toISOString();
+export type ContactDeliveryResult =
+  | {
+      emailed: true;
+      persisted: boolean;
+      deliveryStatus: "emailed";
+      provider: string;
+    }
+  | {
+      emailed: false;
+      persisted: boolean;
+      deliveryStatus: "failed" | "logged";
+      error: string;
+      status: 500 | 503;
+    };
 
-  let emailed = false;
+function getActiveContactProvider(): string | null {
   const provider = process.env.CONTACT_EMAIL_PROVIDER?.toLowerCase();
-  const hasResend = Boolean(process.env.RESEND_API_KEY);
+  const hasResend = Boolean(getResendApiKey() && getResendFromEmail());
   const hasPostmark = Boolean(process.env.POSTMARK_SERVER_TOKEN && process.env.CONTACT_FROM_EMAIL);
   const formSubmitEnabled = process.env.CONTACT_FORMSUBMIT !== "false";
+  const to = getContactToEmail();
+
+  if (hasResend && (provider === "resend" || provider === "auto" || !provider)) {
+    return "resend";
+  }
+  if (hasPostmark && (provider === "postmark" || !hasResend)) {
+    return "postmark";
+  }
+  if (formSubmitEnabled && to) {
+    return "formsubmit";
+  }
+  return null;
+}
+
+export async function deliverContactSubmission(
+  data: Omit<ContactSubmission, "submittedAt" | "deliveryStatus">
+): Promise<ContactDeliveryResult> {
+  const submittedAt = new Date().toISOString();
+  const activeProvider = getActiveContactProvider();
 
   const submission: ContactSubmission = {
     ...data,
     submittedAt,
-    deliveryStatus,
+    deliveryStatus: "logged",
   };
 
-  try {
-    let sent = false;
+  if (!activeProvider) {
+    console.error("[contact] Email provider is not configured", {
+      hasApiKey: Boolean(getResendApiKey()),
+      hasFromEmail: Boolean(getResendFromEmail()),
+      destination: getContactToEmail(),
+    });
 
-    if (hasResend && (provider === "resend" || provider === "auto" || !provider)) {
-      sent = await sendViaResend(submission);
-    } else if (hasPostmark && (provider === "postmark" || !hasResend)) {
-      sent = await sendViaPostmark(submission);
-    } else if (formSubmitEnabled) {
-      sent = await sendViaFormSubmit(submission);
-    }
-
-    if (sent) {
-      emailed = true;
-      deliveryStatus = "emailed";
-      submission.deliveryStatus = deliveryStatus;
-    }
-  } catch (error) {
-    deliveryStatus = "failed";
-    submission.deliveryStatus = deliveryStatus;
-    console.error("[contact] Email delivery failed (submission still accepted):", error);
+    return {
+      emailed: false,
+      persisted: false,
+      deliveryStatus: "failed",
+      error:
+        "Contact email is not configured. Set RESEND_API_KEY, RESEND_FROM_EMAIL, and CONTACT_TO_EMAIL.",
+      status: 503,
+    };
   }
 
-  const persisted = await persistSubmission(submission);
-  await notifyWebhook(submission);
+  try {
+    if (activeProvider === "resend") {
+      await sendViaResend(submission);
+    } else if (activeProvider === "postmark") {
+      const sent = await sendViaPostmark(submission);
+      if (!sent) {
+        return {
+          emailed: false,
+          persisted: false,
+          deliveryStatus: "failed",
+          error:
+            "Contact email is not configured. Set POSTMARK_SERVER_TOKEN and CONTACT_FROM_EMAIL.",
+          status: 503,
+        };
+      }
+    } else {
+      await sendViaFormSubmit(submission);
+    }
 
-  console.info("[contact] Submission received", {
-    source: submission.source,
-    name: submission.name,
-    email: submission.email,
-    organization: submission.organization,
-    deliveryStatus: submission.deliveryStatus,
-    emailed,
-    persisted,
-    destination: getContactToEmail(),
-  });
+    submission.deliveryStatus = "emailed";
+    const persisted = await persistSubmission(submission);
+    await notifyWebhook(submission);
 
-  return { emailed, persisted, deliveryStatus: submission.deliveryStatus };
+    console.info("[contact] Inquiry emailed successfully", {
+      source: submission.source,
+      name: submission.name,
+      destination: getContactToEmail(),
+      provider: activeProvider,
+      persisted,
+    });
+
+    return {
+      emailed: true,
+      persisted,
+      deliveryStatus: "emailed",
+      provider: activeProvider,
+    };
+  } catch (error) {
+    submission.deliveryStatus = "failed";
+    const persisted = await persistSubmission(submission);
+    await notifyWebhook(submission);
+
+    const message =
+      error instanceof Error && error.message
+        ? error.message
+        : GENERIC_EMAIL_ERROR;
+
+    console.error("[contact] Email delivery failed:", {
+      source: submission.source,
+      provider: activeProvider,
+      message,
+      persisted,
+    });
+
+    return {
+      emailed: false,
+      persisted,
+      deliveryStatus: "failed",
+      error: message,
+      status: 500,
+    };
+  }
 }
