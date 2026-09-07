@@ -4,10 +4,8 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { themes } from "@/content/themes";
-import { getProjectsByTheme } from "@/content/projects";
 import { siteContent } from "@/content/site";
 import { PageHeader } from "@/components/PageHeader";
-import { ProjectCard } from "@/components/ProjectCard";
 import { CTASection } from "@/components/CTASection";
 import { PageSEO } from "@/components/PageSEO";
 import { CardTechHeader, techVariantForIndex } from "@/components/visuals/CardTechHeader";
@@ -62,7 +60,6 @@ export default function Themes() {
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-7 md:gap-8">
             {themes.map((theme, themeIdx) => {
               const Icon = theme.icon;
-              const related = getProjectsByTheme(theme.id).slice(0, 2);
 
               return (
                 <motion.section
@@ -95,23 +92,6 @@ export default function Themes() {
                       <TagGroup label="Operational capabilities" items={theme.operationalCapabilities} />
                       <TagGroup label="Deployed across" items={theme.industries} />
                     </div>
-
-                    {related.length > 0 && (
-                      <div className="space-y-3 mb-6 flex-grow border-t border-border pt-5">
-                        <p className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground mb-1">
-                          Related systems
-                        </p>
-                        {related.map((project, idx) => (
-                          <ProjectCard
-                            key={project.id}
-                            project={project}
-                            variant="compact"
-                            showThumbnail={false}
-                            delay={idx * 0.02}
-                          />
-                        ))}
-                      </div>
-                    )}
 
                     <div className="mt-auto flex flex-wrap items-center gap-4 pt-4 border-t border-border">
                       <Link
