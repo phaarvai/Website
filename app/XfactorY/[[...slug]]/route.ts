@@ -57,11 +57,14 @@ function upstreamPath(slug: string[]) {
 
 function rewriteBody(content: string, contentType: string) {
   let next = content.split(ORIGIN).join("");
+  next = next.split("https://www.phaarvai.com").join(PREFIX);
+  next = next.split("https://phaarvai.com").join(PREFIX);
   if (contentType.includes("text/html")) {
     next = next.replace(
       /(\s(?:href|src|action|srcset|imagesrcset)=["'])\/(?!\/|xfactory\/)/gi,
       `$1${PREFIX}/`
     );
+    next = next.replace(/,(\s*)\/(?!\/|xfactory\/)/g, `,$1${PREFIX}/`);
     next = next.replace(/url\(\/(?!\/|xfactory\/)/g, `url(${PREFIX}/`);
     next = next.replace(/(["'])\/__clerk/g, `$1${PREFIX}/__clerk`);
     next = next.replace(/(["'])\/_next\//g, `$1${PREFIX}/_next/`);
@@ -79,6 +82,18 @@ function filterRequestHeaders(headers: Headers) {
   headers.forEach((value, key) => {
     const lower = key.toLowerCase();
     if (HOP_BY_HOP.has(lower) || lower === "host") return;
+    if (
+      lower === "x-forwarded-host" ||
+      lower === "x-forwarded-proto" ||
+      lower === "x-forwarded-port" ||
+      lower === "x-forwarded-for" ||
+      lower === "forwarded" ||
+      lower === "x-real-ip" ||
+      lower === "x-vercel-forwarded-for" ||
+      lower === "x-vercel-id"
+    ) {
+      return;
+    }
     if (lower === "origin") {
       out.set("origin", ORIGIN);
       return;
@@ -93,25 +108,41 @@ function filterRequestHeaders(headers: Headers) {
   return out;
 }
 
+function toProxyLocation(value: string) {
+  try {
+    const url = new URL(value, ORIGIN);
+    const host = url.hostname;
+    const onApp =
+      value.startsWith("/") ||
+      host === "x-factor-y-full-stack-cwlx.vercel.app" ||
+      host === "phaarvai.com" ||
+      host === "www.phaarvai.com" ||
+      host === "localhost";
+    if (!onApp) return value;
+    if (url.pathname === PREFIX || url.pathname.startsWith(`${PREFIX}/`)) {
+      return `${url.pathname}${url.search}${url.hash}`;
+    }
+    const path = url.pathname === "/" ? PREFIX : `${PREFIX}${url.pathname}`;
+    return `${path}${url.search}${url.hash}`;
+  } catch {
+    return value;
+  }
+}
+
 function filterResponseHeaders(headers: Headers) {
   const out = new Headers();
   headers.forEach((value, key) => {
     const lower = key.toLowerCase();
-    if (HOP_BY_HOP.has(lower) || STRIP_RESPONSE_HEADERS.has(lower)) return;
+    if (HOP_BY_HOP.has(lower) || STRIP_RESPONSE_HEADERS.has(lower) || lower === "set-cookie") return;
     if (lower === "location") {
-      try {
-        const url = new URL(value, ORIGIN);
-        if (url.origin === ORIGIN || value.startsWith("/")) {
-          const path = url.pathname === "/" ? PREFIX : `${PREFIX}${url.pathname}`;
-          out.set(key, `${path}${url.search}${url.hash}`);
-          return;
-        }
-      } catch {
-        /* keep */
-      }
+      out.set(key, toProxyLocation(value));
+      return;
     }
     out.set(key, value);
   });
+  for (const cookie of headers.getSetCookie?.() ?? []) {
+    out.append("set-cookie", cookie.replace(/;\s*domain=[^;]*/i, ""));
+  }
   return out;
 }
 
