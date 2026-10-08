@@ -20,6 +20,24 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
 
+  async rewrites() {
+    return {
+      beforeFiles: [
+        { source: "/xfactory", destination: "/XfactorY" },
+        { source: "/xfactory/:path*", destination: "/XfactorY/:path*" },
+        {
+          source: "/_next/static/immutable/:path*",
+          destination:
+            "https://x-factor-y-full-stack-cwlx.vercel.app/_next/static/immutable/:path*",
+        },
+        {
+          source: "/__clerk/:path*",
+          destination: "https://x-factor-y-full-stack-cwlx.vercel.app/__clerk/:path*",
+        },
+      ],
+    };
+  },
+
   async redirects() {
     return [
       { source: "/solutions", destination: "/projects", permanent: true },

@@ -24,6 +24,7 @@ const PHAARVAI_FIRST_SEGMENTS = new Set([
   "team",
   "themes",
   "x-y",
+  "xfactory",
   "XfactorY",
 ]);
 
@@ -47,10 +48,15 @@ function isFromPrefix(referer: string | null, origin: string, prefix: string) {
 export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
 
+  if (pathname === "/XfactorY" || pathname.startsWith("/XfactorY/")) {
+    const rest = pathname.slice("/XfactorY".length);
+    return NextResponse.redirect(new URL(`/xfactory${rest}${search}`, request.url));
+  }
+
   if (
     pathname.startsWith("/x-y") ||
-    pathname === "/XfactorY" ||
-    pathname.startsWith("/XfactorY/") ||
+    pathname === "/xfactory" ||
+    pathname.startsWith("/xfactory/") ||
     pathname === "/ai-energy" ||
     pathname.startsWith("/ai-energy/") ||
     pathname.startsWith("/api") ||
@@ -64,11 +70,9 @@ export function middleware(request: NextRequest) {
   const origin = request.nextUrl.origin;
   const prefix = isFromPrefix(referer, origin, "/ai-energy")
     ? "/ai-energy"
-    : isFromPrefix(referer, origin, "/XfactorY")
-      ? "/XfactorY"
-      : isFromPrefix(referer, origin, "/x-y")
-        ? "/x-y"
-        : null;
+    : isFromPrefix(referer, origin, "/x-y")
+      ? "/x-y"
+      : null;
 
   if (!prefix) {
     return NextResponse.next();

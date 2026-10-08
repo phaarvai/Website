@@ -97,10 +97,9 @@ export const projects: Project[] = [
     potentialPartners: ["Manufacturers", "Industrial networks", "Technology consortiums"],
     status: ["In Integration", "Production Candidate"],
     featured: true,
-    externalUrl: "/XfactorY",
+    externalUrl: "/xfactory",
     linkType: "system",
     badge: "Live",
-    // Same-tab so the address stays on Phaarvai at /XfactorY.
     openInNewTab: false,
   },
   {
