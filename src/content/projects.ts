@@ -82,7 +82,7 @@ export const projects: Project[] = [
   {
     id: "x-y-manufacturing-platform",
     slug: "x-y",
-    title: "x!y — Manufacturing Operations Platform",
+    title: "XFactorY",
     description:
       "Manufacturing operations platform with AI supplier discovery, workflow orchestration, booking pipelines, and provider onboarding across industrial supply chains.",
     themes: ["technology-systems", "data-ai-systems"],
@@ -97,10 +97,10 @@ export const projects: Project[] = [
     potentialPartners: ["Manufacturers", "Industrial networks", "Technology consortiums"],
     status: ["In Integration", "Production Candidate"],
     featured: true,
-    externalUrl: "/x-y",
+    externalUrl: "/XfactorY",
     linkType: "system",
     badge: "Live",
-    // Same-tab so browser Back returns to the previous Phaarvai page (e.g. /themes).
+    // Same-tab so the address stays on Phaarvai at /XfactorY.
     openInNewTab: false,
   },
 ];

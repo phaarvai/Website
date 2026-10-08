@@ -21,30 +21,33 @@ const PHAARVAI_FIRST_SEGMENTS = new Set([
   "team",
   "themes",
   "x-y",
+  "XfactorY",
 ]);
 
-function isFromXy(referer: string | null, origin: string) {
+function isFromPrefix(referer: string | null, origin: string, prefix: string) {
   if (!referer) return false;
   try {
     const url = new URL(referer);
-    return url.origin === origin && url.pathname.startsWith("/x-y");
+    return url.origin === origin && (url.pathname === prefix || url.pathname.startsWith(`${prefix}/`));
   } catch {
     return false;
   }
 }
 
 /**
- * X!Y is reverse-proxied under /x-y. Its client router may still emit root-absolute
- * paths (e.g. /browse). Rewrite (do not redirect) those requests to the /x-y proxy
- * so we do not insert extra history entries that break the browser Back button.
+ * Proxied apps may still emit root-absolute paths (e.g. /browse). Rewrite (do not
+ * redirect) those requests back under the Phaarvai path so the address bar stays
+ * on /x-y or /XfactorY and the browser Back button is not given extra entries.
  *
- * Phaarvai routes are excluded so Back from /x-y → /themes (etc.) works.
+ * Phaarvai routes are excluded so Back from a proxied app to /themes (etc.) works.
  */
 export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
 
   if (
     pathname.startsWith("/x-y") ||
+    pathname === "/XfactorY" ||
+    pathname.startsWith("/XfactorY/") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/favicon")
@@ -52,7 +55,15 @@ export function middleware(request: NextRequest) {
     return NextResponse.next();
   }
 
-  if (!isFromXy(request.headers.get("referer"), request.nextUrl.origin)) {
+  const referer = request.headers.get("referer");
+  const origin = request.nextUrl.origin;
+  const prefix = isFromPrefix(referer, origin, "/XfactorY")
+    ? "/XfactorY"
+    : isFromPrefix(referer, origin, "/x-y")
+      ? "/x-y"
+      : null;
+
+  if (!prefix) {
     return NextResponse.next();
   }
 
@@ -67,7 +78,7 @@ export function middleware(request: NextRequest) {
   }
 
   const rewriteUrl = request.nextUrl.clone();
-  rewriteUrl.pathname = `/x-y${pathname}`;
+  rewriteUrl.pathname = `${prefix}${pathname}`;
   rewriteUrl.search = search;
   return NextResponse.rewrite(rewriteUrl);
 }
