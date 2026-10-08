@@ -109,8 +109,8 @@ export const siteContent = {
     email: "partnerships@phaarvai.com",
     links: {
       explore: [
-        { label: "Operational Domains", href: "/themes" },
-        { label: "Systems", href: "/projects" },
+        { label: "Operational Domains", href: "/operational-domains" },
+        { label: "Systems", href: "/systems" },
         { label: "Capabilities", href: "/capabilities" },
         { label: "About", href: "/about" },
         { label: "Team", href: "/team" },
