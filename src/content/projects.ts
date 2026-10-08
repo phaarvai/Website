@@ -103,6 +103,29 @@ export const projects: Project[] = [
     // Same-tab so the address stays on Phaarvai at /XfactorY.
     openInNewTab: false,
   },
+  {
+    id: "ai-energy-demand-analytics",
+    slug: "ai-energy",
+    title: "AI Energy Demand Analytics",
+    description:
+      "Weather-Driven Indian Power Demand Intelligence & Prediction Platform",
+    themes: ["environment-resilience", "data-ai-systems"],
+    stages: ["Deployed", "Pilot"],
+    technologies: ["Demand Forecasting", "Weather Analytics", "Random Forest", "Next.js"],
+    tags: ["AI", "Data", "Operational"],
+    systemType: "Analytics Platform",
+    targetUsers: "Power system planners and utility operators",
+    deploymentContext: "Indian state electricity demand operations",
+    building:
+      "Weather-linked demand forecasts, consumption intelligence, and reference cost estimates for state power systems.",
+    potentialPartners: ["State utilities", "Energy agencies", "Grid operators"],
+    status: ["Deployed", "Pilot"],
+    featured: true,
+    externalUrl: "/ai-energy/",
+    linkType: "system",
+    badge: "Live",
+    openInNewTab: false,
+  },
 ];
 
 export function getProjectsByTheme(themeId: ThemeId) {

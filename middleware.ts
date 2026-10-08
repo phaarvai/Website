@@ -3,6 +3,7 @@ import { NextResponse, type NextRequest } from "next/server";
 /** Real Phaarvai routes — never rewrite these into /x-y, even if Referer is /x-y (Back button). */
 const PHAARVAI_FIRST_SEGMENTS = new Set([
   "about",
+  "ai-energy",
   "admin",
   "assistant",
   "capabilities",
@@ -48,6 +49,8 @@ export function middleware(request: NextRequest) {
     pathname.startsWith("/x-y") ||
     pathname === "/XfactorY" ||
     pathname.startsWith("/XfactorY/") ||
+    pathname === "/ai-energy" ||
+    pathname.startsWith("/ai-energy/") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/favicon")
@@ -57,11 +60,13 @@ export function middleware(request: NextRequest) {
 
   const referer = request.headers.get("referer");
   const origin = request.nextUrl.origin;
-  const prefix = isFromPrefix(referer, origin, "/XfactorY")
-    ? "/XfactorY"
-    : isFromPrefix(referer, origin, "/x-y")
-      ? "/x-y"
-      : null;
+  const prefix = isFromPrefix(referer, origin, "/ai-energy")
+    ? "/ai-energy"
+    : isFromPrefix(referer, origin, "/XfactorY")
+      ? "/XfactorY"
+      : isFromPrefix(referer, origin, "/x-y")
+        ? "/x-y"
+        : null;
 
   if (!prefix) {
     return NextResponse.next();
