@@ -20,6 +20,23 @@ const nextConfig: NextConfig = {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
 
+  async rewrites() {
+  return {
+    beforeFiles: [
+      {
+        source: "/xfactory",
+        destination:
+          "https://x-factor-y-full-stack-cwlx.vercel.app/xfactory",
+      },
+      {
+        source: "/xfactory/:path*",
+        destination:
+          "https://x-factor-y-full-stack-cwlx.vercel.app/xfactory/:path*",
+      },
+    ],
+  };
+},
+
   async redirects() {
     // XFactorY runs as its own app (sign-in, accounts and dashboards need their own address).
     // /xfactory on this site sends visitors there; /xfactory/live/... is the old iframe path.
