@@ -1,6 +1,8 @@
 import type { NextConfig } from "next";
 import path from "node:path";
 
+const XFACTORY = "https://x-factor-y-full-stack-cwlx.vercel.app";
+
 const nextConfig: NextConfig = {
   outputFileTracingRoot: path.join(__dirname),
   skipTrailingSlashRedirect: true,
@@ -14,44 +16,76 @@ const nextConfig: NextConfig = {
     ],
   },
 
-  allowedDevOrigins: ["*.janeway.replit.dev", "*.replit.dev", "*.repl.co"],
+  allowedDevOrigins: [
+    "*.janeway.replit.dev",
+    "*.replit.dev",
+    "*.repl.co",
+  ],
 
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion"],
   },
 
   async rewrites() {
-  return {
-    beforeFiles: [
-      {
-        source: "/xfactory",
-        destination:
-          "https://x-factor-y-full-stack-cwlx.vercel.app/xfactory",
-      },
-      {
-        source: "/xfactory/:path*",
-        destination:
-          "https://x-factor-y-full-stack-cwlx.vercel.app/xfactory/:path*",
-      },
-    ],
-  };
-},
+    return {
+      beforeFiles: [
+        {
+          source: "/xfactory",
+          destination: `${XFACTORY}/xfactory`,
+        },
+        {
+          source: "/xfactory/:path*",
+          destination: `${XFACTORY}/xfactory/:path*`,
+        },
+      ],
+    };
+  },
 
   async redirects() {
-    // XFactorY runs as its own app (sign-in, accounts and dashboards need their own address).
-    // /xfactory on this site sends visitors there; /xfactory/live/... is the old iframe path.
-    const XFACTORY = "https://x-factor-y-full-stack-cwlx.vercel.app";
     return [
-      { source: "/xfactory/live", destination: `${XFACTORY}/`, permanent: false },
-      { source: "/xfactory/live/:path*", destination: `${XFACTORY}/:path*`, permanent: false },
-      { source: "/xfactory", destination: `${XFACTORY}/`, permanent: false },
-      { source: "/xfactory/:path*", destination: `${XFACTORY}/:path*`, permanent: false },
-      { source: "/XfactorY", destination: `${XFACTORY}/`, permanent: false },
-      { source: "/XfactorY/:path*", destination: `${XFACTORY}/:path*`, permanent: false },
-      { source: "/solutions", destination: "/projects", permanent: true },
-      { source: "/sectors", destination: "/themes", permanent: true },
-      { source: "/funding-partnerships", destination: "/partner", permanent: true },
-      { source: "/insights", destination: "/projects", permanent: false },
+      // Keep legacy XFactorY links on the Phaarvai domain.
+      {
+        source: "/xfactory/live",
+        destination: "/xfactory",
+        permanent: false,
+      },
+      {
+        source: "/xfactory/live/:path*",
+        destination: "/xfactory/:path*",
+        permanent: false,
+      },
+      {
+        source: "/XfactorY",
+        destination: "/xfactory",
+        permanent: false,
+      },
+      {
+        source: "/XfactorY/:path*",
+        destination: "/xfactory/:path*",
+        permanent: false,
+      },
+
+      // Existing Phaarvai website redirects.
+      {
+        source: "/solutions",
+        destination: "/projects",
+        permanent: true,
+      },
+      {
+        source: "/sectors",
+        destination: "/themes",
+        permanent: true,
+      },
+      {
+        source: "/funding-partnerships",
+        destination: "/partner",
+        permanent: true,
+      },
+      {
+        source: "/insights",
+        destination: "/projects",
+        permanent: false,
+      },
     ];
   },
 };
