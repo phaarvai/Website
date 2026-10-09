@@ -35,6 +35,8 @@ const nextConfig: NextConfig = {
       beforeFiles: [
         { source: "/xfactory", destination: `${XFACTORY}/xfactory` },
         { source: "/xfactory/:path*", destination: `${XFACTORY}/xfactory/:path*` },
+        // XFactorY's sign-in service (Clerk). Only XFactorY uses /__clerk on this website.
+        { source: "/__clerk/:path*", destination: `${XFACTORY}/xfactory/__clerk/:path*` },
       ],
     };
   },
