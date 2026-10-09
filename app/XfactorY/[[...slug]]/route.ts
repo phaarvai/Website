@@ -1,6 +1,7 @@
 import { type NextRequest } from "next/server";
 
 const ORIGIN = "https://x-factor-y-full-stack-cwlx.vercel.app";
+const API_ORIGIN = "https://xfactory-fullstack.onrender.com";
 const PREFIX = "/xfactory/live";
 
 export const dynamic = "force-dynamic";
@@ -25,9 +26,14 @@ const STRIP_RESPONSE_HEADERS = new Set([
   "content-security-policy-report-only",
 ]);
 
-const BOOT = `<script>(function(){if(window.top===window)return;var prefix="/xfactory/live";window.TURBOPACK_CHUNK_BASE_PATH=prefix+"/_next/";function bare(path){if(path===prefix||path===prefix+"/")return"/";if(path.indexOf(prefix+"/")===0)return path.slice(prefix.length)||"/";return path}function partsOf(url){var hash="",search="",path=url,hi=url.indexOf("#");if(hi>=0){hash=url.slice(hi);path=url.slice(0,hi)}var si=path.indexOf("?");if(si>=0){search=path.slice(si);path=path.slice(0,si)}return{path:path,search:search,hash:hash}}function prefixed(path){if(path.indexOf(prefix)===0)return path;return prefix+(path.charAt(0)==="/"?path:"/"+path)}function rewrite(url){if(typeof url!=="string")return url;var abs=url;if(url.indexOf(location.origin)===0)abs=url.slice(location.origin.length);if(abs.charAt(0)!=="/"||abs.charAt(1)==="/")return url;var p=partsOf(abs);return prefixed(bare(p.path))+p.search+p.hash}var next=bare(location.pathname);if(next!==location.pathname)history.replaceState(history.state,"",next+location.search+location.hash);function asPath(input){if(typeof input==="string")return input;if(typeof URL!=="undefined"&&input instanceof URL)return input.pathname+input.search+input.hash;if(typeof Request!=="undefined"&&input instanceof Request)return input.url;return null}var origFetch=window.fetch;window.fetch=function(input,init){var path=asPath(input);if(path){var nextUrl=rewrite(path);if(nextUrl!==path){if(typeof input==="string"||(typeof URL!=="undefined"&&input instanceof URL))input=nextUrl;else input=new Request(nextUrl,input)}}return origFetch.call(this,input,init)};var origOpen=XMLHttpRequest.prototype.open;XMLHttpRequest.prototype.open=function(method,url){if(typeof url==="string")arguments[1]=rewrite(url);return origOpen.apply(this,arguments)};document.addEventListener("click",function(event){if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;var node=event.target&&event.target.closest?event.target.closest("a"):null;if(!node||node.target==="_blank")return;var href=node.getAttribute("href");if(!href||href.charAt(0)==="#")return;var target=rewrite(href);if(typeof target!=="string"||target.indexOf(prefix)!==0)return;event.preventDefault();event.stopPropagation();location.assign(target)},true)})();</script>`;
+const BOOT = `<script>(function(){if(window.top===window)return;var prefix="/xfactory/live";window.TURBOPACK_CHUNK_BASE_PATH=prefix+"/_next/";function bare(path){if(path===prefix||path===prefix+"/")return"/";if(path.indexOf(prefix+"/")===0)return path.slice(prefix.length)||"/";return path}function partsOf(url){var hash="",search="",path=url,hi=url.indexOf("#");if(hi>=0){hash=url.slice(hi);path=url.slice(0,hi)}var si=path.indexOf("?");if(si>=0){search=path.slice(si);path=path.slice(0,si)}return{path:path,search:search,hash:hash}}function prefixed(path){if(path.indexOf(prefix)===0)return path;return prefix+(path.charAt(0)==="/"?path:"/"+path)}function rewrite(url){if(typeof url!=="string")return url;var api="https://xfactory-fullstack.onrender.com";if(url.indexOf(api)===0)return "/xfactory/backend"+url.slice(api.length);var abs=url;if(url.indexOf(location.origin)===0)abs=url.slice(location.origin.length);if(abs.charAt(0)!=="/"||abs.charAt(1)==="/")return url;var p=partsOf(abs);return prefixed(bare(p.path))+p.search+p.hash}function parentPath(){var b=bare(location.pathname);return"/xfactory"+(b==="/"?"":b)+location.search+location.hash}function syncParent(push){try{var nextUrl=parentPath();var current=window.top.location.pathname+window.top.location.search+window.top.location.hash;if(current===nextUrl)return;if(push)window.top.history.pushState({xy:1},"",nextUrl);else window.top.history.replaceState({xy:1},"",nextUrl)}catch(e){}}var next=bare(location.pathname);var parentBefore=window.top.location.pathname;var parentApp=parentBefore==="/xfactory"?"/":(parentBefore.indexOf("/xfactory/")===0?parentBefore.slice("/xfactory".length):"");if(next!==location.pathname)history.replaceState(history.state,"",next+location.search+location.hash);syncParent(parentApp!==bare(location.pathname));var origPush=history.pushState;var origReplace=history.replaceState;history.pushState=function(){var result=origPush.apply(this,arguments);syncParent(true);return result};history.replaceState=function(){var result=origReplace.apply(this,arguments);syncParent(false);return result};window.top.addEventListener("popstate",function(){var topPath=window.top.location.pathname;if(topPath!=="/xfactory"&&topPath.indexOf("/xfactory/")!==0)return;var rest=topPath==="/xfactory"?"/":topPath.slice("/xfactory".length);if(bare(location.pathname)===rest)return;location.replace(prefix+(rest==="/"?"":rest)+window.top.location.search+window.top.location.hash)});function asPath(input){if(typeof input==="string")return input;if(typeof URL!=="undefined"&&input instanceof URL)return input.pathname+input.search+input.hash;if(typeof Request!=="undefined"&&input instanceof Request)return input.url;return null}var origFetch=window.fetch;window.fetch=function(input,init){var path=asPath(input);if(path){var nextUrl=rewrite(path);if(nextUrl!==path&&nextUrl.indexOf("x-factor-y-full-stack")<0){if(typeof input==="string"||(typeof URL!=="undefined"&&input instanceof URL))input=nextUrl;else input=new Request(nextUrl,input)}}return origFetch.call(this,input,init)};var origOpen=XMLHttpRequest.prototype.open;XMLHttpRequest.prototype.open=function(method,url){if(typeof url==="string")arguments[1]=rewrite(url);return origOpen.apply(this,arguments)};document.addEventListener("click",function(event){if(event.metaKey||event.ctrlKey||event.shiftKey||event.altKey)return;var node=event.target&&event.target.closest?event.target.closest("a"):null;if(!node||node.target==="_blank")return;var href=node.getAttribute("href");if(!href||href.charAt(0)==="#")return;if(href.indexOf("https://x-factor-y-full-stack-cwlx.vercel.app")===0){event.preventDefault();event.stopPropagation();location.assign(rewrite(href.slice("https://x-factor-y-full-stack-cwlx.vercel.app".length)||"/"));return}var target=rewrite(href);if(typeof target!=="string"||target.indexOf(prefix)!==0)return;event.preventDefault();event.stopPropagation();location.assign(target)},true)})();</script>`;
 
-function shell() {
+function shell(appPath: string, search: string) {
+  if (appPath !== "/" && !/^\/(?:[A-Za-z0-9][A-Za-z0-9_-]*)(?:\/[A-Za-z0-9][A-Za-z0-9_-]*)*$/.test(appPath)) {
+    return new Response("Bad path", { status: 400 });
+  }
+  const safeSearch = search.replace(/["'<>]/g, "");
+  const iframeSrc = appPath === "/" ? PREFIX : `${PREFIX}${appPath}`;
   const html = `<!doctype html>
 <html lang="en">
   <head>
@@ -40,7 +46,7 @@ function shell() {
     </style>
   </head>
   <body>
-    <iframe src="${PREFIX}" title="XFactorY"></iframe>
+    <iframe src="${iframeSrc}${safeSearch}" title="XFactorY"></iframe>
   </body>
 </html>`;
   return new Response(html, {
@@ -182,10 +188,37 @@ async function proxy(request: NextRequest, slug: string[]) {
 
 type RouteContext = { params: Promise<{ slug?: string[] }> };
 
+async function proxyApi(request: NextRequest, slug: string[]) {
+  const rest = slug.slice(1);
+  if (rest.some((part) => part === ".." || part.includes("\\") || part.includes("/"))) {
+    return new Response("Bad path", { status: 400 });
+  }
+  const upstream = new URL(rest.length ? `/${rest.join("/")}` : "/", API_ORIGIN);
+  upstream.search = request.nextUrl.search;
+  const init: RequestInit = {
+    method: request.method,
+    headers: filterRequestHeaders(request.headers),
+    redirect: "manual",
+  };
+  if (request.method !== "GET" && request.method !== "HEAD") {
+    init.body = await request.arrayBuffer();
+  }
+  const response = await fetch(upstream, { ...init, signal: AbortSignal.timeout(30000) });
+  const headers = filterResponseHeaders(response.headers);
+  return new Response(response.body, { status: response.status, headers });
+}
+
 async function handle(request: NextRequest, context: RouteContext) {
   const { slug } = await context.params;
-  if (!slug?.length) return shell();
-  return proxy(request, slug);
+  const isRead = request.method === "GET" || request.method === "HEAD";
+  if (!slug?.length) {
+    if (isRead) return shell("/", request.nextUrl.search);
+    return proxy(request, ["live"]);
+  }
+  if (slug[0] === "backend") return proxyApi(request, slug);
+  if (slug[0] === "live") return proxy(request, slug);
+  if (isRead) return shell(`/${slug.join("/")}`, request.nextUrl.search);
+  return proxy(request, ["live", ...slug]);
 }
 
 export function GET(request: NextRequest, context: RouteContext) {
