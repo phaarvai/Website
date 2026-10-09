@@ -41,22 +41,15 @@ function isFromPrefix(referer: string | null, origin: string, prefix: string) {
 /**
  * Proxied apps may still emit root-absolute paths (e.g. /browse). Rewrite (do not
  * redirect) those requests back under the Phaarvai path so the address bar stays
- * on /x-y or /XfactorY and the browser Back button is not given extra entries.
+ * on /x-y and the browser Back button is not given extra entries.
  *
  * Phaarvai routes are excluded so Back from a proxied app to /themes (etc.) works.
  */
 export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
 
-  if (pathname === "/XfactorY" || pathname.startsWith("/XfactorY/")) {
-    const rest = pathname.slice("/XfactorY".length);
-    return NextResponse.redirect(new URL(`/xfactory${rest}${search}`, request.url));
-  }
-
   if (
     pathname.startsWith("/x-y") ||
-    pathname === "/xfactory" ||
-    pathname.startsWith("/xfactory/") ||
     pathname === "/ai-energy" ||
     pathname.startsWith("/ai-energy/") ||
     pathname.startsWith("/api") ||
