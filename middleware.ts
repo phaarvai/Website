@@ -38,6 +38,10 @@ function isFromPrefix(referer: string | null, origin: string, prefix: string) {
   }
 }
 
+/** Hosts where /xfactory is sent to the public domain (Clerk refuses vercel.app addresses). */
+const XFACTORY_REDIRECT_HOSTS = new Set(["phaarvai-website.vercel.app"]);
+const XFACTORY_PUBLIC_ORIGIN = "https://www.phaarvai.com";
+
 /**
  * Proxied apps may still emit root-absolute paths (e.g. /browse). Rewrite (do not
  * redirect) those requests back under the Phaarvai path so the address bar stays
@@ -47,6 +51,17 @@ function isFromPrefix(referer: string | null, origin: string, prefix: string) {
  */
 export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
+
+  // XFactorY sign-in (Clerk) only works on the phaarvai.com domain, so /xfactory opened on the
+  // website's vercel.app address is sent to the same page on https://www.phaarvai.com.
+  // Only /xfactory is affected; every other route on the vercel.app address is unchanged.
+  const lowerPath = pathname.toLowerCase();
+  if (
+    XFACTORY_REDIRECT_HOSTS.has(request.headers.get("host") ?? "") &&
+    (lowerPath === "/xfactory" || lowerPath.startsWith("/xfactory/"))
+  ) {
+    return NextResponse.redirect(`${XFACTORY_PUBLIC_ORIGIN}/xfactory${pathname.slice("/xfactory".length)}${search}`, 307);
+  }
 
   // Old capitalised links (/XfactorY...) go to /xfactory. Only when the case actually differs,
   // so /xfactory itself is never redirected (no redirect loop).
