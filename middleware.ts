@@ -54,30 +54,38 @@ const XFACTORY_PUBLIC_ORIGIN = "https://www.phaarvai.com";
 export function middleware(request: NextRequest) {
   const { pathname, search } = request.nextUrl;
 
-  // XFactorY sign-in (Clerk) only works on the phaarvai.com domain, so /xfactory opened on the
+  const xfactoryPublicPrefix = "/projects/xfactory";
+
+  // XFactorY sign-in (Clerk) only works on the phaarvai.com domain, so /projects/xfactory opened on the
   // website's vercel.app address is sent to the same page on https://www.phaarvai.com.
-  // Only /xfactory is affected; every other route on the vercel.app address is unchanged.
   const lowerPath = pathname.toLowerCase();
   if (
     XFACTORY_REDIRECT_HOSTS.has(request.headers.get("host") ?? "") &&
-    (lowerPath === "/xfactory" || lowerPath.startsWith("/xfactory/"))
+    (lowerPath === xfactoryPublicPrefix || lowerPath.startsWith(`${xfactoryPublicPrefix}/`))
   ) {
-    return NextResponse.redirect(`${XFACTORY_PUBLIC_ORIGIN}/xfactory${pathname.slice("/xfactory".length)}${search}`, 307);
+    return NextResponse.redirect(
+      `${XFACTORY_PUBLIC_ORIGIN}${xfactoryPublicPrefix}${pathname.slice(xfactoryPublicPrefix.length)}${search}`,
+      307
+    );
   }
 
-  // Old capitalised links (/XfactorY...) go to /xfactory. Only when the case actually differs,
-  // so /xfactory itself is never redirected (no redirect loop).
+  // Old capitalised links (/XfactorY...) go to /projects/xfactory.
   const lower = pathname.toLowerCase();
-  if ((lower === "/xfactory" || lower.startsWith("/xfactory/")) && !(pathname === "/xfactory" || pathname.startsWith("/xfactory/"))) {
-    return NextResponse.redirect(new URL(`/xfactory${pathname.slice("/xfactory".length)}${search}`, request.url));
+  if (
+    (lower === xfactoryPublicPrefix || lower.startsWith(`${xfactoryPublicPrefix}/`)) &&
+    !(pathname === xfactoryPublicPrefix || pathname.startsWith(`${xfactoryPublicPrefix}/`))
+  ) {
+    return NextResponse.redirect(
+      new URL(`${xfactoryPublicPrefix}${pathname.slice(xfactoryPublicPrefix.length)}${search}`, request.url)
+    );
   }
 
   if (
     pathname.startsWith("/x-y") ||
-    pathname === "/xfactory" ||
-    pathname.startsWith("/xfactory/") ||
-    pathname === "/ai-energy" ||
-    pathname.startsWith("/ai-energy/") ||
+    pathname === xfactoryPublicPrefix ||
+    pathname.startsWith(`${xfactoryPublicPrefix}/`) ||
+    pathname === "/projects/ai-energy" ||
+    pathname.startsWith("/projects/ai-energy/") ||
     pathname.startsWith("/api") ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/favicon")
@@ -87,11 +95,13 @@ export function middleware(request: NextRequest) {
 
   const referer = request.headers.get("referer");
   const origin = request.nextUrl.origin;
-  const prefix = isFromPrefix(referer, origin, "/ai-energy")
-    ? "/ai-energy"
-    : isFromPrefix(referer, origin, "/x-y")
-      ? "/x-y"
-      : null;
+  const prefix = isFromPrefix(referer, origin, "/projects/ai-energy")
+    ? "/projects/ai-energy"
+    : isFromPrefix(referer, origin, xfactoryPublicPrefix)
+      ? xfactoryPublicPrefix
+      : isFromPrefix(referer, origin, "/x-y")
+        ? "/x-y"
+        : null;
 
   if (!prefix) {
     return NextResponse.next();

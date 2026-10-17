@@ -33,8 +33,8 @@ const nextConfig: NextConfig = {
       .replace(/\/xfactory$/i, "");
     return {
       beforeFiles: [
-        { source: "/xfactory", destination: `${XFACTORY}/xfactory` },
-        { source: "/xfactory/:path*", destination: `${XFACTORY}/xfactory/:path*` },
+        { source: "/projects/xfactory", destination: `${XFACTORY}/xfactory` },
+        { source: "/projects/xfactory/:path*", destination: `${XFACTORY}/xfactory/:path*` },
         // XFactorY's sign-in service (Clerk). Only XFactorY uses /__clerk on this website.
         { source: "/__clerk/:path*", destination: `${XFACTORY}/xfactory/__clerk/:path*` },
       ],
@@ -50,6 +50,12 @@ const nextConfig: NextConfig = {
       { source: "/system", destination: "/projects", permanent: true },
       { source: "/systems", destination: "/projects", permanent: true },
       { source: "/project", destination: "/projects", permanent: true },
+      { source: "/xfactory", destination: "/projects/xfactory", permanent: true },
+      { source: "/xfactory/:path*", destination: "/projects/xfactory/:path*", permanent: true },
+      { source: "/ai-energy", destination: "/projects/ai-energy", permanent: true },
+      { source: "/ai-energy/:path*", destination: "/projects/ai-energy/:path*", permanent: true },
+      { source: "/projects/x-y", destination: "/projects/xfactory", permanent: true },
+      { source: "/projects/x-y/:path*", destination: "/projects/xfactory/:path*", permanent: false },
     ];
   },
 };

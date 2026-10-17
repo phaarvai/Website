@@ -35,7 +35,7 @@ export const projectStages: ProjectStage[] = [
 export const projects: Project[] = [
   {
     id: "x-y-manufacturing-platform",
-    slug: "x-y",
+    slug: "xfactory",
     title: "XFactorY",
     description:
       "Manufacturing operations platform for industrial and SME supply chains — AI supplier discovery, workflow orchestration, and booking in one console. Teams match manufacturers, coordinate orders, and onboard providers without leaving the platform.",
@@ -51,7 +51,7 @@ export const projects: Project[] = [
     potentialPartners: ["Manufacturers", "Industrial networks", "Technology consortiums"],
     status: ["In Integration", "Production Candidate"],
     featured: true,
-    externalUrl: "/xfactory",
+    externalUrl: "/projects/xfactory",
     linkType: "system",
     badge: "Live",
     openInNewTab: false,
@@ -75,7 +75,7 @@ export const projects: Project[] = [
     potentialPartners: ["State utilities", "Energy agencies", "Grid operators"],
     status: ["Deployed", "Pilot"],
     featured: true,
-    externalUrl: "/ai-energy/",
+    externalUrl: "/projects/ai-energy",
     linkType: "system",
     badge: "Live",
     openInNewTab: false,
@@ -99,10 +99,10 @@ export const projects: Project[] = [
     potentialPartners: ["City digital teams", "Public service departments", "GovTech programs"],
     status: ["In Integration", "Pilot"],
     featured: true,
-    externalUrl: "/login",
+    externalUrl: "/projects/government-services-ai",
     linkType: "system",
     badge: "Live",
-    openInNewTab: true,
+    openInNewTab: false,
     image: "/images/projects/government-services-ai.jpg",
   },
   {
@@ -126,7 +126,7 @@ export const projects: Project[] = [
     externalUrl: "/projects/resilience-resource-optimizer",
     linkType: "platform",
     badge: "Platform",
-    openInNewTab: true,
+    openInNewTab: false,
     image: "/images/projects/resilience-resource-optimizer.jpg",
   },
 ];
