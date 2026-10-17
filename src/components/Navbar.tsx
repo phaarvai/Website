@@ -11,7 +11,7 @@ import { motion, AnimatePresence } from "framer-motion";
 const links = [
   { href: "/", label: "Home" },
   { href: "/operational-domains", label: "Operational Domains" },
-  { href: "/systems", label: "Systems" },
+  { href: "/project", label: "Project" },
   { href: "/capabilities", label: "Capabilities" },
   { href: "/about", label: "About" },
   { href: "/team", label: "Team" },
@@ -33,19 +33,21 @@ export function Navbar() {
     setMobileMenuOpen(false);
   }, [pathname]);
 
-  const isActive = (href: string) =>
-    href === "/" ? pathname === "/" : pathname.startsWith(href);
+  const isActive = (href: string) => {
+    if (href === "/") return pathname === "/";
+    return pathname === href || pathname.startsWith(`${href}/`);
+  };
 
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
         isScrolled
-          ? "bg-white/95 backdrop-blur-md border-b border-border shadow-sm py-3"
-          : "bg-white/85 backdrop-blur-sm border-b border-transparent py-4 md:py-5"
+          ? "bg-white/95 backdrop-blur-md border-b border-border shadow-sm"
+          : "bg-white/95 backdrop-blur-sm border-b border-border"
       }`}
     >
-      <div className="container mx-auto px-6 md:px-12 flex items-center justify-between gap-6">
-        <Link href="/" className="flex items-center group shrink-0 py-1 pr-2 md:pr-4 -ml-1">
+      <div className="container mx-auto px-6 md:px-12 h-[var(--site-nav-height)] flex items-center justify-between gap-6">
+        <Link href="/" className="flex items-center group shrink-0 pr-2 md:pr-4 -ml-1">
           <Image
             src="/images/logo-transparent.png"
             alt="Phaarvai"
@@ -53,8 +55,8 @@ export function Navbar() {
             height={96}
             className={`w-auto object-contain transition-all duration-300 group-hover:scale-[1.02] ${
               isScrolled
-                ? "h-[4.25rem] sm:h-[4.5rem] md:h-[5rem]"
-                : "h-[5.5rem] sm:h-[6rem] md:h-[7.25rem]"
+                ? "h-[calc(var(--site-nav-height)-0.375rem)] max-h-[4.875rem]"
+                : "h-[calc(var(--site-nav-height)-0.0625rem)] max-h-[5.1875rem]"
             }`}
             priority
           />

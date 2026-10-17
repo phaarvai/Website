@@ -192,7 +192,7 @@ export default function Team() {
       />
 
       <article>
-        <div className="hero-gradient pt-28 md:pt-32 relative overflow-hidden">
+        <div className="hero-gradient pt-[calc(var(--site-nav-height)+1.25rem)] relative overflow-hidden">
           <div className="absolute inset-0 opacity-20 pointer-events-none" aria-hidden>
             <NetworkMesh variant="dark" />
           </div>

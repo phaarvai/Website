@@ -10,7 +10,7 @@ export const siteContent = {
     headlineAccent: "Intelligent Infrastructure",
     subheadline:
       "We design, build, and deploy production-ready AI systems and intelligent infrastructure for governments, enterprises, and research institutions — scalable platforms engineered for complex, real-world operations.",
-    ctaPrimary: { label: "View Systems", href: "/projects" },
+    ctaPrimary: { label: "View Project", href: "/project" },
     ctaSecondary: { label: "Explore Capabilities", href: "/capabilities" },
     ctaTertiary: { label: "Partner With Us", href: "/partner" },
     badges: ["AI Infrastructure", "Operational Intelligence", "Enterprise Deployments"],
@@ -83,7 +83,7 @@ export const siteContent = {
       "Our work spans AI, data infrastructure, cybersecurity, intelligent infrastructure, and institutional technology. Each domain is a strategic area where we design, deploy, and scale systems for complex operational environments.",
   },
   featuredDeployments: {
-    title: "Featured Systems",
+    title: "Featured Projects",
     subtitle: "",
     label: "Deployments",
   },
@@ -110,7 +110,7 @@ export const siteContent = {
     links: {
       explore: [
         { label: "Operational Domains", href: "/operational-domains" },
-        { label: "Systems", href: "/systems" },
+        { label: "Project", href: "/project" },
         { label: "Capabilities", href: "/capabilities" },
         { label: "About", href: "/about" },
         { label: "Team", href: "/team" },
@@ -145,7 +145,7 @@ export const institutionalPositioning = {
   ],
   ctas: [
     { label: "View Capabilities", href: "/capabilities" },
-    { label: "See Featured Projects", href: "/projects" },
+    { label: "See Featured Projects", href: "/project" },
     { label: "Contact Our Team", href: "/partner#contact" },
   ],
 };

@@ -99,7 +99,7 @@ export default function FundingPartnerships() {
 
       <CTASection
         title="Explore institutional solutions"
-        description="View our capabilities, featured systems, and deployment portfolio — or contact our team to discuss your environment."
+        description="View our capabilities, featured projects, and deployment portfolio — or contact our team to discuss your environment."
         buttonLabel="Contact Our Team"
         buttonHref="/partner#contact"
         secondaryLabel="View Capabilities"

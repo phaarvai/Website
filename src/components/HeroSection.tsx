@@ -27,7 +27,7 @@ export function HeroSection({
   badges,
 }: HeroSectionProps) {
   return (
-    <section className="relative min-h-[min(92vh,920px)] flex items-center pt-36 md:pt-40 pb-24 md:pb-28 overflow-hidden bg-background">
+    <section className="relative min-h-[min(92vh,920px)] flex items-center pt-[calc(var(--site-nav-height)+1.5rem)] md:pt-[calc(var(--site-nav-height)+2rem)] pb-24 md:pb-28 overflow-hidden bg-background">
       <div className="absolute inset-0 bg-tech-grid opacity-45 pointer-events-none" aria-hidden />
       <div className="absolute inset-0 bg-dot-grid opacity-15 pointer-events-none" aria-hidden />
       <div className="absolute inset-0 opacity-[0.28] pointer-events-none" aria-hidden>

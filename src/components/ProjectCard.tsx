@@ -5,7 +5,7 @@ import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import type { Project } from "@/content/projects";
 import { themes } from "@/content/themes";
-import { StatusBadge, ThemeBadge, ProjectLinkBadge, TechTagBadge } from "@/components/StatusBadge";
+import { ThemeBadge, ProjectLinkBadge, TechTagBadge } from "@/components/StatusBadge";
 import { ProjectThumbnail } from "@/components/visuals/ProjectThumbnail";
 import {
   getProjectAriaLabel,
@@ -34,7 +34,6 @@ export function ProjectCard({
     .map((id) => themes.find((t) => t.id === id)?.title)
     .filter(Boolean) as string[];
 
-  const displayStages = [...new Set([...project.stages, ...project.status])];
   const href = resolveProjectUrl(project.externalUrl);
   const opensInNewTab = projectOpensInNewTab(project);
   const linkLabel = getProjectLinkLabel(project);
@@ -78,36 +77,33 @@ export function ProjectCard({
       )}
 
       {project.image && (
-        <div className="relative aspect-[16/9] overflow-hidden bg-muted">
+        <div className="relative aspect-[16/10] overflow-hidden bg-muted shrink-0">
           <Image
             src={project.image}
             alt=""
             fill
-            className="object-cover"
-            sizes="(max-width: 768px) 100vw, 33vw"
+            className="object-cover object-center transition-transform duration-500 group-hover:scale-[1.03]"
+            sizes="(max-width: 1024px) 100vw, 50vw"
+            priority={delay === 0}
           />
+          <div
+            className="absolute inset-x-0 bottom-0 h-12 md:h-14 bg-gradient-to-t from-card/45 to-transparent pointer-events-none"
+            aria-hidden
+          />
+          {project.systemType && (
+            <span className="absolute top-3 left-3 z-[1] text-[10px] font-mono uppercase tracking-wider text-white/90 bg-black/35 backdrop-blur-sm px-2.5 py-1 rounded-full border border-white/15">
+              {project.systemType}
+            </span>
+          )}
         </div>
       )}
 
       <div
         className={cn(
-          "relative flex flex-col flex-grow pointer-events-none",
+          "relative flex flex-col flex-grow pointer-events-none min-h-0",
           variant === "compact" ? "" : "card-pad pt-5 md:pt-6"
         )}
       >
-        <div className="flex flex-wrap items-center gap-2 mb-4">
-          {project.badge && <ProjectLinkBadge label={project.badge} />}
-          {project.tags.slice(0, 3).map((tag) => (
-            <TechTagBadge key={tag} label={tag} />
-          ))}
-        </div>
-
-        <div className="flex flex-wrap gap-1.5 mb-3">
-          {themeLabels.map((label) => (
-            <ThemeBadge key={label} label={label} />
-          ))}
-        </div>
-
         <div className="flex items-start justify-between gap-4 mb-3">
           <h3
             className={cn(
@@ -126,49 +122,40 @@ export function ProjectCard({
 
         <p
           className={cn(
-            "text-muted-foreground text-prose flex-grow",
-            variant === "compact" ? "text-sm mb-3" : "text-[15px] mb-4"
+            "text-muted-foreground text-prose text-pretty",
+            variant === "compact"
+              ? "text-sm mb-3 line-clamp-3"
+              : "text-[15px] leading-[1.65] mb-4 line-clamp-3 min-h-[4.875rem]"
           )}
         >
           {project.description}
         </p>
 
-        {variant !== "compact" && project.technologies.length > 0 && (
-          <div className="mb-4">
-            <p className="text-[10px] font-mono uppercase tracking-wider text-muted-foreground mb-2">
-              Stack
-            </p>
-            <div className="flex flex-wrap gap-1.5">
-              {project.technologies.map((tech) => (
-                <span
-                  key={tech}
-                  className="text-[11px] font-mono px-2 py-0.5 rounded-md bg-muted/80 text-foreground/80 border border-border"
-                >
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-        )}
+        <div className="flex flex-wrap items-center gap-2 mb-3">
+          {project.badge && <ProjectLinkBadge label={project.badge} />}
+          {project.tags.slice(0, 3).map((tag) => (
+            <TechTagBadge key={tag} label={tag} />
+          ))}
+        </div>
 
-        {variant !== "compact" && (
-          <div className="flex flex-wrap gap-2 mb-4">
-            {displayStages.map((stage) => (
-              <StatusBadge key={stage} stage={stage} />
+        {themeLabels.length > 0 && (
+          <div className="flex flex-wrap gap-1.5 mb-4">
+            {themeLabels.map((label) => (
+              <ThemeBadge key={label} label={label} />
             ))}
           </div>
         )}
 
         {variant !== "compact" && (project.deploymentContext || project.targetUsers) && (
-          <div className="text-body-sm text-muted-foreground border-t border-border pt-4 mb-4 space-y-1">
+          <div className="text-body-sm text-muted-foreground border-t border-border pt-4 space-y-1.5 mt-auto">
             {project.deploymentContext && (
-              <p>
+              <p className="leading-snug">
                 <span className="font-semibold text-foreground/80">Deployment: </span>
                 {project.deploymentContext}
               </p>
             )}
             {project.targetUsers && (
-              <p>
+              <p className="leading-snug">
                 <span className="font-semibold text-foreground/80">Operators: </span>
                 {project.targetUsers}
               </p>
@@ -185,7 +172,16 @@ export function ProjectCard({
           </div>
         )}
 
-        <div className="mt-auto pt-4 border-t border-border flex items-center justify-between gap-3">
+        <div
+          className={cn(
+            "pt-4 border-t border-border flex items-center justify-between gap-3",
+            variant !== "compact" && !(project.deploymentContext || project.targetUsers)
+              ? "mt-auto"
+              : variant !== "compact"
+                ? "mt-4"
+                : "mt-auto"
+          )}
+        >
           <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-primary group-hover:gap-2.5 transition-all duration-200">
             {linkLabel}
             <ArrowUpRight

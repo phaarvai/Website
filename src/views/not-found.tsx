@@ -22,7 +22,7 @@ export default function NotFound() {
           </h1>
 
           <p className="text-muted-foreground mb-8">
-            This page may have moved. Explore our operational domains, systems,
+            This page may have moved. Explore our operational domains, projects,
             or partner with us.
           </p>
 
@@ -31,7 +31,7 @@ export default function NotFound() {
               <Button>Go home</Button>
             </Link>
 
-            <Link href="/projects">
+            <Link href="/project">
               <Button variant="outline">
                 View projects
               </Button>

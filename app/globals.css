@@ -55,6 +55,7 @@
   --app-font-serif: Georgia, serif;
   --app-font-mono: Menlo, monospace;
   --radius: 0.625rem;
+  --site-nav-height: 5.25rem;
 
   /* Typography scale */
   --text-body: 1.0625rem; /* 17px — +1px from default */
@@ -282,7 +283,8 @@
 
   /* Page shell */
   .page-shell {
-    @apply pt-32 pb-16 md:pb-20;
+    padding-top: calc(var(--site-nav-height) + 1.25rem);
+    @apply pb-16 md:pb-20;
   }
 
   /* Dark gradient sections */

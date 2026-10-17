@@ -34,7 +34,7 @@ export const capabilityProcess: CapabilityArea[] = [
       "AI-assisted knowledge systems",
       "Human-in-the-loop AI",
     ],
-    href: "/projects",
+    href: "/project",
   },
   {
     id: "data-infrastructure",
@@ -52,7 +52,7 @@ export const capabilityProcess: CapabilityArea[] = [
       "Data integration platforms",
       "Real-time analytics",
     ],
-    href: "/projects",
+    href: "/project",
   },
   {
     id: "cybersecurity-trust",
