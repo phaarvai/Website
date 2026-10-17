@@ -21,22 +21,25 @@ const nextConfig: NextConfig = {
   },
 
   async rewrites() {
-    // XFactorY at /xfactory (only these two rules; no other app is affected). Every
-    // /xfactory/... request — pages, its /xfactory/_next files and its Clerk sign-in at
-    // /xfactory/__clerk — is forwarded to the XFactorY deployment built for this path
-    // (NEXT_PUBLIC_BASE_PATH=/xfactory). Set XFACTORY_ORIGIN in this project's Vercel settings
-    // to that deployment's URL. The standalone XFactorY deployment stays separate.
-    // A trailing "/" or "/xfactory" in the value is ignored.
+    // XFactorY at /projects/xfactory (only these rules; no other app is affected). Every
+    // /projects/xfactory/... request — pages, its /projects/xfactory/_next files and its Clerk
+    // sign-in — is forwarded to the SAME path on the XFactorY deployment, which must be built for
+    // this path (NEXT_PUBLIC_BASE_PATH=/projects/xfactory in the XFactorY Vercel project).
+    // The path in the browser, the forwarded path and the XFactorY base path must be identical:
+    // otherwise its pages 404 or its buttons (e.g. "Join Our Ecosystem") do not navigate.
+    // Set XFACTORY_ORIGIN in this project's Vercel settings to that deployment's URL.
+    // A trailing "/", "/xfactory" or "/projects/xfactory" in the value is ignored.
     const XFACTORY = (process.env.XFACTORY_ORIGIN || "https://x-factor-y-full-stack-cwlx.vercel.app")
       .trim()
       .replace(/\/+$/, "")
+      .replace(/\/projects\/xfactory$/i, "")
       .replace(/\/xfactory$/i, "");
     return {
       beforeFiles: [
-        { source: "/projects/xfactory", destination: `${XFACTORY}/xfactory` },
-        { source: "/projects/xfactory/:path*", destination: `${XFACTORY}/xfactory/:path*` },
+        { source: "/projects/xfactory", destination: `${XFACTORY}/projects/xfactory` },
+        { source: "/projects/xfactory/:path*", destination: `${XFACTORY}/projects/xfactory/:path*` },
         // XFactorY's sign-in service (Clerk). Only XFactorY uses /__clerk on this website.
-        { source: "/__clerk/:path*", destination: `${XFACTORY}/xfactory/__clerk/:path*` },
+        { source: "/__clerk/:path*", destination: `${XFACTORY}/projects/xfactory/__clerk/:path*` },
       ],
     };
   },
