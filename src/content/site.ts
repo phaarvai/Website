@@ -10,7 +10,7 @@ export const siteContent = {
     headlineAccent: "Intelligent Infrastructure",
     subheadline:
       "We design, build, and deploy production-ready AI systems and intelligent infrastructure for governments, enterprises, and research institutions — scalable platforms engineered for complex, real-world operations.",
-    ctaPrimary: { label: "View Project", href: "/project" },
+    ctaPrimary: { label: "View Projects", href: "/projects" },
     ctaSecondary: { label: "Explore Capabilities", href: "/capabilities" },
     ctaTertiary: { label: "Partner With Us", href: "/partner" },
     badges: ["AI Infrastructure", "Operational Intelligence", "Enterprise Deployments"],
@@ -110,7 +110,7 @@ export const siteContent = {
     links: {
       explore: [
         { label: "Operational Domains", href: "/operational-domains" },
-        { label: "Project", href: "/project" },
+        { label: "Projects", href: "/projects" },
         { label: "Capabilities", href: "/capabilities" },
         { label: "About", href: "/about" },
         { label: "Team", href: "/team" },
@@ -145,7 +145,7 @@ export const institutionalPositioning = {
   ],
   ctas: [
     { label: "View Capabilities", href: "/capabilities" },
-    { label: "See Featured Projects", href: "/project" },
+    { label: "See Featured Projects", href: "/projects" },
     { label: "Contact Our Team", href: "/partner#contact" },
   ],
 };

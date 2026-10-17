@@ -31,7 +31,7 @@ export default function NotFound() {
               <Button>Go home</Button>
             </Link>
 
-            <Link href="/project">
+            <Link href="/projects">
               <Button variant="outline">
                 View projects
               </Button>

@@ -21,9 +21,9 @@ export default function Projects() {
   return (
     <>
       <PageSEO
-        title="Project & Deployments"
+        title="Projects & Deployments"
         description="Explore Phaarvai's applied AI systems, operational platforms, and deployment environments across institutional domains."
-        path="/project"
+        path="/projects"
       />
 
       <article className="page-shell bg-background">

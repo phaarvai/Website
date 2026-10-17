@@ -95,10 +95,10 @@ export default function Themes() {
 
                     <div className="mt-auto flex flex-wrap items-center gap-4 pt-4 border-t border-border">
                       <Link
-                        href="/project"
+                        href="/projects"
                         className="inline-flex items-center text-sm font-semibold text-primary hover:gap-2 transition-all gap-1.5 group"
                       >
-                        View project
+                        View projects
                         <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
                       </Link>
                       <Link
