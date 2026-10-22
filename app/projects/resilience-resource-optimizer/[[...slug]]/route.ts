@@ -32,30 +32,6 @@ function page() {
         height: 100%;
         border: 0;
       }
-      .back-to-site {
-        position: fixed;
-        bottom: 16px;
-        left: 16px;
-        z-index: 9999;
-        display: inline-flex;
-        align-items: center;
-        gap: 6px;
-        background: rgba(15, 23, 42, 0.88);
-        color: #ffffff;
-        padding: 8px 14px;
-        border-radius: 9999px;
-        font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-        font-size: 12px;
-        font-weight: 500;
-        text-decoration: none;
-        box-shadow: 0 4px 14px rgba(0, 0, 0, 0.18);
-        backdrop-filter: blur(8px);
-        transition: background 0.2s ease, transform 0.2s ease;
-      }
-      .back-to-site:hover {
-        background: rgba(15, 23, 42, 1);
-        transform: translateY(-1px);
-      }
     </style>
   </head>
   <body>
@@ -64,12 +40,6 @@ function page() {
       title="Resilience Resource Optimizer"
       allow="fullscreen; geolocation; camera; microphone; clipboard-read; clipboard-write"
     ></iframe>
-    <a href="/projects" class="back-to-site" aria-label="Back to Phaarvai Projects">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <path d="m15 18-6-6 6-6"/>
-      </svg>
-      <span>Back to Phaarvai</span>
-    </a>
   </body>
 </html>`;
 
