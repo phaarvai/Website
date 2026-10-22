@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Github } from "lucide-react";
 import type { Project } from "@/content/projects";
 import { themes } from "@/content/themes";
 import { ThemeBadge, ProjectLinkBadge, TechTagBadge } from "@/components/StatusBadge";
@@ -189,11 +189,26 @@ export function ProjectCard({
               className="transition-transform duration-200 group-hover:translate-x-0.5 group-hover:-translate-y-px"
             />
           </span>
-          {opensInNewTab && (
-            <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground/70">
-              External
-            </span>
-          )}
+          <div className="flex items-center gap-2">
+            {project.githubUrl && (
+              <a
+                href={project.githubUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={(e) => e.stopPropagation()}
+                className="relative z-20 p-1 rounded-md text-muted-foreground hover:text-foreground hover:bg-muted transition-colors pointer-events-auto"
+                title="View GitHub Repository"
+                aria-label={`${project.title} GitHub repository (opens in a new tab)`}
+              >
+                <Github size={16} />
+              </a>
+            )}
+            {opensInNewTab && (
+              <span className="text-[11px] font-mono uppercase tracking-wider text-muted-foreground/70">
+                External
+              </span>
+            )}
+          </div>
         </div>
       </div>
     </motion.article>

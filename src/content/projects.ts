@@ -133,6 +133,32 @@ export const projects: Project[] = [
     githubUrl: "https://github.com/Phaarvai-technologies/Resilience-resource-optimizer.git",
     liveUrl: "https://resilience-resource-optimizer-zq3c.vercel.app/",
   },
+  {
+    id: "aiman-knowledge-commons",
+    slug: "aiman-knowledge-commons",
+    title: "AIMan Knowledge Commons",
+    description:
+      "Human-in-the-loop AI knowledge validation platform enabling collaborative verification of complex knowledge claims. Subject-matter experts and automated scoring pipelines validate raw field observations and domain insights into structured, AI-ready resources.",
+    themes: ["data-ai-systems", "research-emerging"],
+    stages: ["Deployed", "Pilot"],
+    technologies: ["React", "Human-in-the-Loop", "AI Validation Pipeline", "Tailwind CSS"],
+    tags: ["AI", "Platform", "Deployment"],
+    systemType: "Validation Platform",
+    targetUsers: "Domain experts, reviewers, and AI teams",
+    deploymentContext: "Human-in-the-loop knowledge verification and dataset enrichment",
+    building:
+      "Knowledge submission intake, multi-tier validation scoring, review pipelines, and AI-ready claim repositories.",
+    potentialPartners: ["Research institutions", "AI labs", "Domain expert networks"],
+    status: ["Deployed", "Pilot"],
+    featured: true,
+    externalUrl: "/projects/aiman-knowledge-commons",
+    linkType: "platform",
+    badge: "Live",
+    openInNewTab: false,
+    image: "/images/projects/aiman-knowledge-commons.jpg",
+    githubUrl: "https://github.com/Phaarvai-technologies/Aiman-knowledge-commons.git",
+    liveUrl: "https://aiman-knowledge-commons-iota.vercel.app/",
+  },
 ];
 
 export function getProjectsByTheme(themeId: ThemeId) {

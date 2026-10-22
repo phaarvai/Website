@@ -4,6 +4,7 @@ import { NextResponse, type NextRequest } from "next/server";
 const PHAARVAI_FIRST_SEGMENTS = new Set([
   "about",
   "ai-energy",
+  "aiman-knowledge-commons",
   "admin",
   "assistant",
   "capabilities",
@@ -87,6 +88,10 @@ export function middleware(request: NextRequest) {
     pathname.startsWith(`${xfactoryPublicPrefix}/`) ||
     pathname === "/projects/ai-energy" ||
     pathname.startsWith("/projects/ai-energy/") ||
+    pathname === "/projects/aiman-knowledge-commons" ||
+    pathname.startsWith("/projects/aiman-knowledge-commons/") ||
+    pathname === "/aiman-knowledge-commons" ||
+    pathname.startsWith("/aiman-knowledge-commons/") ||
     pathname === "/projects/resilience-resource-optimizer" ||
     pathname.startsWith("/projects/resilience-resource-optimizer/") ||
     pathname === "/resilience-resource-optimizer" ||
@@ -102,8 +107,10 @@ export function middleware(request: NextRequest) {
   const origin = request.nextUrl.origin;
   const prefix = isFromPrefix(referer, origin, "/projects/ai-energy")
     ? "/projects/ai-energy"
-    : isFromPrefix(referer, origin, "/projects/resilience-resource-optimizer")
-      ? "/projects/resilience-resource-optimizer"
+    : isFromPrefix(referer, origin, "/projects/aiman-knowledge-commons")
+      ? "/projects/aiman-knowledge-commons"
+      : isFromPrefix(referer, origin, "/projects/resilience-resource-optimizer")
+        ? "/projects/resilience-resource-optimizer"
       : isFromPrefix(referer, origin, xfactoryPublicPrefix)
         ? xfactoryPublicPrefix
         : isFromPrefix(referer, origin, "/x-y")

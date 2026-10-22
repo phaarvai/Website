@@ -59,6 +59,8 @@ const nextConfig: NextConfig = {
       { source: "/ai-energy/:path*", destination: "/projects/ai-energy/:path*", permanent: true },
       { source: "/resilience-resource-optimizer", destination: "/projects/resilience-resource-optimizer", permanent: true },
       { source: "/resilience-resource-optimizer/:path*", destination: "/projects/resilience-resource-optimizer/:path*", permanent: true },
+      { source: "/aiman-knowledge-commons", destination: "/projects/aiman-knowledge-commons", permanent: true },
+      { source: "/aiman-knowledge-commons/:path*", destination: "/projects/aiman-knowledge-commons/:path*", permanent: true },
       { source: "/projects/x-y", destination: "/projects/xfactory", permanent: true },
       { source: "/projects/x-y/:path*", destination: "/projects/xfactory/:path*", permanent: false },
     ];

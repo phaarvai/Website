@@ -10,6 +10,8 @@ export function SiteChrome({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const hideMarketingChrome =
     isGsaiAppPath(pathname) ||
+    pathname.startsWith("/projects/aiman-knowledge-commons") ||
+    pathname.startsWith("/aiman-knowledge-commons") ||
     pathname.startsWith("/projects/resilience-resource-optimizer") ||
     pathname.startsWith("/projects/xfactory") ||
     pathname.startsWith("/projects/x-y") ||
