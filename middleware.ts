@@ -16,6 +16,10 @@ const PHAARVAI_FIRST_SEGMENTS = new Set([
   "partner",
   "project",
   "projects",
+<<<<<<< HEAD
+=======
+  "resilience-resource-optimizer",
+>>>>>>> master
   "result",
   "review",
   "sectors",
@@ -86,6 +90,13 @@ export function middleware(request: NextRequest) {
     pathname.startsWith(`${xfactoryPublicPrefix}/`) ||
     pathname === "/projects/ai-energy" ||
     pathname.startsWith("/projects/ai-energy/") ||
+<<<<<<< HEAD
+=======
+    pathname === "/projects/resilience-resource-optimizer" ||
+    pathname.startsWith("/projects/resilience-resource-optimizer/") ||
+    pathname === "/resilience-resource-optimizer" ||
+    pathname.startsWith("/resilience-resource-optimizer/") ||
+>>>>>>> master
     pathname.startsWith("/api") ||
     pathname.startsWith("/_next") ||
     pathname.startsWith("/favicon")

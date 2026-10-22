@@ -57,6 +57,11 @@ const nextConfig: NextConfig = {
       { source: "/xfactory/:path*", destination: "/projects/xfactory/:path*", permanent: true },
       { source: "/ai-energy", destination: "/projects/ai-energy", permanent: true },
       { source: "/ai-energy/:path*", destination: "/projects/ai-energy/:path*", permanent: true },
+<<<<<<< HEAD
+=======
+      { source: "/resilience-resource-optimizer", destination: "/projects/resilience-resource-optimizer", permanent: true },
+      { source: "/resilience-resource-optimizer/:path*", destination: "/projects/resilience-resource-optimizer/:path*", permanent: true },
+>>>>>>> master
       { source: "/projects/x-y", destination: "/projects/xfactory", permanent: true },
       { source: "/projects/x-y/:path*", destination: "/projects/xfactory/:path*", permanent: false },
     ];

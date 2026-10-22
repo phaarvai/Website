@@ -22,6 +22,11 @@ export interface Project {
   linkLabel?: string;
   openInNewTab?: boolean;
   image?: string;
+<<<<<<< HEAD
+=======
+  githubUrl?: string;
+  liveUrl?: string;
+>>>>>>> master
 }
 
 export const projectStages: ProjectStage[] = [
@@ -112,7 +117,11 @@ export const projects: Project[] = [
     description:
       "Decision-support for municipal climate resilience — risk scoring, intervention prioritization, and budget allocation across adaptation programs. Planning teams turn hazard and geospatial data into clear, reportable investment plans.",
     themes: ["environment-resilience", "government"],
+<<<<<<< HEAD
     stages: ["Pilot", "Production Candidate"],
+=======
+    stages: ["Deployed", "Pilot"],
+>>>>>>> master
     technologies: ["Geospatial Analytics", "Risk Modeling", "React", "API Layer"],
     tags: ["Data", "Platform", "Deployment"],
     systemType: "Planning Platform",
@@ -121,6 +130,7 @@ export const projects: Project[] = [
     building:
       "Risk analysis modules, resource planning engines, and transparency reporting interfaces.",
     potentialPartners: ["Local governments", "Climate agencies", "Development partners"],
+<<<<<<< HEAD
     status: ["Pilot", "Production Candidate"],
     featured: true,
     externalUrl: "/projects/resilience-resource-optimizer",
@@ -128,6 +138,17 @@ export const projects: Project[] = [
     badge: "Platform",
     openInNewTab: false,
     image: "/images/projects/resilience-resource-optimizer.jpg",
+=======
+    status: ["Deployed", "Pilot"],
+    featured: true,
+    externalUrl: "/projects/resilience-resource-optimizer",
+    linkType: "platform",
+    badge: "Live",
+    openInNewTab: false,
+    image: "/images/projects/resilience-resource-optimizer.jpg",
+    githubUrl: "https://github.com/Phaarvai-technologies/Resilience-resource-optimizer.git",
+    liveUrl: "https://resilience-resource-optimizer-zq3c.vercel.app/",
+>>>>>>> master
   },
 ];
 
