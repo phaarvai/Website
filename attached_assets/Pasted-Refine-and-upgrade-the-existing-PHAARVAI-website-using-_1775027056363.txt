@@ -1,0 +1,328 @@
+Refine and upgrade the existing PHAARVAI website using the current codebase. DO NOT rebuild from scratch.
+
+This update must fully align with a detailed strategy document defining positioning, services, content architecture, design, and technical standards.
+
+---
+
+## CORE POSITIONING (CRITICAL)
+
+Ensure the website clearly communicates:
+
+PHAARVAI is:
+
+* an applied innovation and digital systems company
+* an AI implementation partner
+* a systems integrator for institutional environments
+* a public-impact technology execution partner
+
+PHAARVAI is NOT:
+
+* a generic IT services vendor
+* a freelancer portfolio
+* a vague startup
+* a grant-chasing organization
+
+---
+
+## GLOBAL CONTENT RULES
+
+* Use problem-first messaging
+
+* Keep tone: intelligent, calm, credible, execution-focused
+
+* Avoid hype words (disruptive, cutting-edge, revolutionary, etc.)
+
+* Use:
+
+  * practical AI deployment
+  * scalable systems
+  * operational intelligence
+  * measurable impact
+
+* Keep paragraphs short (2–3 lines max)
+
+* Use bullets and structured sections
+
+* Every section must clearly answer:
+
+  * What is the problem?
+  * What do we build?
+  * What does the client get?
+
+---
+
+## SERVICE ARCHITECTURE (STRICT)
+
+Organize ALL content into 4 practice areas:
+
+1. AI & Decision Intelligence
+2. Digitization & Data Platforms
+3. IoT & Smart Infrastructure
+4. Public Impact & Strategic Programs
+
+Each must include:
+
+* purpose
+* offerings
+* deliverables
+* ideal scenarios
+
+---
+
+## HOMEPAGE ENHANCEMENT
+
+1. HERO
+
+* Clear, global positioning
+* Mention AI, digitization, infrastructure, public systems
+* 2 CTAs: Talk to Us, Explore Capabilities
+
+2. WHAT WE DO (4 cards)
+   Each card:
+
+* title
+* 1-line problem
+* 1-line solution
+* 1-line outcome
+
+3. ADD “WHAT WE BUILD” (IMPORTANT)
+   Include:
+
+* AI-powered decision systems
+* dashboards & command centers
+* integrated data platforms
+* workflow automation systems
+* infrastructure monitoring systems
+* impact tracking systems
+
+4. WHY PHAARVAI
+   Use bullets:
+
+* strategy + execution
+* built for scale
+* institutional focus
+* measurable outcomes
+
+5. PROBLEMS SECTION
+   Include:
+
+* fragmented workflows
+* disconnected systems
+* lack of visibility
+* underutilized data
+* difficulty scaling initiatives
+
+6. ADD FUNDING TEASER
+
+* Position as implementation partner
+* NOT grant-seeking firm
+
+---
+
+## CAPABILITIES PAGE (MAJOR UPGRADE)
+
+Each capability must include:
+
+1. What this is
+2. When you need this (bullets)
+3. What we do (bullets)
+4. Deliverables (bullets)
+
+Use examples from:
+
+* AI systems
+* dashboards
+* IoT monitoring
+* program design
+
+---
+
+## SOLUTIONS PAGE (USE CASE STRUCTURE)
+
+Each use case must include:
+
+* Challenge
+* Typical client
+* What we implement
+* Outputs delivered
+* Expected impact
+
+Use cases:
+
+* AI decision support
+* workflow digitization
+* infrastructure monitoring
+* dashboards
+* sustainability analytics
+* funded program design
+
+---
+
+## SECTORS PAGE
+
+Add and expand:
+
+* Government
+* Infrastructure
+* Energy
+* Foundations
+* Innovation ecosystems
+* Defense (light positioning)
+
+Each section:
+
+* problems
+* systems built
+
+---
+
+## FUNDING & PARTNERSHIPS PAGE
+
+Position PHAARVAI as:
+
+* implementation partner
+* system architect
+* execution layer for funded programs
+
+Add:
+
+1. Why alignment matters
+
+2. Types of partnerships:
+
+   * philanthropy
+   * CSR
+   * donor-backed
+   * public-sector
+   * consortiums
+
+3. How we contribute:
+
+   * concept → architecture → implementation → reporting → scale
+
+4. Priority themes:
+
+   * AI for public systems
+   * sustainability
+   * institutional data platforms
+
+---
+
+## INSIGHTS PAGE
+
+Add categories:
+
+* AI for public impact
+* digitization gaps
+* infrastructure intelligence
+* sustainability
+
+Add 3–6 articles:
+
+* digitization gaps in India
+* AI for social impact
+* dashboards that work
+* fundable digital programs
+
+---
+
+## CONTACT PAGE
+
+Fields:
+
+* Name
+* Organization
+* Email
+* Country/Region
+* Type of organization
+* Area of interest
+* Message
+
+CTA:
+“Tell us what you are trying to build, modernize, or scale.”
+
+---
+
+## DESIGN SYSTEM
+
+Colors:
+
+* Deep blue (#0B1F3A)
+* Secondary blue (#1E3A5F)
+* Charcoal (#1A1A1A)
+* Light background (#F8FAFC)
+* White (#FFFFFF)
+
+Rules:
+
+* 80% light UI
+* minimal dark sections
+* no flashy gradients
+
+Typography:
+
+* clean sans-serif
+* strong headings
+* readable spacing
+
+---
+
+## ANIMATION
+
+Use subtle motion only:
+
+* fade-in on scroll
+* card hover elevation
+* smooth transitions
+
+Avoid:
+
+* heavy animation
+* parallax
+* distractions
+
+---
+
+## TECHNICAL REQUIREMENTS
+
+* Use Next.js App Router
+* TypeScript + Tailwind
+* Use /content files (no hardcoding)
+* Semantic HTML
+* SEO metadata per page
+* Optimize images (SVG preferred)
+* Ensure accessibility
+
+---
+
+## SEO
+
+Optimize for:
+
+* AI solutions company
+* digital transformation
+* IoT systems
+* operational intelligence
+
+Use:
+
+* proper headings
+* meta tags
+* clean structure
+
+---
+
+## FINAL GOAL
+
+Transform the site into:
+
+* a high-credibility institutional technology company website
+* clear, structured, and easy to understand
+* aligned with global consulting and systems firms
+* professional, minimal, and scalable
+
+NOT:
+
+* a startup landing page
+* a generic IT services site
+* a text-heavy document

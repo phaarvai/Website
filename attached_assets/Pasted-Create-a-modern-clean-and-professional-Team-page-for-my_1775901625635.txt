@@ -1,0 +1,73 @@
+Create a modern, clean, and professional "Team" page for my AI-driven innovation platform called "Phaarvai".
+
+Context about the website:
+Phaarvai is an AI-driven innovation platform focused on building impactful, scalable, and intelligent solutions across domains like AI, IoT, security, and digital transformation. The design should feel futuristic, minimal, and aligned with a tech startup.
+
+Goal:
+Build a "Meet Our Team" page that highlights team members in a concise, professional, and visually appealing way WITHOUT showing full resumes. Instead, extract and present only high-value, summarized information.
+
+Design Requirements:
+- Use a card-based layout (grid system)
+- Each team member should have:
+  - Profile photo (use placeholder if not available)
+  - Full Name
+  - Role / Title
+  - Short professional bio (3–4 lines max)
+  - Key expertise (as tags or bullet points)
+  - Optional: LinkedIn icon/button
+- Add subtle hover effects for cards
+- Keep UI consistent with a modern AI startup (dark/light theme based on current site)
+- Use smooth animations (fade-in, hover scale)
+- Make it fully responsive
+
+Page Structure:
+1. Hero Section:
+   - Title: "Meet Our Team"
+   - Subtitle: "The minds driving innovation at Phaarvai"
+
+2. Team Section:
+   - Grid layout (3–4 cards per row depending on screen size)
+
+3. Optional Section:
+   - "Our Vision" or "Why We Build" (short paragraph about team mission)
+
+Content (Summarized Team Profiles):
+
+1. Praveen Ashok Kumar
+Role: Senior Technical Program Manager
+Bio: Experienced leader with 10+ years in IoT, AI, and large-scale software systems. Specializes in delivering high-impact programs, digital twins, and smart infrastructure solutions.
+Expertise: IoT, AI/ML, Cloud Architecture, Program Management, Smart Cities
+
+2. Prathipa Ashok Kumar
+Role: Business & Strategy Lead
+Bio: Business development expert with strong experience in scaling operations, driving revenue growth, and leading cross-functional teams across multiple industries.
+Expertise: Business Strategy, Sales Growth, Digital Marketing, Operations, Client Management
+
+3. Udhgee Murugesan
+Role: AI Security Engineer
+Bio: Security specialist with over a decade of experience in AI/ML security, building secure architectures, and mitigating advanced vulnerabilities in large-scale systems.
+Expertise: AI Security, Cloud Security, Threat Modeling, Python, AWS
+
+4. Raghavan Kothandaraman
+Role: Senior Software Engineer
+Bio: Distributed systems expert with deep experience in AWS, building scalable, high-performance platforms handling millions of assets and real-time data pipelines.
+Expertise: Distributed Systems, AWS, Microservices, System Design, Scalability
+
+5. Anchana M
+Role: AI & Full Stack Developer
+Bio: Passionate final-year IT student focused on AI/ML and full-stack development. Builds user-centric applications and innovative solutions like AI-based detection systems and accessibility tools.
+Expertise: Python, AI/ML, Django, Web Development, Problem Solving
+
+Additional Instructions:
+- Keep bios concise and impactful (do not copy resumes)
+- Maintain consistent tone across all profiles
+- Use clean typography and spacing
+- Ensure accessibility (good contrast, readable fonts)
+- Code should be modular and easy to integrate into existing Phaarvai website
+
+Tech Stack:
+(Use same stack as existing site — likely React / Next.js / HTML-CSS-JS)
+
+Output:
+- Provide complete frontend code for the Team page
+- Ensure it can be directly integrated into the existing website

@@ -1,0 +1,325 @@
+Refine and enhance the existing PHAARVAI website using the current codebase. Do NOT rebuild from scratch.
+
+Your goal is to upgrade:
+
+* content depth
+* strategic positioning
+* completeness
+* visual clarity (color balance)
+
+while maintaining the current structure and premium feel.
+
+---
+
+## GLOBAL INSTRUCTIONS
+
+* Keep existing UI and structure
+* Improve content depth and clarity across all pages
+* Ensure all content follows:
+
+  * problem-first messaging
+  * institutional tone
+  * strategy + execution positioning
+* Do NOT make the site sound like a generic IT services company
+* Keep language precise, technical, and credible
+
+---
+
+## HOME PAGE ENHANCEMENTS
+
+1. HERO SECTION
+
+* Refine subheadline to include:
+  AI, digitization, data platforms, operational intelligence
+* Ensure CTAs:
+
+  * Talk to Us
+  * Explore Capabilities
+
+2. ADD "WHAT WE DO"
+
+* 4-card layout:
+
+  * AI & Decision Intelligence
+  * Digitization & Data Platforms
+  * IoT & Smart Infrastructure
+  * Public Impact & Strategic Programs
+* Each card:
+
+  * 1–2 sentence description
+  * link to capabilities page
+
+3. IMPROVE "WHY PHAARVAI"
+   Include:
+
+* strategy + implementation in one partner
+* grounded in real operational problems
+* built for scale
+* aligned to fundable initiatives
+
+4. EXPAND "PROBLEMS WE SOLVE"
+   Add:
+
+* lack of real-time visibility
+* limited decision support
+* difficulty scaling ideas
+* lack of measurable systems
+
+5. ADD "FEATURED SOLUTION AREAS"
+   Include:
+
+* AI decision support
+* workflow digitization
+* smart monitoring
+* sustainability analytics
+* public-impact systems
+* strategic digitization
+
+6. EXPAND SECTORS
+   Add:
+
+* Defense and strategic systems
+* Foundations and mission-driven institutions
+
+7. ADD FUNDING TEASER
+
+* Emphasize funding-aligned implementation
+* CTA → Funding page
+
+8. FINAL CTA
+   Headline:
+   “Let’s design something that can scale.”
+
+---
+
+## ABOUT PAGE ENHANCEMENTS
+
+* Expand company story:
+  bridge gap between ideas and execution
+* Mission:
+  scalable digital systems + AI-enabled solutions
+* Vision:
+  operational intelligence + institutional capability
+* How we work:
+
+  1. Understand
+  2. Design
+  3. Build & scale
+* Principles:
+  usefulness over hype, scale, measurable systems, execution focus
+
+---
+
+## CAPABILITIES PAGE
+
+For each capability:
+
+Add:
+
+* Ideal client scenarios
+* Deliverables:
+  roadmap, dashboards, systems, architecture
+
+Ensure coverage:
+
+* AI use-case identification
+* automation
+* dashboards
+* IoT integration
+* fundable program design
+
+---
+
+## SOLUTIONS PAGE
+
+Each use case must include:
+
+* Challenge
+* Typical client
+* How PHAARVAI helps
+* Outputs
+* Impact
+
+Apply to all 6 use cases.
+
+---
+
+## SECTORS PAGE
+
+Add:
+
+* Defense systems
+* Foundations
+
+Expand each with:
+
+* problems
+* systems built
+
+---
+
+## FUNDING & PARTNERSHIPS PAGE
+
+Enhance with:
+
+* Why alignment matters:
+  initiatives fail due to weak execution
+
+* Add partnerships:
+  philanthropy, CSR, donor programs, public sector, consortiums
+
+* Expand contribution:
+  concept → system → reporting → scale
+
+* Add priority themes:
+  AI, sustainability, data platforms, transformation
+
+* CTA:
+  “Let’s explore a scalable initiative together.”
+
+---
+
+## INSIGHTS PAGE
+
+Add categories:
+
+* AI for public impact
+* digitization gaps
+* infrastructure intelligence
+* sustainability
+
+Add articles:
+
+* digitization gaps in India
+* AI for social impact
+* why dashboards fail
+* fundable programs
+
+---
+
+## CONTACT PAGE
+
+Fields:
+
+* Name
+* Organization
+* Email
+* Country/Region
+* Type of organization
+* Area of interest (dropdown)
+* Message
+
+Dropdown:
+
+* AI
+* Digitization
+* IoT
+* Sustainability
+* Public programs
+* Funding
+* Other
+
+CTA:
+“Tell us what you are trying to build, modernize, or scale.”
+
+---
+
+## COLOR & VISUAL REFINEMENT
+
+IMPORTANT:
+
+* Do NOT redesign layout
+* Only improve brightness and contrast
+
+UPDATED COLORS:
+
+Primary: #0B1F3A
+Secondary: #1E3A5F
+Accent: #2563EB
+Charcoal: #1A1A1A
+Light BG: #F8FAFC
+White: #FFFFFF
+
+---
+
+## COLOR CHANGES
+
+1. BACKGROUNDS
+
+* Use:
+  #F8FAFC (main)
+  #FFFFFF (cards)
+* Use dark blue ONLY for:
+  hero, footer, emphasis sections
+
+2. TEXT
+
+* Headings: #0B1F3A
+* Body: #1A1A1A
+* Secondary: softer gray
+
+3. BUTTONS
+
+* Primary: #2563EB (white text)
+* Secondary: outline (#1E3A5F)
+
+4. CARDS
+
+* White background
+* subtle shadow
+* hover elevation
+
+5. SECTIONS
+
+* Alternate:
+  white / light gray
+* Avoid too many dark sections
+
+6. HERO
+
+* Apply gradient:
+  linear-gradient(135deg, #0B1F3A, #1E3A5F)
+
+7. FOOTER
+
+* Keep dark
+* ensure strong contrast
+
+---
+
+## DESIGN RULES
+
+* 80% light, 20% dark
+* strong whitespace
+* no flashy colors
+* maintain institutional feel
+
+---
+
+## FINAL CHECK
+
+Ensure:
+
+* consistent tone
+* strong positioning
+* improved readability
+* complete sections
+* responsive design
+
+---
+
+## GOAL
+
+Transform the website into a high-credibility, institution-ready platform that reflects:
+
+* AI + digital systems expertise
+* real-world problem solving
+* scalable execution capability
+* alignment with funded and public-impact programs
+
+While also making the UI:
+
+* lighter
+* cleaner
+* more readable
+* still premium and professional

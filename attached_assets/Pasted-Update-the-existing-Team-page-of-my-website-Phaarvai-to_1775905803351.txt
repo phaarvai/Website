@@ -1,0 +1,92 @@
+Update the existing "Team" page of my website "Phaarvai" to include LinkedIn profile integration for each team member.
+
+Goal:
+Add clickable LinkedIn profile links to each team member card in a clean, modern, and professional UI aligned with an AI-driven startup.
+
+Requirements:
+
+1. Team Card Component:
+- Create or update a reusable TeamCard component
+- Each card must include:
+  - Name
+  - Role
+  - Short bio
+  - LinkedIn icon/button
+
+2. LinkedIn Integration:
+- Add a LinkedIn icon (use Lucide React or Font Awesome)
+- Position:
+  → Bottom-right of the card OR
+  → Overlay visible on hover
+- Clicking the icon:
+  → Opens LinkedIn profile in a new tab
+  → Use target="_blank" and rel="noopener noreferrer"
+
+3. LinkedIn URLs:
+
+- Praveen Ashok Kumar:
+  https://www.linkedin.com/in/praveenashok
+
+- Raghavan Kothandaraman:
+  https://www.linkedin.com/in/raghavankothandaraman
+
+- Udhgee Murugesan:
+  https://www.linkedin.com/in/udhgee
+
+- Prathipa Ashok Kumar:
+  https://www.linkedin.com/in/prathipa-ashok
+
+- Anchana M:
+  https://www.linkedin.com/in/anchana-mariselvam/
+
+4. UI/UX Enhancements:
+- LinkedIn icon should:
+  → Default: neutral color (gray or white depending on theme)
+  → On hover:
+     - Change to LinkedIn blue (#0A66C2)
+     - Slight scale animation (scale 1 → 1.1)
+- Add tooltip:
+  → "View Profile"
+- Add smooth transition (0.2–0.3s ease)
+
+5. Bonus Animation:
+- LinkedIn icon appears only on hover:
+  → opacity: 0 → 1
+  → slight upward motion (translateY)
+- Add soft shadow/glow to card on hover
+
+6. Accessibility:
+- Add aria-label:
+  → aria-label="View LinkedIn profile of [Name]"
+- Ensure clickable area is large enough
+- Maintain good color contrast
+
+7. Data-Driven Rendering:
+- Store team data in an array (JSON format)
+- Map through array to render cards dynamically
+- Avoid hardcoding multiple components
+
+Example structure:
+const teamMembers = [
+  {
+    name: "Praveen Ashok Kumar",
+    role: "Senior Technical Program Manager",
+    linkedin: "https://www.linkedin.com/in/praveenashok"
+  }
+]
+
+8. Responsiveness:
+- Desktop: 3–4 cards per row
+- Tablet: 2 cards
+- Mobile: 1 card
+
+9. Tech Stack:
+- Use same stack as existing project (React / Next.js preferred)
+- Use Tailwind CSS (if already used) or clean CSS modules
+
+Output:
+- Provide:
+  1. TeamCard component code
+  2. Team section/page code
+  3. Styling included
+- Code should be production-ready and easy to plug into existing Phaarvai website

@@ -1,0 +1,247 @@
+Refine and enhance the existing PHAARVAI website using the current codebase. DO NOT rebuild from scratch.
+
+This update must align with a high-end analytics and digital systems company standard (similar to Fractal, Tiger Analytics, Mu Sigma, LatentView).
+
+---
+
+## CORE GOAL
+
+Make the website feel like a mature, enterprise-grade company that:
+
+* builds real systems
+* delivers measurable outcomes
+* operates at institutional scale
+
+Users should understand in 10 seconds:
+WHAT PHAARVAI BUILDS and WHO IT IS FOR
+
+---
+
+## CRITICAL ADDITION: “WHAT WE BUILD” (MISSING)
+
+Add a strong section on homepage and capabilities pages:
+
+Title: What We Build
+
+Include:
+
+* AI-powered decision support systems
+* Executive dashboards & command centers
+* Integrated data platforms
+* Workflow automation systems
+* Infrastructure monitoring platforms
+* Impact tracking and reporting systems
+
+Each item must include:
+
+* 1-line explanation
+* outcome-focused wording
+
+---
+
+## UPGRADE SERVICE CLARITY (VERY IMPORTANT)
+
+Rewrite all capabilities to clearly show:
+
+* Problem
+* What we build
+* Outputs (systems, dashboards, tools)
+* Impact
+
+Avoid vague descriptions.
+
+---
+
+## ADD “OUTPUT-FIRST” LANGUAGE
+
+Replace generic text with:
+
+* “We build…”
+* “We deploy…”
+* “We implement…”
+
+NOT:
+
+* “We help…”
+* “We enable…”
+
+---
+
+## VISUAL UPGRADE (CRITICAL)
+
+The current site is too text-heavy. Add visuals like top analytics firms.
+
+Use ONLINE IMAGES (free + professional):
+
+1. Add visuals to:
+
+* Hero section
+* Capabilities sections
+* Solutions sections
+
+2. Image types to use:
+
+* dashboard UI mockups
+* data flow diagrams
+* network/grid visuals
+* system architecture illustrations
+
+3. Avoid:
+
+* stock photos of people
+* corporate handshake images
+
+---
+
+## IMAGE SOURCES (IMPLEMENT)
+
+Use:
+
+* Unsplash (search: "data dashboard", "AI system", "network grid")
+* SVG illustrations (minimal, abstract)
+
+Ensure:
+
+* images are optimized
+* not heavy
+* used sparingly (not cluttered)
+
+---
+
+## DESIGN STYLE ALIGNMENT
+
+Match style of analytics companies:
+
+* clean white background
+* structured cards
+* strong headings
+* minimal text per section
+
+Add:
+
+* more spacing
+* section separation
+* clear hierarchy
+
+---
+
+## SECTION IMPROVEMENTS
+
+1. HOMEPAGE
+
+Add missing:
+
+* What We Build
+* Featured Solution Areas (with outputs)
+* Funding teaser
+
+Improve:
+
+* practice area cards → include problem + outcome
+
+---
+
+2. CAPABILITIES PAGE
+
+Each capability must include:
+
+* What this is
+* When you need this
+* What we build
+* Deliverables
+
+---
+
+3. SOLUTIONS PAGE
+
+Each use case must include:
+
+* Challenge
+* What system we implement
+* Outputs (dashboards, AI tools, etc.)
+* Impact
+
+---
+
+4. SECTORS PAGE
+
+Add clarity:
+
+* problems in sector
+* systems PHAARVAI builds
+
+---
+
+5. INSIGHTS PAGE
+
+Add:
+
+* 3–6 more articles
+* real-world topics:
+
+  * digitization gaps
+  * AI implementation
+  * dashboards
+  * funded programs
+
+---
+
+6. CONTACT PAGE
+
+Add structured form with dropdown:
+
+* AI
+* Digitization
+* IoT
+* Sustainability
+* Partnerships
+
+---
+
+## ANIMATION (PROFESSIONAL)
+
+Add subtle animations:
+
+* fade-in on scroll
+* card hover elevation
+* smooth transitions
+
+DO NOT:
+
+* use heavy animation
+* use parallax
+
+---
+
+## SEO IMPROVEMENT
+
+Add metadata for all pages:
+
+Use keywords:
+
+* AI solutions company
+* digital transformation
+* IoT systems
+* operational intelligence
+
+Ensure:
+
+* proper H1, H2 structure
+* fast loading
+
+---
+
+## FINAL EXPERIENCE
+
+The website should feel like:
+
+* Fractal / Mu Sigma / LatentView level
+* enterprise-ready
+* system-focused
+* execution-driven
+
+NOT:
+
+* startup landing page
+* text-heavy document
+* generic IT services site
