@@ -4,6 +4,7 @@ import { Providers } from "@/components/Providers";
 import { SiteChrome } from "@/components/SiteChrome";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.phaarvai.com"),
   title: {
     default: "Phaarvai — Applied AI & Intelligent Infrastructure",
     template: "%s | Phaarvai",
@@ -15,6 +16,12 @@ export const metadata: Metadata = {
     siteName: "Phaarvai",
   },
   robots: { index: true, follow: true },
+  icons: {
+    icon: [
+      { url: "/favicon.png", type: "image/png", sizes: "192x192" },
+      { url: "/favicon.ico", sizes: "48x48 192x192" },
+    ],
+  },
 };
 
 export default function RootLayout({

@@ -16,7 +16,8 @@ function page(targetUrl = APP_URL) {
       name="description"
       content="Human-in-the-Loop AI Knowledge Validation Platform"
     />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48 192x192" />
     <style>
       html, body {
         margin: 0;

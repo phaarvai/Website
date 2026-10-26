@@ -5,8 +5,11 @@ export const metadata: Metadata = {
   title: "Phaarvai — Applied AI & Intelligent Infrastructure",
   description:
     "Phaarvai designs, builds, and deploys production-ready AI systems and intelligent infrastructure for governments, enterprises, and research institutions.",
+  alternates: {
+    canonical: "https://www.phaarvai.com/",
+  },
   openGraph: {
-    url: "https://phaarvai.com",
+    url: "https://www.phaarvai.com/",
     title: "Phaarvai — Applied AI & Intelligent Infrastructure",
     description:
       "Production-ready AI systems and intelligent infrastructure — engineered for governments, enterprises, and complex real-world operations.",

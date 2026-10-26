@@ -16,7 +16,8 @@ function page() {
       name="description"
       content="Child-centered climate resilience planning and municipal resource optimization."
     />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="icon" href="/favicon.png" type="image/png" sizes="192x192" />
+    <link rel="icon" href="/favicon.ico" sizes="48x48 192x192" />
     <style>
       html, body {
         margin: 0;
