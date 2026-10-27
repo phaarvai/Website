@@ -1,7 +1,7 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
@@ -79,6 +79,18 @@ export default function Partner() {
   const submitLockRef = useRef(false);
   const { hero, partnershipAreas, collaborationPrinciples, contact, partnershipInterests } =
     partnerContent;
+
+  useEffect(() => {
+    if (window.location.hash !== "#contact") return;
+
+    const scrollToForm = () => {
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    };
+
+    scrollToForm();
+    const timer = window.setTimeout(scrollToForm, 150);
+    return () => window.clearTimeout(timer);
+  }, []);
 
   const form = useForm<FormValues>({
     resolver: zodResolver(formSchema),

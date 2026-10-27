@@ -85,7 +85,7 @@ export default function Projects() {
           title="Partner on your next deployment"
           description="AI systems engineered for institutional and operational environments."
           buttonLabel="Partner With Us"
-          buttonHref="/partner"
+          buttonHref="/partner#contact"
         />
       </article>
     </>

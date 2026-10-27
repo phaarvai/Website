@@ -12,7 +12,7 @@ export const siteContent = {
       "We design, build, and deploy production-ready AI systems and intelligent infrastructure for governments, enterprises, and research institutions — scalable platforms engineered for complex, real-world operations.",
     ctaPrimary: { label: "View Projects", href: "/projects" },
     ctaSecondary: { label: "Explore Capabilities", href: "/capabilities" },
-    ctaTertiary: { label: "Partner With Us", href: "/partner" },
+    ctaTertiary: { label: "Partner With Us", href: "/partner#contact" },
     badges: ["AI Infrastructure", "Operational Intelligence", "Enterprise Deployments"],
   },
   whatWeDo: {
@@ -100,7 +100,7 @@ export const siteContent = {
   partnerCta: {
     title: "Deploy intelligent systems with Phaarvai",
     description: "Applied AI and intelligent infrastructure for mission-critical environments.",
-    primary: { label: "Partner With Us", href: "/partner" },
+    primary: { label: "Partner With Us", href: "/partner#contact" },
     secondary: { label: "Contact Phaarvai", href: "/partner#contact" },
   },
   footer: {
@@ -116,7 +116,7 @@ export const siteContent = {
         { label: "Team", href: "/team" },
       ],
       connect: [
-        { label: "Partner With Us", href: "/partner" },
+        { label: "Partner With Us", href: "/partner#contact" },
         { label: "Contact", href: "/partner#contact" },
       ],
     },

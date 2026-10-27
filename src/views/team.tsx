@@ -276,7 +276,7 @@ export default function Team() {
           title="Work with our engineering team"
           description="Partner on AI systems, cloud infrastructure, and institutional technology — from architecture through production deployment."
           buttonLabel="Partner With Us"
-          buttonHref="/partner"
+          buttonHref="/partner#contact"
         />
       </article>
     </>

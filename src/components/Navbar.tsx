@@ -38,6 +38,15 @@ export function Navbar() {
     return pathname === href || pathname.startsWith(`${href}/`);
   };
 
+  const scrollToPartnershipForm = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    setMobileMenuOpen(false);
+    if (pathname !== "/partner") return;
+
+    event.preventDefault();
+    document.getElementById("contact")?.scrollIntoView({ behavior: "smooth", block: "start" });
+    window.history.pushState(null, "", "/partner#contact");
+  };
+
   return (
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-300 ${
@@ -85,7 +94,7 @@ export function Navbar() {
         </div>
 
         <div className="hidden xl:block">
-          <Link href="/partner">
+          <Link href="/partner#contact" onClick={scrollToPartnershipForm}>
             <Button variant="default" className="font-semibold px-6 text-base hover-elevate">
               Partner With Us
             </Button>
@@ -126,7 +135,7 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="pt-4 mt-2 border-t border-border">
-                <Link href="/partner">
+                <Link href="/partner#contact" onClick={scrollToPartnershipForm}>
                   <Button variant="default" className="w-full justify-center">
                     Partner With Us
                   </Button>
